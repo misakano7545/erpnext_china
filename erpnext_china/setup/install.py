@@ -54,7 +54,7 @@ uom_list = [
 def after_install():
     if not frappe.is_setup_complete():
         set_china_default()
-        set_v16_icon()
+    set_v16_icon()
 
 def set_china_default():    
     try:
