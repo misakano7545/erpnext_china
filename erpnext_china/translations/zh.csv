@@ -12194,3 +12194,262 @@ Inventory Valuation,存货计价
 Enable Serial / Batch No for Item,启用物料序列号/批次号
 UTM Analytics,获客分析
 Exclude Zero Balance Parties,隐藏零余额往来单位
+"A Product or a Service that is bought, sold or kept in stock.",购买、销售或库存中保存的产品或服务。
+"ERPNext will make a stock ledger entry for each transaction of this item. Keep unchecked for non-stock or service items.",ERPNext 将为此物料的每笔交易生成物料凭证条目。对于非库存或服务类物料，请保持未勾选状态。
+"Enable for raw material items used in BOM. Uncheck for additional services like 'washing' used in manufacturing.",为 BOM 中使用的原材料物料启用。对于制造中使用的附加服务（如"清洗"），请取消勾选。
+"Used to create an opening Stock Entry with the Valuation Rate when the item is saved",用于创建新物料时同步生成期初库存（其它入库）。
+"Creates an Item Price automatically when the item is saved",在保存物料时自动创建物料价格。
+"Enable if this item is a company asset like machinery or furniture.",如果该物料是公司资产（如机器或家具），请启用。
+"Percentage by which over-delivery or over-receipt is allowed against a Sales/Purchase Order for this item. If not set, value from Stock Settings will be used.",针对该物料的销售/采购订单允许的超额出库/入库百分比。如果未设置，将使用库存设置中的值。
+"Percentage by which over-billing is allowed against a Sales/Purchase Order for this item. If not set, value from Accounts Settings will be used.",针对该物料的销售/采购订单允许的超额开票百分比。如果未设置，将使用会计设置中的值。
+"Creates a single grouped asset instead of individual assets when purchased in bulk.",批量采购时创建一个分组资产，而不是单个资产。
+"Allow stock to go below zero for this item, even if negative stock is disabled in Stock Settings.",允许负库存（库存数量低于零），即使在库存设置中禁用了负库存。
+"If this item has variants, then it cannot be selected in sales orders etc.",如果该物料有变体，则不能在销售订单等中选择。
+"Allow substituting this item with an alternative from the Item Alternative list when stock is unavailable.",当库存不可用时，允许使用物料替代列表中的替代品替换该物料。
+"Enable if a vendor manufactures this item for you. You can choose to provide them raw materials using the default BOM.",如果供应商为您制造该物料，请启用。您可以选择使用默认 BOM 为其提供原材料。
+"Enable for drop shipping - supplier delivers directly to the customer without passing through your warehouse.",如果是直运（直接代发）启用 - 供应商直接交付给客户，不经过您的仓库。
+"Track each unit with a unique serial number for warranty and return tracking. Cannot be changed after a stock transaction exists.",用唯一序列号跟踪每个单位，以便保修和退货跟踪。存在库存交易后无法更改。
+"Track this item in batches. Cannot be changed after a stock transaction exists.",按批次跟踪该物料。存在库存交易后无法更改。
+"Defines the date after which the item can no longer be used in transactions or manufacturing",定义该物料不能再用于交易或制造的日期之后。
+"Expense for this item will be recognized over a period of months. Eg: prepaid insurance or annual software license",该物料的费用将在数月内确认。例如：预付保险或年度软件许可证。
+"Income from this item will be recognized over a period of months instead of all at once. Eg: annual subscription paid upfront.",该物料的收入将在数月内确认，而不是一次性全部确认。例如：提前支付的年度订阅费。
+"Enable to reserve a small sample from each batch for any analysis arising ahead",启用以为每批保留少量样本，用于未来可能出现的任何分析。
+"If enabled, sales from this item will be included in Sales Person and Sales Partner commission calculations",如果启用，该物料的销售将包含在销售人员和销售合作伙伴的佣金计算中。
+"If series is set and Serial No is not mentioned in transactions, then automatic serial number will be created based on this series. If you always want to explicitly mention Serial Nos for this item. leave this blank.",如果设置了系列且交易中未提及序列号，则将根据该系列自动创建序列号。如果您始终希望明确为此物料提及序列号，请将此字段留空。
+"Batch number will be auto-created in format AAAA.00001 if not specified in transactions. Leave blank to always enter batch numbers manually.",如果交易中未指定，批号将按格式 AAAA.00001 自动创建。留空表示始终手动输入批号。
+"If series is set and Batch No is not mentioned in transactions, then automatic batch number will be created based on this series. If you always want to explicitly mention Batch No for this item, leave this blank. Note: this setting will take priority over the Naming Series Prefix in Stock Settings.",如果设置了系列且交易中未提及批号，则将根据该系列自动创建批号。如果您始终希望明确为此物料提及批号，请将此字段留空。注意：此设置将优先于库存设置中的命名系列前缀。
+"Defines alternate units for this item. Eg: 1 Box = 12 Nos, set conversion factor as 12. (Will also apply for variants) <a href=""https://docs.frappe.io/erpnext/uom"" target=""_blank"">Learn more &#8594;</a>",定义此物料的替代单位。例如：1 箱 = 12 个，转换系数设为 12。（也将应用于变体）<a href="https://docs.frappe.io/erpnext/uom" target="_blank">了解更多 &#8594;</a>
+"Maximum discount % allowed when selling this item. Eg: if set to 20%, a discount greater than 20% cannot be applied in sales transactions.",销售该物料时允许的最大折扣百分比。例如：若设置为 20%，则销售交易中不能应用超过 20% 的折扣。
+"Disabled items cannot be selected in any transaction.",禁用的物料无法在任何交易中被选择。
+"If item is a variant of another item then description, image, pricing, taxes etc will be set from the template unless explicitly specified",如果物料是另一物料的变体，则除非明确指定，否则描述、图像、定价、税务等将从模板中设置。
+"Will also apply for variants unless overridden",除非被覆盖，否则也将应用于多规格物料。
+Will also apply for variants,也将应用于多规格物料。
+"Batch number will be created based on expiry date. Expiry dates can be set in the Batch master.",批号将根据到期日期创建。到期日期可以在批次主数据中设置。
+Maximum sample quantity that can be retained,可以保留的最大样本数量。
+"Enable if this item is provided by a customer and received via Stock Entry.",如果该物料由客户提供并通过其它入库接收，请启用。
+Minimum quantity should be as per Stock UOM,最小数量应符合库存计量单位。
+"Minimum stock level to maintain as a buffer. Used to calculate recommended reorder level: Reorder Level = Safety Stock + (Average Daily Consumption × Lead Time).",作为缓冲维持的最低库存水平。用于计算建议的再订货点：再订货点 = 安全库存 +（平均每日消耗量 × 提前期）。
+Average time taken by the supplier to deliver,供应商交付所需的平均时间。
+"The rate at which this item was last purchased via a Purchase Invoice. Auto-updated by the system.",该物料最后一次采购发票单价。由系统自动更新。
+"A quality inspection must be completed before generating a Purchase Receipt for this item.",此物料采购入库前，必须提交质量单。
+"A quality inspection must be completed before generating a Delivery Note for this item.",此物料销售出库提交前，必须提交质检单。
+Consume Components,消耗组件
+BOM Configuration,BOM 配置
+Cost Allocation / Process Loss,成本分配 / 工序损耗
+Users can make manufacture entry against Job Cards,用户可基于生产任务单入库
+Components,组件
+Secondary Items,辅助物料
+Secondary Item Code,辅助物料编码
+Secondary Item Name,辅助物料名称
+Co-Product,联产品
+By-product,副产品
+Scrap,废料
+Addtional Finished Good,额外产成品
+Cost Allocation %,成本分配百分比
+Process Loss %,工序损耗百分比
+Set Operating Cost / Secondary Items From Sub-assemblies,从子装配件设置作业成本 / 辅助物料
+"To include sub-assembly costs and secondary items in Finished Goods on a work order without using a job card, when the 'Use Multi-Level BOM' option is enabled.",当启用"使用多级 BOM"选项时，在不使用生产任务单的情况下，将子装配件成本和辅助物料包含到工单的产成品中。
+Production Item Info,生产物料信息
+Item Attributes,物料属性
+Is Sales Order required to create Sales Invoice/Delivery Note?,创建销售发票/交货单是否需要销售订单？
+Is Delivery Note required to create Sales Invoice?,创建销售发票是否需要交货单？
+How often should sales data be updated in Company/Project?,销售数据在公司/项目中的更新频率
+The frequency at which project progress and company transaction details will be updated. Set it to daily or monthly if you post a lot of transactions.,项目进度和公司交易明细的更新频率。如果您录入大量交易，请设置为每日或每月。
+Allow same Item to be added multiple times in a transaction,允许在交易中多次添加同一物料
+Allow multiple Sales Orders against a customer's Purchase Order,允许针对客户的采购订单创建多个销售订单
+Hide Customer's Tax ID from sales transactions,在销售交易中隐藏客户的税号
+Allow Sales Order creation for expired Quotation,允许对已过期的报价单创建销售订单
+This allows creation of sales orders from quotations that have passed their expiration date, providing flexibility in processing orders despite outdated quotes.,允许根据已超过有效期的报价单创建销售订单，即使在报价已过时的情况下也能灵活处理订单。
+Don't reserve Sales Order qty on sales return,销售退货时不预留销售订单数量
+Prevents the automatic reservation of stock quantities from sales orders when processing sales returns.,在处理销售退货时，阻止自动预留销售订单中的库存数量。
+Enable cut-off date on creating bulk Delivery Notes,在批量创建交货单时启用截止日期
+"When enabled, it adds a cutoff date filter to Delivery Notes created in bulk from Sales Orders. This allows you to process orders only with a transaction date up to the specified cutoff date, which is useful for period-end processing and batch fulfillment.",启用后，会为从销售订单批量创建的交货单添加截止日期过滤器。这允许您仅处理交易日期截至指定截止日期的订单，适用于期末处理和批量履行。
+Set incoming rate as zero for expired Batch,为过期批次设置入库成本价为零
+如果启用，系统将对包含过期批次物料的独立红字发票（贷记通知单）将入库成本价设为零。,If enabled, the system will set the incoming rate to zero for standalone credit notes containing expired batch items.
+Zero-Quantity Line Items,零数量行项目
+Allow sales transactions with zero quantities if the rate is fixed but the quantities are not. e.g. Rate Contracts,如果价格已固定而数量未确定，允许零数量的销售交易。例如：价格合同。
+Allow Quotation with zero quantity,允许零数量的报价单
+Allow Sales Order with zero quantity,允许零数量的销售订单
+Blanket Orders,一揽子订单
+Use prices from Default Price List as fallback,使用默认价格列表中的价格作为回退
+If no Item Price is found for an item in the Price List set in the transaction, prices from the Default Price List will be fetched.,如果在交易中设置的价格列表中未找到物料的物料价格，将从默认价格列表中获取价格。
+Allow editing Price List rate in transactions,允许在交易中编辑价格列表费率
+Maintain same rate throughout sales cycle,在整个销售周期中保持相同价格
+Warn or stop if Item rate is changed in Delivery Notes and Sales Invoices generated from a Sales Order.,如果在从销售订单生成的交货单和销售发票中更改了物料价格，则发出警告或阻止。
+Validate selling price for Item against purchase or valuation rate,根据采购价或估价率验证物料的销售价
+Enable this to block transactions where the selling price is less than the purchase or valuation rate,启用此选项以阻止销售价低于采购价或估价率的交易
+Calculate Product Bundle price based on child Item's rates,根据子物料的价格计算产品套装价格
+Allow negative rates for Items,允许物料使用负单价
+Activate Serial / Batch No for Item,激活启用物料的序列号/批次号功能
+After save, please refresh the page to apply the changes.,保存后，请刷新页面以应用更改。
+Enable Separate Reposting for GL,成本追溯调整生成单独的总账凭证
+Do not fetch incoming rate from Serial No,不从序列号获取入库成本价
+For legacy serial nos, do not fetch incoming rate from serial no and calculate it based on the inward transaction,对于旧版序列号，不从序列号获取入库成本价，而是根据入库交易计算。
+Document Naming,文档命名
+Advanced Features,高级功能
+Enable discount accounting for selling,为销售启用折扣会计
+Allow delivery of overproduced quantity,允许交付超额生产的数量
+Deliver secondary Items,交付辅助物料
+If enabled, the Secondary Items generated against a Finished Good will also be added in the Stock Entry when delivering that Finished Good.,如果启用，在交付产成品时，针对该产成品生成的辅助物料也将添加到销售出库明细中。
+Automatically Fetch Payment Terms from Order/Quotation,从订单/报价单自动获取付款条款
+Enable Subscription,启用订阅
+Enable Subscription tracking in invoice,在发票中启用订阅跟踪
+Fetch Payment Schedule In Payment Request,在付款请求中获取付款计划
+Used with Financial Report Template,用于财务报表模板Stock Setup,库存初始化
+Accounting Onboarding,会计初始化
+{0}/{1} steps completed,已完成 {0}/{1} 步
+1/7 steps completed,已完成 1/7 步
+0/6 steps completed,已完成 0/6 步
+14% completed,已完成 14%
+0% completed,已完成 0%
+Skip All,全部跳过
+Create Warehouses,创建仓库
+Create Item,创建物料
+Create Purchase Receipt,创建采购收货
+Create Transfer Entry,创建库存调拨
+Configure Chart of Accounts,配置会计科目表
+Setup Sales Taxes,设置销售税
+Create Sales Invoice,创建销售发票
+View Balance Sheet,查看资产负债表
+Review Accounts Settings,检查会计设置
+Review Accounting Settings,检查会计设置
+Allow Multi-currency Invoices Against Single Party Account,允许同一往来单位账户开具多币种发票
+Managing Tree Mastes,管理树形主数据
+Managing Tree Masters,管理树形主数据
+Financial Reports,财务报表
+Profitability Analysis,盈利能力分析
+Gross Profit,毛利
+List,列表
+About,关于
+Keyboard Shortcuts,键盘快捷键
+System Health Report,系统健康报告
+Frappe Support,Frappe 支持
+Manufacturing Setup,生产初始化
+Selling Setup,销售初始化
+Create Raw Material,创建原材料
+Create Finished Good,创建成品
+Create Operation,创建工序
+Create Bill of Materials,创建物料清单
+Create Work Order,创建工单
+View Work Order Summary,查看工单汇总
+Review Manufacturing Settings,检查生产设置
+Create Customer,创建客户
+View Sales Order Analysis,查看销售订单分析
+Review Selling Settings,检查销售设置
+Produced Quantity,生产数量
+Completed Operation,已完成工序
+Monthly Total Work Orders,每月工单总数
+Monthly Quality Inspections,每月质检数
+Work Order Analysis,工单分析
+Not Started,未开始
+In Progress,进行中
+Rest,剩余
+Rejected,拒绝
+Item,物料
+Allow Clearing Link Fields,允许清空链接字段
+"Adds a clear (x) button to Link fields, allowing users to quickly remove the selected value.",为链接字段增加清除按钮，方便用户快速移除已选值。
+0 - too guessable: risky password.,0 - 太容易猜到：高风险密码。
+1 - very guessable: protection from throttled online attacks.,1 - 很容易猜到：仅能防护限速的在线攻击。
+2 - somewhat guessable: protection from unthrottled online attacks.,2 - 较容易猜到：可防护不限速的在线攻击。
+3 - safely unguessable: moderate protection from offline slow-hash scenario.,3 - 较难猜到：可中等防护离线慢哈希攻击场景。
+4 - very unguessable: strong protection from offline slow-hash scenario.,4 - 很难猜到：可强力防护离线慢哈希攻击场景。
+Quarter,季度
+Buying Setup,采购初始化
+Create supplier,创建供应商
+Create Supplier,创建供应商
+Create Purchase Invoice,创建采购发票
+View Purchase Order Analysis,查看采购订单分析
+Review Buying Settings,检查采购设置
+Allow Clearing Link Fields,允许清空链接字段
+"Adds a clear (x) button to Link fields, allowing users to quickly remove the selected value.",为链接字段添加清除（x）按钮，方便用户快速移除已选值。
+This will allow the user to specify a different rate for printing or taxation purposes.,这允许用户为打印或税务用途指定不同价格。
+Set this value to 0 to disable the feature.,将此值设为 0 可禁用此功能。
+People,人员
+Tenure,任职
+Shift and Attendance,班次与考勤
+Expenses Settings,费用设置
+Exit Interview Web Form Template,离职面谈网页表单模板
+Exit Interview Notification Template,离职面谈通知模板
+Frappe HR,人力资源
+Frappe HR System,人力资源系统
+Frappe HR系统,人力资源系统
+If party does not exist, create it using the Customer Name field.,如果往来单位不存在，则使用客户名称字段创建。
+Cheque,支票
+Cash,现金
+Credit Card,信用卡
+Wire Transfer,电汇
+Bank Draft,银行汇票
+Enable UTM,启用 UTM
+enable_utm,启用 UTM
+"Enable Urchin Tracking Module parameters in Quotation, Sales Order, Sales Invoice, POS Invoice, Lead, and Delivery Note.",在报价、销售订单、销售发票、POS 发票、线索和销售出库中启用 Urchin 跟踪模块参数。
+Deliver Secondary Items,交付辅助物料
+deliver_secondary_items,交付辅助物料
+"If enabled, the Secondary Items generated against a Finished Good will also be added in the Stock Entry when delivering that Finished Good.",启用后，交付成品时，该成品生成的辅助物料也会添加到库存单据中。
+Common Party,通用往来单位
+enable_common_party_accounting,启用通用往来单位会计
+Learn about,了解
+allow_clearing_link_fields,允许清空链接字段
+only_allow_system_managers_to_upload_public_files,仅允许系统管理员上传公开文件
+allow_internal_transfer_at_arms_length_price,启用远距离调拨价
+dormant_days,后台进程停用天数
+so_required,销售订单必填
+All Locations,全部地点
+Login,登录
+System User,系统用户
+Website User,网站用户
+Human Resource,人力资源
+Frappe HR,人力资源
+Tax and Benefits,税务和福利
+Exemption Declaration,免税申报
+Exemption Submission Proof,免税证明提交
+Benefit Application,福利申请
+Benefit Claim,福利报销
+Feedback Template,反馈模板
+Setup Organization,组织初始化
+Invite Users,邀请用户
+Setup Email Account,设置邮箱账户
+Setup Role Permissions,设置角色权限
+Review System Settings,检查系统设置
+Subcontracting Setup,委外初始化
+Learn Subcontracting,了解委外
+Create Service Item,创建服务物料
+Create Subcontracted Item,创建委外物料
+Create Subcontracting Purchase Order,创建委外采购订单
+Create Subcontracting Order,创建委外订单
+Buying Settings,采购设置
+Global Defaults,全局默认值
+System Settings,系统设置
+Accounts Settings,会计设置
+POS Settings,POS 设置
+Selling Settings,销售设置
+Stock Settings,库存设置
+Manufacturing Settings,生产设置
+Subscription Settings,订阅设置
+Currency Exchange Settings,汇率设置
+Appointment Booking Setti...,预约设置
+Repost Accounting Ledger ...,重过账会计凭证
+"If enabled, only System Managers can upload public files. Other users can't see the checkbox",启用后，仅系统管理员可以上传公开文件。其他用户在上传对话框中看不到
+in the upload dialog.,复选框。
+Adds a clear (x) button to Link fields,为链接字段添加清除（x）按钮
+allowing users to quickly remove the selected value.,方便用户快速移除已选值。
+The user can view Sales Invoices but cannot modify any field values in them.,用户可以查看销售发票，但不能修改其中任何字段值。
+The user can update a customer or any other fields in an existing Sales Order but cannot create a new Sales Order.,用户可以更新现有销售订单中的客户或其他字段，但不能创建新的销售订单。
+The user can delete Draft / Cancelled documents.,用户可以删除草稿或已取消的单据。
+Allows the user to use Data Import tool to create / update records.,允许用户使用数据导入工具创建或更新记录。
+The user can import new records or update existing data for the document.,用户可以为该单据导入新记录或更新现有数据。
+Assets Setup,资产初始化
+Learn Asset,了解资产
+Create Asset Category,创建资产类别
+Create Asset Item,创建资产物料
+Create Asset Location,创建资产地点
+Create Existing Asset,创建现有资产
+too guessable: risky password.,太容易猜到：高风险密码。
+very guessable: protection from throttled online attacks.,很容易猜到：可防护限速的在线攻击。
+somewhat guessable: protection from unthrottled online attacks.,较难猜到：可防护不限速的在线攻击。
+safely unguessable: moderate protection from offline slow-hash scenario.,难以猜到：对离线慢哈希攻击有中等防护。
+very unguessable: strong protection from offline slow-hash scenario.,极难猜到：对离线慢哈希攻击有强防护。
+"Adds a clear (x) button to Link fields,",为链接字段添加清除（x）按钮，
+Enable Urchin Tracking Module parameters in,启用 Urchin 跟踪模块参数，适用于
+"Order, Sales Invoice, POS Invoice, Lead, and Delivery Note.",订单、销售发票、POS 发票、线索和销售出库。
+"Quotation, Sales Order, Sales Invoice, POS Invoice, Lead, and Delivery Note.",报价、销售订单、销售发票、POS 发票、线索和销售出库。
+"Provide list of allowed file types. Each line should contain one file extension. If left empty, all file types are allowed. Example:",提供允许上传文件类型的列表。每行填写一种文件扩展名。如果留空，则不限制上传文件类型。例如：

@@ -52,8 +52,18 @@ uom_list = [
 
 
 def after_install():
-    if not frappe.is_setup_complete():
+    # 1. 优先使用内置的 is_setup_complete 属性（如果存在）
+    if hasattr(frappe, "is_setup_complete"):
+        is_setup = frappe.is_setup_complete()
+    else:
+        # 2. 如果不存在，通过查询系统全局设置判断是否已完成初始化
+        # 在 Frappe 中，向导完成后会将 System Settings 中的 setup_complete 设为 1
+        is_setup = frappe.db.get_single_value("System Settings", "setup_complete")
+
+    # 业务逻辑：如果系统【没有】完成初始化，说明是首次安装系统，执行默认设置
+    if not is_setup:
         set_china_default()
+        
     set_v16_icon()
 
 def set_china_default():    
