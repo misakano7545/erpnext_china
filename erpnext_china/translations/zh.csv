@@ -19301,3 +19301,8 @@ Subcontracted Quantity,"受托加工数量","Sales Order Item"
 Is Subcontracted Item,是委外/受托加工物料
 Freeze,冻结
 Save Current Filter,保存筛选器
+Scan Job Card Qrcode,扫描生产任务单二维码
+"if not checked, it will be excluded from send to manufacture,manual transfer it to WIP warehouse without refer to work order instead","如不勾选表示此物料不按工单发料，工单发料明细不包含它；需手动将其转入车间仓"
+"for equipment pool case, number of individual equipment","针对多台设备作为一个工站，这个是设备台数"
+Physical SFG produced in-house,自制半成品
+"for subcontract case, ticked means this item excluded from the to-be sent to supplier raw material list",针对委外场景，勾选则委外发料明细不包含此物料
