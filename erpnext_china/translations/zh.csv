@@ -19308,3 +19308,43 @@ Scan Job Card Qrcode,扫描生产任务单二维码
 "for equipment pool case, number of individual equipment","针对多台设备作为一个工站，这个是设备台数"
 Physical SFG produced in-house,自制半成品
 "for subcontract case, ticked means this item excluded from the to-be sent to supplier raw material list",针对委外场景，勾选则委外发料明细不包含此物料
+Balance Sheet Settings,中国资产负责表设置
+Profit and Loss Statement Settings,中国损益表设置
+Fin Balance Sheet,中国资产负债表
+Fin Profit and Loss Statement,中国损益表
+Customer Part Number,客户物料名
+Expenses Added To Stock Account,结转库存的费用科目
+Expenses Added To Stock Contra Account,结转库存的费用备抵科目
+HR Setup,人力资源设置
+Shift and Attendance,班次与考勤
+Leave Settings,请假设置
+Expenses Settings,费用报销设置
+Total Present (This Month),本月出勤总人数
+Total Absent (This Month),本月缺勤总人数
+Late Entry (This Month),本月迟到人次
+Early Exit (This Month),本月早退人次
+Timesheet Activity Breakup,工时表活动分布
+Shift Assignment Breakup,排班分配分布
+Department wise Timesheet Hours,各部门工时统计
+Total Employees,员工总数
+New Hires (This Year),今年新入职人数
+Employee Exits (This Year),今年离职人数
+Employees Joining (This Quarter),本季度入职人数
+Employees Relieving (This Quarter),本季度离职人数
+Hiring vs Attrition Count,入职与离职人数对比
+Employees by Age,员工年龄分布
+Gender Diversity Ratio,性别比例分布
+Employees by Type,员工类型分布
+Employees by Grade,员工职级分布
+Employees by Branch,按分支机构/分公司员工分布
+Designation Wise Employee Count,按职位统计员工数
+Department Wise Employee Count,按部门统计员工数
+Onboardings (This Month),本月入职办理数
+Separations (This Month),本月离职办理数
+Promotions (This Month),本月晋升人数
+Transfers (This Month),本月调动人数
+Trainings (This Month),本月培训场次
+Y-O-Y Transfers,调动人数同比分析
+Y-O-Y Promotions,晋升人数同比分析
+Training Type,培训类型
+Employee Lifecycle,员工生命周期
