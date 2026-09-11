@@ -1,677 +1,659 @@
-# Copyright (c) 2023, 杨嘉祥 and contributors
+# Copyright (c) 2026, Frappe Technologies Pvt. Ltd. and contributors
 # For license information, please see license.txt
 
-import inspect
 import frappe
 from frappe import _
-from frappe.query_builder import DocType, Order
-from frappe.query_builder.functions import Sum, Round
-from frappe.utils import cint, cstr, flt, getdate, datetime, get_first_day, get_last_day, formatdate, add_days
+from frappe.utils import flt, getdate, get_last_day, today
+from frappe.query_builder import Case
+from frappe.query_builder.functions import Coalesce, Sum, IfNull
+from frappe.query_builder import Field
+from pypika import Order
 from erpnext.accounts.utils import get_balance_on
 
-def execute(filters):
-  if filters.show_all_months:
-    return BalanceSheetSingleColumn(filters).run()
-  else:
-    return BalanceSheetDoubleColumns(filters).run()
 
-def get_accounts_data(company, root_types=None):
-    """
-    共用获取科目方法
-    :param root_types: 列表类型，例如 ['Asset', 'Liability', 'Equity']。如果为 None 则查全部。
-    """
-    acc = DocType("Account")
-    parent = DocType("Account").as_("parent")
+def execute(filters=None):
+    if not filters:
+        filters = {}
 
-    query = (
-        frappe.qb.from_(acc)
-        .left_join(parent).on(parent.name == acc.parent_account)
-        .select(
-            acc.name,
-            acc.account_number,
-            parent.account_number.as_("parent_number"),
-            acc.parent_account,
-            acc.account_name,
-            acc.root_type,
-            acc.report_type,
-            acc.lft,
-            acc.rgt
-        )
-        .where(acc.company == company)
-    )
+    if not filters.get("company"):
+        filters["company"] = frappe.defaults.get_user_default("company")
 
-    # 动态添加过滤条件
-    if root_types:
-        query = query.where(acc.root_type.isin(root_types))
+    if not filters.get("month"):
+        filters["month"] = get_last_day(today())
 
-    return query.orderby(acc.lft).run(as_dict=True)
+    report_date = getdate(filters.get("month"))
+    period_start = getdate(report_date.replace(day=1))
+    period_end = report_date
+    adjustment_type = filters.get("adjustment_type", "All (Overview)")
 
-class BalanceSheetDoubleColumns():
-  def __init__(self, filters=None):
-    self.filters = frappe._dict(filters)
-    self.validate_filters()
+    accounts = get_accounts(filters.get("company"))
 
-  def run(self):
-    self.get_columns()
+    data = []
+    asset_rows = []
+    liability_rows = []
 
-    settings = frappe.get_single("Balance Sheet Settings")
-    if not settings.items:
-      form_link = frappe.utils.get_link_to_form("Balance Sheet Settings",'')
-      frappe.msgprint(_("请先进行资产负债表（两栏式）{0}设置").format(form_link))
-      return    
+    if adjustment_type in ["All (Overview)", "Goods Issued Only"]:
+        asset_rows = get_asset_adjustment_rows(period_start, period_end, filters.get("company"), accounts)
+        data.extend(asset_rows)
 
-    self.data = list(map(lambda d: frappe._dict({
-        "idx": d.idx,
-        "lft_empty": d.lft_empty,
-        "lft_bold": d.lft_bold,
-        "lft_name": d.lft_name,
-        "lft_indent": d.lft_indent,
-        "lft_calc_type": d.lft_calc_type,
-        "lft_calc_sources": d.lft_calc_sources,
-        "rgt_empty": d.rgt_empty,
-        "rgt_bold": d.rgt_bold,
-        "rgt_name": d.rgt_name,
-        "rgt_indent": d.rgt_indent,
-        "rgt_calc_type": d.rgt_calc_type,
-        "rgt_calc_sources": d.rgt_calc_sources,
-    }), settings.items))
+    if adjustment_type in ["All (Overview)", "Contract Liability Only"]:
+        liability_rows = get_liability_adjustment_rows(period_start, period_end, filters.get("company"), accounts)
+        data.extend(liability_rows)
 
-    self.get_data()
+    summary = calculate_summary(asset_rows, liability_rows, accounts, filters.get("company"), period_end)
+    columns = get_columns()
+    message = build_summary_message(summary, accounts)
 
-    currency = self.filters.presentation_currency or frappe.get_cached_value(
-        "Company", self.filters.company, "default_currency"
-    )
-
-    report_summary = self.get_report_summary(
-        asset_row=settings.asset_row,
-        liability_row=settings.liability_row,
-        equity_row=settings.equity_row,
-        currency=currency,
-    )
-
-    return self.columns, self.data, None, None, report_summary
+    return columns, data, message, None, None
 
 
-  def validate_filters(self):
-    self.company = self.filters.company
-    if not self.filters.fiscal_year:
-      frappe.throw(_("Fiscal Year {0} is required").format(self.filters.fiscal_year))
-    self.fiscal_year = self.filters.fiscal_year
-
-    fiscal_year = frappe.db.get_value(
-      "Fiscal Year", self.fiscal_year, ["year_start_date", "year_end_date"], as_dict=True
-    )
-    if not fiscal_year:
-      frappe.throw(_("Fiscal Year {0} does not exist").format(self.fiscal_year))
-    else:
-      self.year_start_date = getdate(fiscal_year.year_start_date)
-      self.year_end_date = getdate(fiscal_year.year_end_date)
-
-
-    if self.filters.month:
-      year = frappe.db.get_value('Fiscal Year', self.fiscal_year,'year_start_date').year
-      self.filters.from_date = get_first_day(datetime.date(year=year, month=cint(self.filters.month), day=1))
-      self.filters.to_date = get_last_day(datetime.date(year=year, month=cint(self.filters.month), day=1))
-    else:
-      self.filters.from_date = self.year_start_date
-      self.filters.to_date = self.year_end_date
-
-    self.filters.from_date = getdate(self.filters.from_date)
-    self.filters.to_date = getdate(self.filters.to_date)
-
-    if self.filters.from_date > self.filters.to_date:
-      frappe.throw(_("From Date cannot be greater than To Date"))
-
-    if (self.filters.from_date < self.year_start_date) or (self.filters.from_date > self.year_end_date):
-      frappe.msgprint(
-        _("From Date should be within the Fiscal Year. Assuming From Date = {0}").format(
-          formatdate(self.year_start_date)
-        )
-      )
-
-      self.filters.from_date = self.year_start_date
-
-    if (self.filters.to_date < self.year_start_date) or (self.filters.to_date > self.year_end_date):
-      frappe.msgprint(
-        _("To Date should be within the Fiscal Year. Assuming To Date = {0}").format(
-          formatdate(self.year_end_date)
-        )
-      )
-      self.filters.to_date = self.year_end_date
-
-
-  def get_report_summary(
-      self,
-      asset_row,
-      liability_row,
-      equity_row,
-      currency,
-  ):
-    if not self.data:
-      return None
-
-    row_map = {}
-    for d in self.data:
-      row_map[d.idx] = d
-
-    net_asset = row_map.get(asset_row, {}).get("lft_closing_balance", 0.0)
-    net_liability = row_map.get(liability_row, {}).get(
-        "rgt_closing_balance", 0.0)
-    net_equity = row_map.get(equity_row, {}).get("rgt_closing_balance", 0.0)
-    net_provisional_profit_loss = net_asset - net_liability - net_equity
-
+def get_columns():
     return [
-        {
-            "value": net_asset,
-            "label": _("Total Asset"),
-            "datatype": "Currency",
-            "currency": currency,
-        },
-        {
-            "value": net_liability,
-            "label": _("Total Liability"),
-            "datatype": "Currency",
-            "currency": currency,
-        },
-        {
-            "value": net_equity,
-            "label": _("Total Equity"),
-            "datatype": "Currency",
-            "currency": currency,
-        },
-        {
-            "value": net_provisional_profit_loss,
-            "label": _("Provisional Profit / Loss (Credit)"),
-            "indicator": "Green" if net_provisional_profit_loss > 0 else "Red",
-            "datatype": "Currency",
-            "currency": currency,
-        },
+        {"fieldname": "adjustment_category", "label": _("Adjustment Category"), "fieldtype": "Data", "width": 140},
+        {"fieldname": "scenario_label", "label": _("Scenario"), "fieldtype": "Data", "width": 120},
+        {"fieldname": "source_doctype", "label": _("Source DocType"), "fieldtype": "Data", "width": 120},
+        {"fieldname": "source_name", "label": _("Source Document"), "fieldtype": "Dynamic Link", "options": "source_doctype", "width": 160},
+        {"fieldname": "item_code", "label": _("Item Code"), "fieldtype": "Link", "options": "Item", "width": 140},
+        {"fieldname": "item_name", "label": _("Item Name"), "fieldtype": "Data", "width": 180},
+        {"fieldname": "total_qty", "label": _("Total Qty"), "fieldtype": "Float", "width": 90, "precision": 2},
+        {"fieldname": "settled_qty", "label": _("Settled Qty"), "fieldtype": "Float", "width": 100, "precision": 2},
+        {"fieldname": "unsettled_qty", "label": _("Unsettled Qty"), "fieldtype": "Float", "width": 100, "precision": 2},
+        {"fieldname": "unit_price", "label": _("Unit Price"), "fieldtype": "Currency", "width": 120},
+        {"fieldname": "unsettled_amount", "label": _("Unsettled Amount"), "fieldtype": "Currency", "width": 140},
+        {"fieldname": "opening_balance", "label": _("Opening Balance"), "fieldtype": "Currency", "width": 140},
+        {"fieldname": "suggested_adjustment", "label": _("Suggested Adjustment"), "fieldtype": "Currency", "width": 160},
+        {"fieldname": "transition_account", "label": _("Transition Account"), "fieldtype": "Link", "options": "Account", "width": 160},
+        {"fieldname": "pinned", "label": _("Pinned"), "fieldtype": "Check", "width": 70},
+        {"fieldname": "remarks", "label": _("Remarks"), "fieldtype": "Data", "width": 200}
     ]
 
 
-  def filter_accounts(self, accounts):
-    parent_children_map = {}
-    accounts_by_num = {}
-    for d in accounts:
-      accounts_by_num[d.account_number] = d
-      parent_children_map.setdefault(d.parent_number or None, []).append(d)
+def get_accounts(company):
+    accounts = {
+        "goods_in_transit": None,
+        "cost_of_goods_sold": None,
+        "contract_liability": None,
+        "revenue": None,
+        "inventory": None
+    }
 
-    return accounts, accounts_by_num, parent_children_map
-
-
-  def get_data(self):
-    accounts = get_accounts_data(self.company)
-
-    if not accounts:
-      return None
-
-    accounts, accounts_by_num, parent_children_map = self.filter_accounts(accounts)
-
-    opening_balances = get_opening_balances(self.filters.company, add_days(self.year_start_date, -1))
-
-    for d in accounts:
-      # fisher 2025-04-03 外币科目需取本币余额，所以加in_account_currency=False参数
-      closing_balance = get_balance_on(d.name, self.filters.to_date, in_account_currency=False)
-      if d.root_type == 'Asset':
-        d.opening_balance = opening_balances.get(d.name, {}).get(
-            "opening_debit", 0) - opening_balances.get(d.name, {}).get("opening_credit", 0)
-        d.closing_balance = closing_balance
-      else:
-        d.opening_balance = opening_balances.get(d.name, {}).get(
-            "opening_credit", 0) - opening_balances.get(d.name, {}).get("opening_debit", 0)
-        d.closing_balance = 0 - closing_balance
-      accounts_by_num[d.account_number].update({
-          "opening_balance": d.opening_balance,
-          "closing_balance": d.closing_balance,
-      })
-
-    for d in reversed(accounts):
-      if d.parent_number:
-        accounts_by_num[d.parent_number]["opening_balance"] += d["opening_balance"]
-
-    rows_map = {}
-    for d in self.data:
-      for prefix in ["lft_", "rgt_"]:
-        rows_map[prefix + cstr(d.idx)] = {
-            "name": d[prefix + "name"],
-            "opening_balance": 0.0,
-            "closing_balance": 0.0,
-        }
-        if not d[prefix + "empty"] and d[prefix + "calc_type"] and d[prefix + "calc_sources"] and d[prefix + "calc_type"] == "Closing Balance":
-          d[prefix + "opening_balance"] = d[prefix + "closing_balance"] = 0.0
-          d[prefix + "calc_sources"] = list(filter(None,
-                                            d[prefix + "calc_sources"].split(",")))
-          d[prefix + "accounts"] = []
-          for account_number in d[prefix + "calc_sources"]:
-            minus = False
-            if account_number.startswith("-"):
-              account_number = account_number[1:]
-              minus = True
-            account = accounts_by_num.get(account_number)
+    Account = frappe.qb.DocType("Account")
+    for key, search_names in {
+        "goods_in_transit": ["Goods-in-Transit", "发出商品"],
+        "cost_of_goods_sold": ["Cost of Goods Sold", "主营业务成本"],
+        "contract_liability": ["Contract Liability", "合同负债"],
+        "revenue": ["Revenue", "主营业务收入"],
+        "inventory": ["Inventory", "库存商品"]
+    }.items():
+        for name in search_names:
+            account = frappe.qb.from_(Account) \
+                .select(Account.name) \
+                .where((Account.company == company) & (Account.account_name.like(f"%{name}%")) & (Account.is_group == 0)) \
+                .limit(1) \
+                .run(as_dict=True)
             if account:
-              d[prefix + "accounts"].append({
-                  "direction": (-1 if minus else 1),
-                  "name": account.name,
-                  "account_number": account.account_number,
-                  "account_name": account.account_name,
-                  "opening_balance": account.opening_balance,
-                  "closing_balance": account.closing_balance,
-              })
-            d[prefix + "opening_balance"] += (-1 if minus else 1) * accounts_by_num.get(
-                account_number, {}).get("opening_balance", 0.0)
-            d[prefix + "closing_balance"] += (-1 if minus else 1) * accounts_by_num.get(
-                account_number, {}).get("closing_balance", 0.0)
-          rows_map[prefix + cstr(d.idx)].update({
-              "opening_balance": d[prefix + "opening_balance"],
-              "closing_balance": d[prefix + "closing_balance"],
-          })
+                accounts[key] = account[0].name
+                break
 
-    for d in self.data:
-      for prefix in ["lft_", "rgt_"]:
-        if not d[prefix + "empty"] and d[prefix + "calc_type"] and d[prefix + "calc_sources"] and d[prefix + "calc_type"] == "Calculate Rows":
-          d[prefix + "opening_balance"] = d[prefix + "closing_balance"] = 0.0
-          d[prefix + "calc_sources"] = list(filter(None,
-                                            d[prefix + "calc_sources"].split(",")))
-          d[prefix + "rows"] = []
-          for idx in d[prefix + "calc_sources"]:
-            minus = False
-            if idx.startswith("-"):
-              idx = idx[1:]
-              minus = True
-            idx = cint(idx)
-            row = rows_map.get(prefix + cstr(idx), {})
-            d[prefix + "opening_balance"] += (-1 if minus else 1) * row.get("opening_balance", 0.0)
-            d[prefix + "closing_balance"] += (-1 if minus else 1) * \
-                row.get("closing_balance", 0.0)
-            d[prefix + "rows"].append({
-                "direction": (-1 if minus else 1),
-                "idx": idx,
-                "name": row.get("name"),
-                "opening_balance": row.get("opening_balance"),
-                "closing_balance": row.get("closing_balance"),
-            })
-          rows_map[prefix + cstr(d.idx)].update({
-              "opening_balance": d[prefix + "opening_balance"],
-              "closing_balance": d[prefix + "closing_balance"],
-          })
-
-    return self.data
+    return accounts
 
 
-  def get_columns(self):
-    self.columns = [
-        {
-            "label": "资产",
-            "fieldname": "lft_name",
-            "fieldtype": "Data",
-            "width": 160,
-        },
-        {
-            "label": "行次",
-            "fieldname": "idx",
-            "fieldtype": "Int",
-            "width": 60,
-        },
-        {
-            "label": "期初数",
-            "fieldname": "lft_opening_balance",
-            "fieldtype": "Currency",
-            "width": 140,
-        },
-        {
-            "label": "期末数",
-            "fieldname": "lft_closing_balance",
-            "fieldtype": "Currency",
-            "width": 140,
-        },
-        {
-            "label": "负债和权益",
-            "fieldname": "rgt_name",
-            "fieldtype": "Data",
-            "width": 160,
-        },
-        {
-            "label": "行次",
-            "fieldname": "idx",
-            "fieldtype": "Int",
-            "width": 60,
-        },
-        {
-            "label": "期初数",
-            "fieldname": "rgt_opening_balance",
-            "fieldtype": "Currency",
-            "width": 140,
-        },
-        {
-            "label": "期末数",
-            "fieldname": "rgt_closing_balance",
-            "fieldtype": "Currency",
-            "width": 140,
-        },
-    ]
+def get_asset_adjustment_rows(period_start, period_end, company, accounts):
+    rows = []
+    DN = frappe.qb.DocType("Delivery Note")
+    DNI = frappe.qb.DocType("Delivery Note Item")
+    SI = frappe.qb.DocType("Sales Invoice")
+    SII = frappe.qb.DocType("Sales Invoice Item")
+    SO = frappe.qb.DocType("Sales Order")
+    Item = frappe.qb.DocType("Item")
 
-    return self.columns
+    settled_qty_subquery = frappe.qb.from_(SII) \
+        .inner_join(SI).on(SII.parent == SI.name) \
+        .select(Sum(SII.qty)) \
+        .where((SII.delivery_note == DNI.parent) & (SI.docstatus == 1) & (SII.item_code == DNI.item_code))
 
-class BalanceSheetSingleColumn(BalanceSheetDoubleColumns):
-  def run(self):
-    self.get_columns()
-
-    settings = frappe.get_single("Balance Sheet Settings")
-
-    self.data = list(map(lambda d: frappe._dict({
-        "idx": d.idx,
-        "lft_empty": d.lft_empty,
-        "lft_bold": d.lft_bold,
-        "lft_name": d.lft_name,
-        "lft_indent": d.lft_indent,
-        "lft_calc_type": d.lft_calc_type,
-        "lft_calc_sources": d.lft_calc_sources,
-        "rgt_empty": d.rgt_empty,
-        "rgt_bold": d.rgt_bold,
-        "rgt_name": d.rgt_name,
-        "rgt_indent": d.rgt_indent,
-        "rgt_calc_type": d.rgt_calc_type,
-        "rgt_calc_sources": d.rgt_calc_sources,
-    }), settings.items))
-
-    self.get_data()
-
-    currency = self.filters.presentation_currency or frappe.db.get_value(
-        "Company", self.filters.company, "default_currency"
-    )
-
-    report_summary = self.get_report_summary(
-        asset_row=settings.asset_row,
-        liability_row=settings.liability_row,
-        equity_row=settings.equity_row,
-        currency=currency,
-    )
-
-    chart = self.get_chart_data(
-        asset_row=settings.asset_row,
-        liability_row=settings.liability_row,
-        equity_row=settings.equity_row,
-    )
-
-    self.data = self.to_single_column()
-
-    return self.columns, self.data, None, chart, report_summary
-
-
-  def get_data(self):
-    accounts = get_accounts_data(self.company, root_types=['Asset', 'Liability', 'Equity'])
-    if not accounts:
-      return None
-
-    accounts, accounts_by_num, parent_children_map = self.filter_accounts(accounts)
-
-    for i in range(13):
-      key = "balance_" + cstr(i)
-      # 当月期末为下一个月的期初
-      year = frappe.db.get_value('Fiscal Year', self.fiscal_year,'year_start_date').year
-      from_date = get_first_day(datetime.date(year=year, month=1, day=1))
-      if i > 0 and i < 12:
-        from_date = get_first_day(datetime.date(year=year, month=cint(i + 1), day=1))
-      elif i == 12:
-        from_date = get_first_day(datetime.date(year=year + 1, month=1, day=1))
-      opening_balances = get_opening_balances(self.filters.company, add_days(self.year_start_date, -1))
-
-      for d in accounts:
-        if d.root_type == 'Asset':
-          d[key] = opening_balances.get(d.name, {}).get(
-              "opening_debit", 0) - opening_balances.get(d.name, {}).get("opening_credit", 0)
-        else:
-          d[key] = opening_balances.get(d.name, {}).get(
-              "opening_credit", 0) - opening_balances.get(d.name, {}).get("opening_debit", 0)
-
-      for d in reversed(accounts):
-        if d.parent_number and accounts_by_num[d.parent_number]:
-          accounts_by_num[d.parent_number][key] += d[key]
-
-      rows_map = {}
-      for d in self.data:
-        for prefix in ["lft_", "rgt_"]:
-          rows_map[prefix + cstr(d.idx)] = {
-              "name": d[prefix + "name"],
-              key: 0.0,
-          }
-          if not d[prefix + "empty"] and d[prefix + "calc_type"] and d[prefix + "calc_sources"] and d[prefix + "calc_type"] == "Closing Balance":
-            d[prefix + key] = 0.0
-            if not isinstance(d[prefix + "calc_sources"], list):
-              d[prefix + "calc_sources"] = list(filter(None,
-                                                d[prefix + "calc_sources"].split(",")))
-            d[prefix + "accounts"] = []
-            for account_number in d[prefix + "calc_sources"]:
-              minus = False
-              if account_number.startswith("-"):
-                account_number = account_number[1:]
-                minus = True
-              account = accounts_by_num.get(account_number)
-              if account:
-                d[prefix + "accounts"].append({
-                    "direction": (-1 if minus else 1),
-                    "name": account.name,
-                    "account_number": account.account_number,
-                    "account_name": account.account_name,
-                    key: account[key],
-                })
-              d[prefix + key] += (-1 if minus else 1) * accounts_by_num.get(
-                  account_number, {}).get(key, 0.0)
-            rows_map[prefix + cstr(d.idx)].update({
-                key: d[prefix + key],
-            })
-
-      for d in self.data:
-        for prefix in ["lft_", "rgt_"]:
-          if not d[prefix + "empty"] and d[prefix + "calc_type"] and d[prefix + "calc_sources"] and d[prefix + "calc_type"] == "Calculate Rows":
-            d[prefix + key] = d[prefix + key] = 0.0
-            if not isinstance(d[prefix + "calc_sources"], list):
-              d[prefix + "calc_sources"] = list(filter(None,
-                                                d[prefix + "calc_sources"].split(",")))
-            d[prefix + "rows"] = []
-            for idx in d[prefix + "calc_sources"]:
-              minus = False
-              if idx.startswith("-"):
-                idx = idx[1:]
-                minus = True
-              idx = cint(idx)
-              row = rows_map.get(prefix + cstr(idx))
-              d[prefix + key] += (-1 if minus else 1) * row.get(key, 0.0)
-              d[prefix + "rows"].append({
-                  "direction": (-1 if minus else 1),
-                  "idx": idx,
-                  "name": row.get("name"),
-                  key: row.get(key),
-              })
-            rows_map[prefix + cstr(d.idx)].update({
-                key: d[prefix + key],
-            })
-
-
-    return self.data
-  
-  def to_single_column(self):
-    lft_data = []
-    rgt_data = []
-    for d in self.data:
-      for prefix in ["lft_", "rgt_"]:
-        r = frappe._dict({
-          "name": d.get(prefix + "name"),
-          "idx": d.get("idx"),
-          "empty": d.get(prefix + "empty"),
-          "bold": d.get(prefix + "bold"),
-          "indent": d.get(prefix + "indent"),
-          "calc_type": d.get(prefix + "calc_type"),
-          "calc_sources": d.get(prefix + "calc_sources"),
-          "rows": d.get(prefix + "rows"),
-        })
-        r.update({
-          "balance_" + cstr(i): d.get(prefix + "balance_" + cstr(i)) for i in range(13)
-        })
-        if prefix == "lft_":
-          lft_data.append(r)
-        else:
-          rgt_data.append(r)
-
-
-    self.data = lft_data
-    self.data.extend(
-      [
-        {
-          "name": None,
-          "empty": 1,
-          "indent": 0,
-        }
-      ]
-    )
-    self.data.extend(rgt_data)
-
-    return self.data
-
-  def get_report_summary(
-      self,
-      asset_row,
-      liability_row,
-      equity_row,
-      currency,
-  ):
-    if not self.data:
-      return None
-
-    row_map = {}
-    for d in self.data:
-      row_map[d.idx] = d
-
-    net_asset = row_map.get(asset_row, {}).get("lft_balance_12", 0.0)
-    net_liability = row_map.get(liability_row, {}).get("rgt_balance_12", 0.0)
-    net_equity = row_map.get(equity_row, {}).get("rgt_balance_12", 0.0)
-    net_provisional_profit_loss = net_asset - net_liability - net_equity
-
-    return [
-        {
-            "value": net_asset,
-            "label": _("Total Asset"),
-            "datatype": "Currency",
-            "currency": currency,
-        },
-        {
-            "value": net_liability,
-            "label": _("Total Liability"),
-            "datatype": "Currency",
-            "currency": currency,
-        },
-        {
-            "value": net_equity,
-            "label": _("Total Equity"),
-            "datatype": "Currency",
-            "currency": currency,
-        },
-        {
-            "value": net_provisional_profit_loss,
-            "label": _("Provisional Profit / Loss (Credit)"),
-            "indicator": "Green" if net_provisional_profit_loss > 0 else "Red",
-            "datatype": "Currency",
-            "currency": currency,
-        },
-    ]
-
-  def get_chart_data(
-      self,
-      asset_row,
-      liability_row,
-      equity_row,
-    ):
-    labels = [d.get("label") for d in self.columns[2:]]
-
-    row_map = {}
-    for d in self.data:
-      if d.get("idx"):
-        row_map[d.get("idx")] = d
-
-    asset_data, liability_data, equity_data = [], [], []
-
-    for p in self.columns[2:]:
-      if asset_row:
-        asset_data.append(row_map.get(asset_row, {}).get("lft_" + p.get("fieldname"), 0.0))
-      if liability_row:
-        liability_data.append(row_map.get(liability_row, {}).get("rgt_" + p.get("fieldname"), 0.0))
-      if equity_row:
-        equity_data.append(row_map.get(equity_row, {}).get("rgt_" + p.get("fieldname"), 0.0))
-
-    datasets = []
-    if asset_data:
-      datasets.append({"name": _("Assets"), "values": asset_data})
-    if liability_data:
-      datasets.append({"name": _("Liabilities"), "values": liability_data})
-    if equity_data:
-      datasets.append({"name": _("Equity"), "values": equity_data})
-
-    chart = {"data": {"labels": labels, "datasets": datasets}}
-
-    if not self.filters.accumulated_values:
-      chart["type"] = "bar"
-    else:
-      chart["type"] = "line"
-
-    return chart
-
-
-  def get_columns(self):
-    self.columns = [
-        {
-            "label": "科目",
-            "fieldname": "name",
-            "fieldtype": "Data",
-            "width": 160,
-        },
-    ]
-
-    for i in range(13):
-      self.columns.append({
-            "label": "期初数" if i == 0 else cstr(i) + "月",
-            "fieldname": "balance_" + cstr(i),
-            "fieldtype": "Currency",
-            "width": 140,
-      })
-
-    return self.columns
-
-def get_opening_balances(company, to_date):
-    """
-    高性能批量获取科目期初借贷。
-    仅返回叶子节点或分录中存在的科目借贷，由后续逻辑统一处理汇总。
-
-    如果启用了多会计准则折旧 多个finance book, 需要剔除主会计准则之外的finance book记录。
-    """
-
-    # 1. 批量从 GL Entry 中一次性查出所有科目的借贷合计
-    precision = frappe.get_precision("GL Entry", "debit") or 2
-    
-    # 直接查询并返回字典格式
-    # 注意：这里按 account (即科目 name) 分组
-    gle = DocType("GL Entry")
-    
-    query = (
-        frappe.qb.from_(gle)
+    query = frappe.qb.from_(DNI) \
+        .inner_join(DN).on(DNI.parent == DN.name) \
+        .left_join(SO).on(DNI.against_sales_order == SO.name) \ 
+        .inner_join(Item).on(DNI.item_code == Item.name) \
         .select(
-            gle.account.as_("name"),
-            Sum(Round(gle.debit, precision)).as_("opening_debit"),
-            Sum(Round(gle.credit, precision)).as_("opening_credit")
-        )
-        .where(gle.company == company)
-        .where(gle.posting_date <= to_date)
-        .where(gle.is_cancelled == 0)
-        .groupby(gle.account)
-    )    
-    gle_balances = query.run(as_dict=True)
+            DNI.parent.as_("delivery_note"),
+            DNI.item_code,
+            DNI.item_name,
+            DNI.qty.as_("total_qty"),
+            DNI.amount.as_("total_amount"),
+            DNI.rate.as_("unit_price"),
+            settled_qty_subquery.as_("settled_qty"),
+            DN.posting_date,
+            DN.posting_time,
+            SO.status.as_("so_status")
+        ) \
+        .where(
+            (DN.docstatus == 1) &
+            (DN.company == company) &
+            (DN.posting_date <= period_end) &
+            (DNI.qty > 0) &
+            ((SO.status != "Closed") | (SO.status.isnull())) &
+            (Item.is_stock_item == 1)
+        ) \
+        .orderby(DN.posting_date, order=Order.asc) \
+        .orderby(DN.name, order=Order.asc)
 
-    # 2. 转换为以科目名称为 key 的 Map 格式
-    # 格式示例: {"1001 现金": {"opening_debit": 100.0, "opening_credit": 0.0}, ...}
-    opening_map = {}
-    for g in gle_balances:
-        opening_map[g.name] = frappe._dict({
-            "opening_debit": frappe.utils.flt(g.opening_debit),
-            "opening_credit": frappe.utils.flt(g.opening_credit)
+    result = query.run(as_dict=True)
+
+    for row in result:
+        unsettled_qty = flt(row.total_qty) - flt(row.settled_qty or 0)
+        if unsettled_qty <= 0:
+            continue
+        if flt(row.unit_price) <= 0:
+            continue
+
+        unsettled_amount = unsettled_qty * flt(row.unit_price)
+
+        if getdate(row.posting_date) < period_start:
+            scenario = _("Historical")
+        else:
+            scenario = _("Current Period")
+
+        if flt(row.settled_qty or 0) > 0:
+            scenario = _("Partially Settled")
+
+        rows.append({
+            "adjustment_category": _("Goods-in-Transit (Asset)"),
+            "scenario_label": scenario,
+            "source_doctype": "Delivery Note",
+            "source_name": row.delivery_note,
+            "item_code": row.item_code,
+            "item_name": row.item_name,
+            "total_qty": row.total_qty,
+            "settled_qty": row.settled_qty or 0,
+            "unsettled_qty": unsettled_qty,
+            "unit_price": row.unit_price,
+            "unsettled_amount": unsettled_amount,
+            "opening_balance": 0,
+            "suggested_adjustment": unsettled_amount,
+            "transition_account": accounts.get("goods_in_transit"),
+            "pinned": 0,
+            "remarks": ""
         })
 
-    return opening_map
+    return rows
+
+
+def get_liability_adjustment_rows(period_start, period_end, company, accounts):
+    rows = []
+    SI = frappe.qb.DocType("Sales Invoice")
+    SII = frappe.qb.DocType("Sales Invoice Item")
+    DN = frappe.qb.DocType("Delivery Note")
+    DNI = frappe.qb.DocType("Delivery Note Item")
+    Item = frappe.qb.DocType("Item")
+
+    settled_qty_subquery = frappe.qb.from_(DNI) \
+        .inner_join(DN).on(DNI.parent == DN.name) \
+        .select(Sum(DNI.qty)) \
+        .where((DNI.against_sales_invoice == SII.parent) & (DN.docstatus == 1) & (DNI.item_code == SII.item_code))
+
+    returned_qty_subquery = frappe.qb.from_(DNI) \
+        .inner_join(DN).on(DNI.parent == DN.name) \
+        .select(Sum(DNI.qty)) \
+        .where((DNI.against_sales_invoice == SII.parent) & (DN.docstatus == 1) & (DN.is_return == 1) & (DNI.item_code == SII.item_code))
+
+    query = frappe.qb.from_(SII) \
+        .inner_join(SI).on(SII.parent == SI.name) \
+        .inner_join(Item).on(SII.item_code == Item.name) \
+        .select(
+            SII.parent.as_("sales_invoice"),
+            SII.item_code,
+            SII.item_name,
+            SII.qty.as_("total_qty"),
+            SII.amount.as_("total_amount"),
+            SII.rate.as_("unit_price"),
+            settled_qty_subquery.as_("settled_qty"),
+            returned_qty_subquery.as_("returned_qty"),
+            SI.posting_date,
+            SI.is_return,
+            SI.is_debit_note,
+            SI.return_against
+        ) \
+        .where(
+            (SI.docstatus == 1) &
+            (SI.company == company) &
+            (SI.posting_date <= period_end) &
+            (SI.is_return == 0) &
+            (SI.is_debit_note == 0) &
+            (SII.qty > 0) &
+            (Item.is_stock_item == 1)
+        ) \
+        .orderby(SI.posting_date, order=Order.asc) \
+        .orderby(SI.name, order=Order.asc)
+
+    result = query.run(as_dict=True)
+
+    for row in result:
+        unsettled_qty = flt(row.total_qty) - flt(row.settled_qty or 0)
+        if unsettled_qty <= 0:
+            continue
+        if flt(row.returned_qty or 0) >= flt(row.total_qty):
+            continue
+
+        unsettled_amount = unsettled_qty * flt(row.unit_price)
+
+        if getdate(row.posting_date) < period_start:
+            scenario = _("Historical")
+        else:
+            scenario = _("Current Period")
+
+        if flt(row.settled_qty or 0) > 0:
+            scenario = _("Partially Settled")
+
+        rows.append({
+            "adjustment_category": _("Contract Liability (Liability)"),
+            "scenario_label": scenario,
+            "source_doctype": "Sales Invoice",
+            "source_name": row.sales_invoice,
+            "item_code": row.item_code,
+            "item_name": row.item_name,
+            "total_qty": row.total_qty,
+            "settled_qty": row.settled_qty or 0,
+            "unsettled_qty": unsettled_qty,
+            "unit_price": row.unit_price,
+            "unsettled_amount": unsettled_amount,
+            "opening_balance": 0,
+            "suggested_adjustment": unsettled_amount,
+            "transition_account": accounts.get("contract_liability"),
+            "pinned": 0,
+            "remarks": ""
+        })
+
+    return rows
+
+
+def calculate_summary(asset_rows, liability_rows, accounts, company, posting_date):
+    target_asset = sum([flt(row.get("unsettled_amount", 0)) for row in asset_rows if not row.get("pinned")])
+    target_liability = sum([flt(row.get("unsettled_amount", 0)) for row in liability_rows if not row.get("pinned")])
+
+    book_asset = 0
+    book_liability = 0
+
+    if accounts.get("goods_in_transit"):
+        try:
+            book_asset = flt(get_balance_on(
+                account=accounts["goods_in_transit"],
+                posting_date=posting_date,
+                company=company
+            ) or 0)
+        except Exception:
+            frappe.log_error(f"Failed to get balance for {accounts['goods_in_transit']}", "Income Cost Matching Report")
+            book_asset = 0
+
+    if accounts.get("contract_liability"):
+        try:
+            book_liability = flt(get_balance_on(
+                account=accounts["contract_liability"],
+                posting_date=posting_date,
+                company=company
+            ) or 0)
+        except Exception:
+            frappe.log_error(f"Failed to get balance for {accounts['contract_liability']}", "Income Cost Matching Report")
+            book_liability = 0
+
+    return {
+        "target_asset": target_asset,
+        "target_liability": target_liability,
+        "book_asset": book_asset,
+        "book_liability": book_liability,
+        "asset_diff": target_asset - book_asset,
+        "liability_diff": target_liability - book_liability,
+        "currency": frappe.get_cached_value("Company", company, "default_currency") or "CNY"
+    }
+
+
+def build_summary_message(summary, accounts):
+    html = """
+    <div style="margin-top: 20px; padding: 15px; background: #f5f7fa; border: 1px solid #d1d8dd; border-radius: 4px;">
+        <h4 style="margin-top: 0;">{summary_title}</h4>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <th style="text-align: left; padding: 5px;">{item}</th>
+                <th style="text-align: right; padding: 5px;">{target_label}</th>
+                <th style="text-align: right; padding: 5px;">{book_label}</th>
+                <th style="text-align: right; padding: 5px;">{adjustment_label}</th>
+                <th style="text-align: left; padding: 5px;">{direction_label}</th>
+            </tr>
+    """.format(
+        summary_title=_("Summary Adjustment Suggestion"),
+        item=_("Item"),
+        target_label=_("Target Balance"),
+        book_label=_("Book Balance"),
+        adjustment_label=_("Suggested Adjustment"),
+        direction_label=_("Direction")
+    )
+
+    if accounts.get("goods_in_transit"):
+        asset_dir = _("Dr Goods-in-Transit / Cr COGS") if summary["asset_diff"] > 0 else \
+                    (_("Dr COGS / Cr Goods-in-Transit") if summary["asset_diff"] < 0 else _("No adjustment"))
+        html += """
+            <tr>
+                <td style="padding: 5px;"><b>{account}</b></td>
+                <td style="text-align: right; padding: 5px;">{target_asset:,.2f}</td>
+                <td style="text-align: right; padding: 5px;">{book_asset:,.2f}</td>
+                <td style="text-align: right; padding: 5px; font-weight: bold; color: {asset_color};">{asset_diff:+,.2f}</td>
+                <td style="padding: 5px;">{asset_dir}</td>
+            </tr>
+        """.format(
+            account=_("Goods-in-Transit"),
+            target_asset=summary["target_asset"],
+            book_asset=summary["book_asset"],
+            asset_diff=summary["asset_diff"],
+            asset_color="#1a73e8" if summary["asset_diff"] != 0 else "#333",
+            asset_dir=asset_dir
+        )
+
+    if accounts.get("contract_liability"):
+        liab_dir = _("Dr Revenue / Cr Contract Liability") if summary["liability_diff"] > 0 else \
+                   (_("Dr Contract Liability / Cr Revenue") if summary["liability_diff"] < 0 else _("No adjustment"))
+        html += """
+            <tr>
+                <td style="padding: 5px;"><b>{account}</b></td>
+                <td style="text-align: right; padding: 5px;">{target_liability:,.2f}</td>
+                <td style="text-align: right; padding: 5px;">{book_liability:,.2f}</td>
+                <td style="text-align: right; padding: 5px; font-weight: bold; color: {liab_color};">{liability_diff:+,.2f}</td>
+                <td style="padding: 5px;">{liab_dir}</td>
+            </tr>
+        """.format(
+            account=_("Contract Liability"),
+            target_liability=summary["target_liability"],
+            book_liability=summary["book_liability"],
+            liability_diff=summary["liability_diff"],
+            liab_color="#e37400" if summary["liability_diff"] != 0 else "#333",
+            liab_dir=liab_dir
+        )
+
+    html += """
+        </table>
+        <div style="margin-top: 10px; color: #666; font-size: 12px;">
+            <i>{hint}</i>
+        </div>
+    </div>
+    """.format(hint=_("Hint: Click the 'Generate Adjustment Entry' button above to create the journal entry with PDF attachment."))
+
+    return html
+
+
+@frappe.whitelist()
+def get_adjustment_summary(filters):
+    if isinstance(filters, str):
+        import json
+        filters = json.loads(filters)
+
+    if not filters.get("company"):
+        filters["company"] = frappe.defaults.get_user_default("company")
+    if not filters.get("month"):
+        filters["month"] = get_last_day(today())
+
+    period_end = getdate(filters.get("month"))
+    period_start = getdate(period_end.replace(day=1))
+    accounts = get_accounts(filters.get("company"))
+
+    asset_rows = get_asset_adjustment_rows(period_start, period_end, filters.get("company"), accounts)
+    liability_rows = get_liability_adjustment_rows(period_start, period_end, filters.get("company"), accounts)
+
+    summary = calculate_summary(asset_rows, liability_rows, accounts, filters.get("company"), period_end)
+    summary["currency"] = frappe.get_cached_value("Company", filters.get("company"), "default_currency") or "CNY"
+    return summary
+
+
+@frappe.whitelist()
+def generate_adjustment_entry(filters):
+    if isinstance(filters, str):
+        import json
+        filters = json.loads(filters)
+
+    try:
+        summary = get_adjustment_summary(filters)
+        if summary["asset_diff"] == 0 and summary["liability_diff"] == 0:
+            return {"status": "skipped", "message": _("No adjustment needed for this period")}
+
+        accounts = get_accounts(filters.get("company"))
+        je = frappe.new_doc("Journal Entry")
+        je.voucher_type = "Journal Entry"
+        je.posting_date = getdate(filters.get("month"))
+        je.company = filters.get("company")
+        je.user_remark = _("Cross-period revenue/cost matching adjustment - {0}").format(filters.get("month"))
+
+        if summary["asset_diff"] != 0 and accounts.get("goods_in_transit") and accounts.get("cost_of_goods_sold"):
+            if summary["asset_diff"] > 0:
+                je.append("accounts", {
+                    "account": accounts["goods_in_transit"],
+                    "debit_in_account_currency": summary["asset_diff"],
+                    "credit_in_account_currency": 0
+                })
+                je.append("accounts", {
+                    "account": accounts["cost_of_goods_sold"],
+                    "debit_in_account_currency": 0,
+                    "credit_in_account_currency": summary["asset_diff"]
+                })
+            else:
+                abs_val = abs(summary["asset_diff"])
+                je.append("accounts", {
+                    "account": accounts["cost_of_goods_sold"],
+                    "debit_in_account_currency": abs_val,
+                    "credit_in_account_currency": 0
+                })
+                je.append("accounts", {
+                    "account": accounts["goods_in_transit"],
+                    "debit_in_account_currency": 0,
+                    "credit_in_account_currency": abs_val
+                })
+
+        if summary["liability_diff"] != 0 and accounts.get("contract_liability") and accounts.get("revenue"):
+            if summary["liability_diff"] > 0:
+                je.append("accounts", {
+                    "account": accounts["revenue"],
+                    "debit_in_account_currency": summary["liability_diff"],
+                    "credit_in_account_currency": 0
+                })
+                je.append("accounts", {
+                    "account": accounts["contract_liability"],
+                    "debit_in_account_currency": 0,
+                    "credit_in_account_currency": summary["liability_diff"]
+                })
+            else:
+                abs_val = abs(summary["liability_diff"])
+                je.append("accounts", {
+                    "account": accounts["contract_liability"],
+                    "debit_in_account_currency": abs_val,
+                    "credit_in_account_currency": 0
+                })
+                je.append("accounts", {
+                    "account": accounts["revenue"],
+                    "debit_in_account_currency": 0,
+                    "credit_in_account_currency": abs_val
+                })
+
+        je.insert()
+        attach_report_pdf(je.name, filters)
+        return {"status": "success", "je_name": je.name}
+
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), _("Failed to generate adjustment entry"))
+        return {"status": "error", "message": str(e)}
+
+
+def attach_report_pdf(je_name, filters):
+    try:
+        period_end = getdate(filters.get("month"))
+        period_start = getdate(period_end.replace(day=1))
+        accounts = get_accounts(filters.get("company"))
+
+        asset_rows = get_asset_adjustment_rows(period_start, period_end, filters.get("company"), accounts)
+        liability_rows = get_liability_adjustment_rows(period_start, period_end, filters.get("company"), accounts)
+        data = asset_rows + liability_rows
+        summary = calculate_summary(asset_rows, liability_rows, accounts, filters.get("company"), period_end)
+
+        html = build_pdf_html(filters, data, summary, accounts)
+        from frappe.utils.pdf import get_pdf
+        pdf_bytes = get_pdf(html)
+
+        file_name = _("Adjustment_Support_{0}.pdf").format(filters.get("month"))
+        file_doc = frappe.get_doc({
+            "doctype": "File",
+            "file_name": file_name,
+            "attached_to_doctype": "Journal Entry",
+            "attached_to_name": je_name,
+            "content": pdf_bytes,
+            "is_private": 1
+        })
+        file_doc.insert()
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), _("Failed to attach PDF"))
+
+
+def build_pdf_html(filters, data, summary, accounts):
+    company = filters.get("company")
+    period = filters.get("month")
+    currency = summary.get("currency", "CNY")
+
+    html = """
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            body {{ font-family: "SimSun", "Microsoft YaHei", sans-serif; font-size: 11px; padding: 20px; }}
+            h1 {{ text-align: center; font-size: 16px; margin-bottom: 5px; }}
+            .subtitle {{ text-align: center; font-size: 12px; color: #666; margin-bottom: 20px; }}
+            table {{ width: 100%; border-collapse: collapse; margin-top: 10px; }}
+            th {{ background: #f0f0f0; border: 1px solid #ccc; padding: 5px; text-align: center; font-weight: bold; }}
+            td {{ border: 1px solid #ccc; padding: 4px 5px; text-align: center; }}
+            .text-left {{ text-align: left; }}
+            .text-right {{ text-align: right; }}
+            .summary {{ margin-top: 20px; padding: 10px; background: #f9f9f9; border: 1px solid #ddd; }}
+            .summary-table {{ width: 60%; margin: 0 auto; }}
+            .footer {{ margin-top: 30px; text-align: center; font-size: 10px; color: #999; }}
+            .asset-row {{ background-color: #f0f7ff; }}
+            .liability-row {{ background-color: #fff7f0; }}
+        </style>
+    </head>
+    <body>
+        <h1>{title}</h1>
+        <div class="subtitle">{company} | {period} | {currency}</div>
+    """.format(
+        title=_("Income Cost Matching Adjustment Report"),
+        company=company,
+        period=period,
+        currency=currency
+    )
+
+    if data:
+        html += """
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:10%;">{col1}</th>
+                    <th style="width:8%;">{col2}</th>
+                    <th style="width:10%;">{col3}</th>
+                    <th style="width:12%;">{col4}</th>
+                    <th style="width:10%;">{col5}</th>
+                    <th style="width:8%;">{col6}</th>
+                    <th style="width:8%;">{col7}</th>
+                    <th style="width:8%;">{col8}</th>
+                    <th style="width:10%;">{col9}</th>
+                    <th style="width:10%;">{col10}</th>
+                </tr>
+            </thead>
+            <tbody>
+        """.format(
+            col1=_("Category"),
+            col2=_("Scenario"),
+            col3=_("DocType"),
+            col4=_("Document"),
+            col5=_("Item"),
+            col6=_("Unsettled Qty"),
+            col7=_("Unit Price"),
+            col8=_("Unsettled Amount"),
+            col9=_("Transition Account"),
+            col10=_("Remarks")
+        )
+
+        for row in data:
+            if row.get("pinned"):
+                continue
+            row_class = "asset-row" if "Goods-in-Transit" in row.get("adjustment_category", "") else "liability-row"
+            html += """
+                <tr class="{row_class}">
+                    <td>{category}</td>
+                    <td>{scenario}</td>
+                    <td>{doctype}</td>
+                    <td>{name}</td>
+                    <td>{item}</td>
+                    <td>{qty}</td>
+                    <td class="text-right">{price}</td>
+                    <td class="text-right">{amount}</td>
+                    <td>{account}</td>
+                    <td>{remarks}</td>
+                </tr>
+            """.format(
+                row_class=row_class,
+                category=row.get("adjustment_category", ""),
+                scenario=row.get("scenario_label", ""),
+                doctype=row.get("source_doctype", ""),
+                name=row.get("source_name", ""),
+                item=row.get("item_code", "") + " " + (row.get("item_name", "") or ""),
+                qty=flt(row.get("unsettled_qty", 0)),
+                price=flt(row.get("unit_price", 0)),
+                amount=flt(row.get("unsettled_amount", 0)),
+                account=row.get("transition_account", ""),
+                remarks=row.get("remarks", "")
+            )
+
+        html += """
+            </tbody>
+        </table>
+        """
+
+    html += """
+        <div class="summary">
+            <h4 style="text-align:center;margin-top:0;">{summary_title}</h4>
+            <table class="summary-table">
+                <tr>
+                    <td><b>{label1}</b></td>
+                    <td class="text-right">{target_asset:,.2f}</td>
+                    <td class="text-right">{book_asset:,.2f}</td>
+                    <td class="text-right" style="font-weight:bold;color:{asset_color};">{asset_diff:+,.2f}</td>
+                </tr>
+                <tr>
+                    <td><b>{label2}</b></td>
+                    <td class="text-right">{target_liability:,.2f}</td>
+                    <td class="text-right">{book_liability:,.2f}</td>
+                    <td class="text-right" style="font-weight:bold;color:{liab_color};">{liability_diff:+,.2f}</td>
+                </tr>
+            </table>
+            <div style="text-align:center;margin-top:10px;font-size:10px;color:#666;">
+                {note}
+            </div>
+        </div>
+    """.format(
+        summary_title=_("Summary Adjustment Suggestion"),
+        label1=_("Goods-in-Transit (Target → Book → Diff)"),
+        label2=_("Contract Liability (Target → Book → Diff)"),
+        target_asset=summary.get("target_asset", 0),
+        book_asset=summary.get("book_asset", 0),
+        asset_diff=summary.get("asset_diff", 0),
+        asset_color="#1a73e8" if summary.get("asset_diff", 0) != 0 else "#333",
+        target_liability=summary.get("target_liability", 0),
+        book_liability=summary.get("book_liability", 0),
+        liability_diff=summary.get("liability_diff", 0),
+        liab_color="#e37400" if summary.get("liability_diff", 0) != 0 else "#333",
+        note=_("Note: Positive means Dr (asset) or Cr (liability); negative means Cr (asset) or Dr (liability).")
+    )
+
+    html += """
+        <div class="footer">{generated} {datetime}</div>
+    </body>
+    </html>
+    """.format(
+        generated=_("Generated on"),
+        datetime=frappe.utils.now()
+    )
+
+    return html

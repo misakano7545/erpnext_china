@@ -5041,7 +5041,7 @@ Quality Inspection(s),质检单
 Select Items for Quality Inspection,选择待检验物料
 Sales Order Packed Item,销售订单套件明细
 Picked Qty (in Stock UOM),拣货数量(库存单位)
-{0} {1} has accounting entries in currency {2} for company {3}. Please select a receivable or payable account with currency {2}.,为{0} {1}指定了非公司{3}本币{2}的科目。请选择货币为{2}的应收/付科目。
+{0} {1} has accounting entries in currency {2} for company {3}. Please select a receivable or payable account with currency {2}.,{0} {1} 在公司 {3} 下存在以 {2} 为币种的会计分录。请选择币种为 {2} 的应收或应付科目。
 Reversal Of,被冲销凭证
 Provisional Expense Account,暂估费用科目
 Time Taken to Deliver,交货耗时
@@ -19348,3 +19348,5 @@ Y-O-Y Transfers,调动人数同比分析
 Y-O-Y Promotions,晋升人数同比分析
 Training Type,培训类型
 Employee Lifecycle,员工生命周期
+Debit in Account Currency,借方金额（科目币种）
+Credit in Account Currency,贷方金额（科目币种）
