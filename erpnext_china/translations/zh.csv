@@ -19351,3 +19351,3202 @@ Employee Lifecycle,员工生命周期
 Debit in Account Currency,借方金额（科目币种）
 Credit in Account Currency,贷方金额（科目币种）
 Bank Account Name,银行账户名称
+"<h3>About Product Bundle</h3>
+
+<p>Aggregate group of <b>Items</b> into another <b>Item</b>. This is useful if you are bundling a certain <b>Items</b> into a package and you maintain stock of the packed <b>Items</b> and not the aggregate <b>Item</b>.</p>
+<p>The package <b>Item</b> will have <code>Is Stock Item</code> as <b>No</b> and <code>Is Sales Item</code> as <b>Yes</b>.</p>
+<h4>Example:</h4>
+<p>If you are selling Laptops and Backpacks separately and have a special price if the customer buys both, then the Laptop + Backpack will be a new Product Bundle Item.</p>",<h3>套件</h3><p>将一组<b>物料</b>组合成另一个<b>套件物料</b>.适用于套件包含的物料属于库存物料，套件本身只是用于销售，在物料主数据中勾选<code>允许销售</code>，不勾选<code>允许库存</code></p><h4>比如:</h4><p>你单独出售笔记本电脑和电脑包，希望给同时购买笔记本电脑和电脑包的客户特别的优惠，就可以将笔记本电脑和电脑包组合成一个套件</p>
+POS,销售点
+Outward,付款
+"Example: ABCD.#####
+If series is set and Serial No is not mentioned in transactions, then automatic serial number will be created based on this series. If you always want to explicitly mention Serial Nos for this item. leave this blank.",例如：ABCD.##### 如果设置了序列号模板且未在单据中输入序列号，系统会基于序列号模板自动生成序列号。如果序列号都是手工输入，请将此栏位留空。
+Make,新建
+"Scorecard variables can be used, as well as:
+{total_score} (the total score from that period),
+{period_number} (the number of periods to present day)
+","可以使用评分变量，以及：
+{total_score}（当期总分数），
+{period_number}（截止当天期数）"
+Base,基本
+Left,左
+Inward,收款
+Is Subcontracted,委外
+Is Customer Provided Item,是受托加工材料
+"This field will appear only if the fieldname defined here has value OR the rules are true (examples):
+myfield
+eval:doc.myfield=='My Value'
+eval:doc.age&gt;18","本字段仅在以上代码框中定义的字段有值或表达式(js代码)结果为真时显示，如案例1：字段等于指定值；<br>
+eval:doc.myfield=='my value'
+案例2：年龄大于18 <br>
+eval:doc.age&gt;18"
+Off,离线
+Transfer,调拨
+Receipt,采购入库
+Advance Paid,预付款
+Period,期间
+Open Documents,未结案单据
+"<h5>Message Example</h5>
+
+<pre>&lt;h3&gt;Order Overdue&lt;/h3&gt;
+
+&lt;p&gt;Transaction {{ doc.name }} has exceeded Due Date. Please take necessary action.&lt;/p&gt;
+
+&lt;!-- show last comment --&gt;
+{% if comments %}
+Last comment: {{ comments[-1].comment }} by {{ comments[-1].by }}
+{% endif %}
+
+&lt;h4&gt;Details&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Customer: {{ doc.customer }}
+&lt;li&gt;Amount: {{ doc.grand_total }}
+&lt;/ul&gt;
+</pre>","<h5>消息范例</h5>
+
+<pre>&lt;h3&gt;订单逾期&lt;/h3&gt;
+
+&lt;p&gt;交易 {{ doc.name }} 已逾期. 请采取必要行动.&lt;/p&gt;
+
+&lt;!-- 显示最新备注信息 --&gt;
+{% if comments %}
+最新备注: {{ comments[-1].comment }}  {{ comments[-1].by }}
+{% endif %}
+
+&lt;h4&gt;详情&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;客户: {{ doc.customer }}
+&lt;li&gt;金额: {{ doc.grand_total }}
+&lt;/ul&gt;
+</pre>"
+"Track if your email has been opened by the recipient.
+<br>
+Note: If you're sending to multiple recipients, even if 1 recipient reads the email, it'll be considered ""Opened""","追踪收件人是否打开邮件.
+<br>
+注: 如发给多人,其中一个打开邮件都会被标记为""打开过"""
+Grievance,申诉
+"Only values between [0,1) are allowed. Like {0.00, 0.04, 0.09, ...}
+Ex: If allowance is set at 0.07, accounts that have balance of 0.07 in either of the currencies will be considered as zero balance account","限0到1之间，如0.04，0.09
+举例 尾差限额0.07，本币或外币余额小于0.07时被视为余额为0"
+"Configure how amended documents will be named.<br>
+
+Default behaviour is to follow an amend counter which adds a number to the end of the original name indicating the amended version. <br>
+
+Default Naming will make the amended document to behave same as new documents.","设置修订后单据编号规则
+默认规则是在被修订单据编号基础上添加修订次数(版本)后缀
+选择默认单据编号规则时修订后的单据会重新生成下一个新单据编号"
+"If enabled, do not update serial / batch values in the stock transactions on creation of auto Serial 
+ / Batch Bundle. ",如勾选，物料移动相关单据自动创建序列号/批号时不同步明细行的序列号与批号字段
+"If <b>Enabled</b> - Reconciliation happens on the <b>Advance Payment posting date</b><br>
+If <b>Disabled</b> - Reconciliation happens on oldest of 2 Dates: <b>Invoice Date</b> or the <b>Advance Payment posting date</b><br>
+","如果 <b>勾选</b> - 基于 <b>预付款记账日</b>核销<br>
+如果 <b>不勾选</b> - 基于: <b>发票日</b> 或 <b>预付款记账时</b>两者中最晚日期核销<br>"
+"System will do an implicit conversion using the pegged currency. <br>
+Ex: Instead of AED -&gt; INR, system will do AED -&gt; USD -&gt; INR using the pegged exchange rate of AED against USD.","系统将采用挂钩货币进行隐式汇率转换。
+例如：系统不会直接转换AED→INR，而是基于AED与美元的挂钩汇率，通过AED→USD→INR的路径完成间接换算。"
+"0 - too guessable: risky password.
+<br>
+1 - very guessable: protection from throttled online attacks. 
+<br>
+2 - somewhat guessable: protection from unthrottled online attacks.
+<br>
+3 - safely unguessable: moderate protection from offline slow-hash scenario.
+<br>
+4 - very unguessable: strong protection from offline slow-hash scenario.","0 - 太容易猜到：有风险的密码。
+<br>
+1 - 非常容易猜测：防止受到限制的在线攻击。 
+<br>
+2 - 有点可猜测：防止不受限制的在线攻击。
+<br>
+3 - 安全地不可猜测：适度保护免受离线慢哈希场景的影响。
+<br>
+4 - 非常难以猜测：针对离线慢哈希场景的强大保护。"
+"1 Currency = [?] Fraction
+For e.g. 1 USD = 100 Cent","1货币 = [？]分
+例如1美元 = 100 美分"
+"<a href=""https://docs.frappe.io/framework/user/en/api/rest#1-token-based-authentication"" target=""_blank"">
+  Click here to learn about token-based authentication
+</a>","<a href=""https://docs.frappe.io/framework/user/en/api/rest#1-token-based-authentication"" target=""_blank"">
+  点击此处了解基于令牌的认证
+</a>"
+"<div class=""well"">
+    Edit list of Series in the box. Rules:
+    <ul>
+        <li>Each Series Prefix on a new line.</li>
+        <li>Allowed special characters are ""/"" and ""-""</li>
+        <li>
+            Optionally, set the number of digits in the series using dot (.)
+            followed by hashes (#). For example, "".####"" means that the series
+            will have four digits. Default is five digits.
+        </li>
+        <li>
+            You can also use variables in the series name by putting them
+            between (.) dots
+            <br>
+            Supported Variables:
+            <ul>
+                <li><code>.YYYY.</code> - Year in 4 digits</li>
+                <li><code>.YY.</code> - Year in 2 digits</li>
+                <li><code>.MM.</code> - Month</li>
+                <li><code>.DD.</code> - Day of month</li>
+                <li><code>.WW.</code> - Week of the year</li>
+                <li>
+                    <code>.{fieldname}.</code> - fieldname on the document e.g.
+                    <code>branch</code>
+                </li>
+                <li><code>.FY.</code> - Fiscal Year (requires ERPNext to be installed)</li>
+                <li><code>.ABBR.</code> - Company Abbreviation (requires ERPNext to be installed)</li>
+            </ul>
+        </li>
+    </ul>
+    Examples:
+    <ul>
+        <li>INV-</li>
+        <li>INV-10-</li>
+        <li>INVK-</li>
+        <li>INV-.YYYY.-.{branch}.-.MM.-.####</li>
+    </ul>
+</div>
+<br>
+","<div class=""well"">
+    在框中编辑系列列表。规则：
+    <ul>
+        <li>每个系列前缀占一行。</li>
+        <li>允许的特殊字符为“/”和“-”</li>
+        <li>
+            可选地，使用点 (.)
+            后跟井号 (#) 来设置系列中的位数。例如，“.####”表示系列
+            将有四位数字。默认值为五位数字。
+        </li>
+        <li>
+            您还可以在系列名称中使用变量，方法是将它们放在
+            (.) 点之间
+            <br>
+            支持的变量：
+            <ul>
+                <li><code>.YYYY。</code> - 4 位数字的年份</li>
+                <li><code>.YY。</code> - 2 位数字的年份</li>
+                <li><code>.MM.</code> - 月份</li>
+                <li><code>.DD.</code> - 月份中的日期</li>
+                <li><code>.WW.</code> - 一年中的周数</li>
+                <li><code>.FY.</code> - 财政年度</li>
+                <li><code>.ABBR.</code> - 公司缩写</li>
+                <li>
+                    <code>.{fieldname}.</code> - 文档上的字段名称，例如
+                    <code>分支</code>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    示例：
+    <ul>
+        <li>INV-</li>
+        <li>INV-10-</li>
+        <li>INVK-</li>
+        <li>INV-.YYYY.-.{branch}.-.MM.-.####</li>
+    </ul>
+</div>
+<br>
+"
+"<h3>Custom CSS Help</h3>
+
+<p>Notes:</p>
+
+<ol>
+<li>All field groups (label + value) are set attributes <code>data-fieldtype</code> and <code>data-fieldname</code></li>
+<li>All values are given class <code>value</code></li>
+<li>All Section Breaks are given class <code>section-break</code></li>
+<li>All Column Breaks are given class <code>column-break</code></li>
+</ol>
+
+<h4>Examples</h4>
+
+<p>1. Left align integers</p>
+
+<pre><code>[data-fieldtype=""Int""] .value { text-align: left; }</code></pre>
+
+<p>1. Add border to sections except the last section</p>
+
+<pre><code>.section-break { padding: 30px 0px; border-bottom: 1px solid #eee; }
+.section-break:last-child { padding-bottom: 0px; border-bottom: 0px;  }</code></pre>
+","<h3>自定义 CSS 帮助</h3>
+
+<p>注释：</p>
+
+<ol>
+<li>所有字段组（标签 + 值）都设置了属性<code>data-fieldtype</code>和<code>data-fieldname</code></li>
+<li>所有值都有类<code>value</code></li>
+<li>所有分段断开均使用<code>section-break</code>类</li>
+<li>所有分隔列均为<code>column-break</code>类</li>
+</ol>
+
+<h4>示例</h4>
+
+<p>1.左对齐整数</p>
+
+<pre><code>[data-fieldtype=""Int""] .value { text-align: left; }</code></pre>
+
+<p>1.为除最后一节外的各节添加边框</p>
+
+<pre><code>.section-break { padding：30px 0px; border-bottom：1px solid #eee; }
+.section-break:last-child { padding-bottom：0px; border-bottom：0px; }</code></pre>
+"
+"<h3>Print Format Help</h3>
+<hr>
+<h4>Introduction</h4>
+<p>Print Formats are rendered on the server side using the Jinja Templating Language. All forms have access to the <code>doc</code> object which contains information about the document that is being formatted. You can also access common utilities via the <code>frappe</code> module.</p>
+<p>For styling, the Boostrap CSS framework is provided and you can enjoy the full range of classes.</p>
+<hr>
+<h4>References</h4>
+<ol>
+	<li><a href=""http://jinja.pocoo.org/docs/templates/"" target=""_blank"">Jinja Templating Language</a></li>
+	<li><a href=""http://getbootstrap.com"" target=""_blank"">Bootstrap CSS Framework</a></li>
+</ol>
+<hr>
+<h4>Example</h4>
+<pre><code>&lt;h3&gt;{{ doc.select_print_heading or ""Invoice"" }}&lt;/h3&gt;
+&lt;div class=""row""&gt;
+	&lt;div class=""col-md-3 text-right""&gt;Customer Name&lt;/div&gt;
+	&lt;div class=""col-md-9""&gt;{{ doc.customer_name }}&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=""row""&gt;
+	&lt;div class=""col-md-3 text-right""&gt;Date&lt;/div&gt;
+	&lt;div class=""col-md-9""&gt;{{ doc.get_formatted(""invoice_date"") }}&lt;/div&gt;
+&lt;/div&gt;
+&lt;table class=""table table-bordered""&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Sr&lt;/th&gt;
+			&lt;th&gt;Item Name&lt;/th&gt;
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th class=""text-right""&gt;Qty&lt;/th&gt;
+			&lt;th class=""text-right""&gt;Rate&lt;/th&gt;
+			&lt;th class=""text-right""&gt;Amount&lt;/th&gt;
+		&lt;/tr&gt;
+		{%- for row in doc.items -%}
+		&lt;tr&gt;
+			&lt;td style=""width: 3%;""&gt;{{ row.idx }}&lt;/td&gt;
+			&lt;td style=""width: 20%;""&gt;
+				{{ row.item_name }}
+				{% if row.item_code != row.item_name -%}
+				&lt;br&gt;Item Code: {{ row.item_code}}
+				{%- endif %}
+			&lt;/td&gt;
+			&lt;td style=""width: 37%;""&gt;
+				&lt;div style=""border: 0px;""&gt;{{ row.description }}&lt;/div&gt;&lt;/td&gt;
+			&lt;td style=""width: 10%; text-align: right;""&gt;{{ row.qty }} {{ row.uom or row.stock_uom }}&lt;/td&gt;
+			&lt;td style=""width: 15%; text-align: right;""&gt;{{
+				row.get_formatted(""rate"", doc) }}&lt;/td&gt;
+			&lt;td style=""width: 15%; text-align: right;""&gt;{{
+				row.get_formatted(""amount"", doc) }}&lt;/td&gt;
+		&lt;/tr&gt;
+		{%- endfor -%}
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<hr>
+<h4>Common Functions</h4>
+<table class=""table table-bordered"">
+	<tbody>
+		<tr>
+			<td style=""width: 30%;""><code>doc.get_formatted(""[fieldname]"", [parent_doc])</code></td>
+			<td>Get document value formatted as Date, Currency, etc. Pass parent <code>doc</code> for currency type fields.</td>
+		</tr>
+		<tr>
+			<td style=""width: 30%;""><code>frappe.db.get_value(""[doctype]"", ""[name]"", ""fieldname"")</code></td>
+			<td>Get value from another document.</td>
+		</tr>
+	</tbody>
+</table>
+","<h3>打印格式帮助</h3>
+<hr>
+<h4>简介</h4>
+<p>打印格式是使用 Jinja 模板语言在服务器端渲染的。所有表单都可以访问<code>doc</code>对象，该对象包含正在格式化的文档的相关信息。你还可以通过<code>frappe</code>模块访问常用工具。</p>
+<p>在样式设计方面，我们提供了 Boostrap CSS 框架，你可以使用全部的类。</p>
+<hr>
+<h4>参考资料</h4>
+<ol>
+	<li><a href=""http://jinja.pocoo.org/docs/templates/"" target=""_blank"">Jinja 模板语言</a></li>
+	<li><a href=""http://getbootstrap.com"" target=""_blank"">Bootstrap CSS 框架</a></li>
+</ol>
+<hr>
+<h4>示例</h4>
+<pre><code>&lt;h3&gt;{{ doc.select_print_heading or ""Invoice"" }}&lt;/h3&gt;
+&lt;div class=""row""&gt;
+	&lt;div class=""col-md-3 text-right""&gt;客户姓名&lt;/div&gt;
+	&lt;div class=""col-md-9""&gt;{{ doc.customer_name }}&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=""row""&gt;
+	&lt;div class=""col-md-3 text-right""&gt;Date&lt;/div&gt;
+	&lt;div class=""col-md-9""&gt;{{ doc.get_formatted(""invoice_date"") }}&lt;/div&gt;
+&lt;/div&gt;
+&lt;table class=""table table- border"" trbodybordered""&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Sr&lt;/th&gt;
+			&lt;th&gt;Item Name&lt;/th&gt;
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th class=""text- right"" Qty /th th class=""text- right"" Qtyright""&gt;Qty&lt;/th&gt;
+			&lt;th class=""text-right""&gt;Rate&lt;/th&gt;
+			&lt;th class=""text-right""&gt;Amount&lt;/th&gt;
+		&lt;/tr&gt;
+		{%- for row in doc.items -%}
+		&lt;tr&gt;
+			&lt;td style=""width：3%;""&gt;{{ row.idx }}&lt;/td&gt;
+			&lt;td style=""width: 20%;""&gt;
+				{{ row.item_name }}
+				{% if row.item_code != row.item_name -%}
+				&lt;br&gt;项目代码： {{ row.item_code}}
+				{%- endif %}
+			&lt;/td&gt;
+			&lt;td style=""width: 37%;""&gt;
+				&lt;div style=""border：0px;""&gt;{{ row.description }}&lt;/div&gt;&lt;/td&gt;
+			&lt;td style=""width: 10%; text-align: right;""&gt;{{ row.qty }} {{ row.uom or row.stock_uom }}&lt;/td&gt;
+			&lt;td style=""width: 15%; text-align: right;""&gt;{{
+				row.get_formatted(""rate"", doc) }}&lt;/td&gt;
+			&lt;td style=""width: 15%; text-align: right;""&gt;{{
+				row.get_formatted(""amount"", doc) }}&lt;/td&gt;
+		&lt;/tr&gt;
+		{%- endfor -%}
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<hr>
+<h4>常用函数</h4>
+<table class=""table table-bordered"">
+	<tbody>
+		<tr>
+			<td style=""width: 30%;""><code>doc.get_formatted(""[fieldname]"", [parent_doc])</code></td>
+			<td>获取格式为日期、货币等的文档值。对于货币类型字段，请传递父<code>doc</code>。</td>
+		</tr>
+		<tr>
+			<td style=""width: 30%;""><code>frappe.db.get_value(""[doctype]"", ""[name]"", ""fieldname"")</code></td>
+			<td>从另一个文档获取值。</td>
+		</tr>
+	</tbody>
+</table>
+"
+"<h4>Default Template</h4>
+<p>Uses <a href=""http://jinja.pocoo.org/docs/templates/"">Jinja Templating</a> and all the fields of Address (including Custom Fields if any) will be available</p>
+<pre><code>{{ address_line1 }}&lt;br&gt;
+{% if address_line2 %}{{ address_line2 }}&lt;br&gt;{% endif -%}
+{{ city }}&lt;br&gt;
+{% if state %}{{ state }}&lt;br&gt;{% endif -%}
+{% if pincode %} PIN:  {{ pincode }}&lt;br&gt;{% endif -%}
+{{ country }}&lt;br&gt;
+{% if phone %}Phone: {{ phone }}&lt;br&gt;{% endif -%}
+{% if fax %}Fax: {{ fax }}&lt;br&gt;{% endif -%}
+{% if email_id %}Email: {{ email_id }}&lt;br&gt;{% endif -%}
+</code></pre>","<h4>默认模板</h4>
+<p>使用<a href=""http://jinja.pocoo.org/docs/templates/"">Jinja 模板</a>，地址的所有字段（包括自定义字段（如有））均可用</p>
+<pre><code>{{ address_line1 }}&lt;br&gt;
+{% if address_line2 %}{{ address_line2 }}&lt;br&gt;{% endif -%}
+{{ city }}&lt;br&gt;
+{% if state %}{{ state }}&lt;br&gt;{% endif -%}
+{% if pincode %} 密码：  {{ pincode }}&lt;br&gt;{% endif -%}
+{{ country }}&lt;br&gt;
+{% if phone %}电话： {{ phone }}&lt;br&gt;{% endif -%}
+{% if fax %}传真： {{ fax }}&lt;br&gt;{% endif -%}
+{% if email_id %}电子邮件： {{ email_id }}&lt;br&gt;{% endif -%}
+</code></pre>"
+"<h4>Email Reply Example</h4>
+
+<pre>Order Overdue
+
+Transaction {{ name }} has exceeded Due Date. Please take necessary action.
+
+Details
+
+- Customer: {{ customer }}
+- Amount: {{ grand_total }}
+</pre>
+
+<h4>How to get fieldnames</h4>
+
+<p>The fieldnames you can use in your email template are the fields in the document from which you are sending the email. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sales Invoice)</p>
+
+<h4>Templating</h4>
+
+<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">read this documentation.</a></p>
+","<h4>电子邮件回复示例</h4>
+
+<pre>订单逾期
+
+交易 {{ name }} 已超过到期日。请采取必要行动。
+
+详情
+
+- 客户： {{ customer }}
+- 金额： {{ grand_total }}
+</pre>
+
+<h4>如何获取字段名</h4>
+
+<p>您可以在电子邮件模板中使用的字段名是发送电子邮件的文档中的字段。您可以通过设置 &gt; 自定义表单视图并选择文档类型（如销售发票）来查找任何文档的字段。</p>
+
+<h4>模板</h4>
+
+<p>模板使用 Jinja 模板语言编译。要了解有关 Jinja 的更多信息，请<a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">阅读此文档。</a></p>
+"
+"<p><strong>{{ __(""Condition Examples"") }}:</strong></p>
+<pre><code class=""language-python"">doc.status==""Open""<br>doc.due_date==nowdate()<br>doc.total &gt; 40000
+</code></pre>
+","<p><strong>{{ __(""Condition Examples"") }}:</strong></p>
+<pre><code class=""language-python"">doc.status==""Open""<br>doc.due_date==nowdate()<br>doc.total &gt; 40000
+</code></pre>
+"
+"<p><strong>{{ __(""Condition Examples"") }}:</strong></p>
+<pre>doc.status==""Open""<br>doc.due_date==nowdate()<br>doc.total &gt; 40000
+</pre>","<p><strong>{{ __(""Condition Examples"") }}:</strong></p>
+<pre>doc.status==""Open""<br>doc.due_date==nowdate()<br>doc.total &gt; 40000
+</pre>"
+"<p>Multiple webforms can be created for a single doctype. Add filters specific to this webform to display correct record after submission.</p><p>For Example:</p>
+<p>If you create a separate webform every year to capture feedback from employees add a 
+ field named year in doctype and add a filter <b>year = 2023</b></p>
+","<p>可为单一类型创建多个网络表单。为该网络表单添加特定筛选器，以便在提交后显示正确的记录。</p><p>例如</p>
+<p>如果您每年都创建一个单独的网络表格来收集员工的反馈意见，请在 doctype 中添加一个名为年份的 
+ 字段，并添加过滤器<b>年份 = 2023</b></p>
+"
+"<p>Set context before rendering a template. Example:</p><p>
+</p><div><pre><code>
+context.project = frappe.get_doc(""Project"", frappe.form_dict.name)
+</code></pre></div>","<p>在渲染模板前设置上下文。示例</p><p>
+</p><div><pre><code>
+context.project = frappe.get_doc(""Project"", frappe.form_dict.name)
+</code></pre></div>"
+"<p>To interact with above HTML you will have to use `root_element` as a parent selector.</p><p>For example:</p><pre class=""p-3 bg-gray-100 border-radius rounded-sm mb-0"" style=""width: fit-content;""><code>// here root_element is provided by default
+let some_class_element = root_element.querySelector('.some-class');
+some_class_element.textContent = ""New content"";
+</code></pre>","<p>要与上述 HTML 交互，您必须使用 `root_element` 作为父选择器。</p><p>例如：</p><pre class=""p-3 bg-gray-100 border-radius rounded-sm mb-0"" style=""width: fit-content;""><code>// 这里默认提供 root_element
+let some_class_element = root_element.querySelector('.some-class');
+some_class_element.textContent = ""New content"";
+</code></pre>"
+"<pre>*  *  *  *  *
+┬  ┬  ┬  ┬  ┬
+│  │  │  │  │
+│  │  │  │  └ day of week (0 - 6) (0 is Sunday)
+│  │  │  └───── month (1 - 12)
+│  │  └────────── day of month (1 - 31)
+│  └─────────────── hour (0 - 23)
+└──────────────────── minute (0 - 59)
+
+---
+
+* - Any value
+/ - Step values
+</pre>
+","<pre>* * * * *
+┬ ┬ ┬ ┬ ┬
+│ │ │ │ │
+│ │ │ │ └ 星期几 (0 - 6)（0 为星期日）
+│ │ │ └───── 月 (1 - 12)
+│ │ └────────── 月中某天 (1 - 31)
+│ └──────────────── 小时 (0 - 23)
+└──────────────────── 分钟 (0 - 59)
+
+---
+
+* - 任意值
+/ - 步长值
+</pre>
+"
+"<pre><code>doc.grand_total &gt; 0</code></pre>
+
+<p>Conditions should be written in simple Python. Please use properties available in the form only.</p>
+<p>Allowed functions:
+</p><ul>
+<li>frappe.db.get_value</li>
+<li>frappe.db.get_list</li>
+<li>frappe.session</li>
+<li>frappe.utils.now_datetime</li>
+<li>frappe.utils.get_datetime</li>
+<li>frappe.utils.add_to_date</li>
+<li>frappe.utils.now</li>
+</ul>
+<p>Example: </p><pre><code>doc.creation &gt; frappe.utils.add_to_date(frappe.utils.now_datetime(), days=-5, as_string=True, as_datetime=True) </code></pre><p></p>","<pre><code>doc.grand_total &gt; 0</code></pre>
+
+<p>条件应使用简单的 Python 语言编写。请仅使用表单中可用的属性。</p>
+<p>允许使用的函数：
+</p><ul>
+<li>frappe.db.get_value</li>
+<li>frappe.db.get_list</li>
+<li>frappe.session</li>
+<li>frappe.utils.now_datetime</li>
+<li>frappe.utils.get_datetime</li>
+<li>frappe.utils.add_too_date</li>
+<li>frappe.utils.now</li>
+</ul>
+<p>示例： </p><pre><code>doc.creation &gt; frappe.utils.add_to_date(frappe.utils.now_datetime(), days=-5, as_string=True, as_datetime=True) </code></pre><p></p>"
+"A version identifier string for the client software.
+<br>
+The value of the should change on any update of the client software with the same Software ID.","客户端软件的版本标识符字符串。
+<br>
+对于具有相同软件ID的客户端软件，该值应在任何更新时变更。"
+"Allow editing even if the doctype has a workflow set up.
+
+Does nothing if a workflow isn't set up.","即使文档类型已设置工作流程，也允许编辑。
+
+如果未设置工作流程，则不执行任何操作。"
+"Brand is what appears on the top-left of the toolbar. If it is an image, make sure it
+has a transparent background and use the &lt;img /&gt; tag. Keep size as 200px x 30px","品牌是出现在工具栏左上方的内容。如果是图片，请确保
+背景透明，并使用 &lt;img /&gt; 标签。大小保持为 200px x 30px"
+"Change the starting / current sequence number of an existing series. <br>
+
+Warning: Incorrectly updating counters can prevent documents from getting created.","更改现有序列的起始/当前序列号。 <br>
+
+警告：错误更新计数器可能导致无法创建文档。"
+"DocStatus of the following states have changed:<br><strong>{0}</strong><br>
+				Do you want to update the docstatus of existing documents in those states?<br>
+				This does not undo any effect bought in by the document's existing docstatus.
+				","以下状态的文档状态已更改：<br><strong>{0}</strong><br>
+				您想更新这些状态下现有文档的 docstatus 吗？<br>
+				这不会消除文档现有 docstatus 所带来的任何影响。
+				"
+"Enable if on click
+opens modal.","如果点击
+则启用打开模式。"
+"For comparison, use >5, <10 or =324.
+For ranges, use 5:10 (for values between 5 & 10).","为了进行比较，请使用 >5、<10 或 =324。
+对于范围，请使用 5:10（对于 5 到 10 之间的值）。"
+"Naming Options:
+<ol><li><b>field:[fieldname]</b> - By Field</li><li><b>naming_series:</b> - By Naming Series (field called naming_series must be present)</li><li><b>Prompt</b> - Prompt user for a name</li><li><b>[series]</b> - Series by prefix (separated by a dot); for example PRE.#####</li>
+<li><b>format:EXAMPLE-{MM}morewords{fieldname1}-{fieldname2}-{#####}</b> - Replace all braced words (fieldnames, date words (DD, MM, YY), series) with their value. Outside braces, any characters can be used.</li></ol>","命名选项：
+<ol><li><b>字段：[字段名称]</b> - 按字段</li><li><b>自动增量</b> - 使用数据库的自动增量功能</li><li><b>naming_series：</b> - 按命名系列（名为 naming_series 的字段必须存在）</li><li><b>提示</b> - 提示用户输入名称</li><li><b>[series]</b> - 按前缀排列系列（以点分隔）；例如 PRE。#####</li>
+<li><b>format:EXAMPLE-{MM}morewords{fieldname1}-{fieldname2}-{#####}</b> - 将所有括号内的单词（字段名称、日期单词（DD、MM、YY）、系列）替换为其值。括号外可使用任何字符。</li></ol>"
+"New line separated list of allowed public client URLs (eg <code>https://frappe.io</code>), or <code>*</code> to accept all.
+<br>
+Public clients are restricted by default.","以换行符分隔的允许公共客户端URL列表（例如<code>https://frappe.io</code>），或使用<code>*</code>接受所有来源。
+<br>
+默认情况下公共客户端受到限制。"
+"Page to show on the website
+","在网站上显示的页面
+"
+"Set the filters here. For example:
+<pre class=""small text-muted""><code>
+[{
+	fieldname: ""company"",
+	label: __(""Company""),
+	fieldtype: ""Link"",
+	options: ""Company"",
+	default: frappe.defaults.get_user_default(""Company""),
+	reqd: 1
+},
+{
+	fieldname: ""account"",
+	label: __(""Account""),
+	fieldtype: ""Link"",
+	options: ""Account"",
+	reqd: 1
+}]
+</code></pre>","在此设置筛选器，示例：
+<pre class=""small text-muted""><code>
+[{
+	fieldname: ""company"",
+	label: __(""Company""),
+	fieldtype: ""公司"",
+	options: ""Company"",
+	default: frappe.defaults.get_user_default(""Company""),
+	reqd: 1
+},
+{
+	fieldname: ""account"",
+	label: __(""账户""),
+	fieldtype: ""Link"",
+	options: ""Account"",
+	reqd：1
+}]
+</code></pre>"
+"Set the path to a whitelisted function that will return the data for the number card in the format:
+
+<pre class=""small text-muted""><code>
+{
+	""value"": value,
+	""fieldtype"": ""Currency"",
+	""route_options"": {""from_date"": ""2023-05-23""},
+	""route"": [""query-report"", ""Permitted Documents For User""]
+}</code></pre>","设置白名单函数路径，该函数应返回如下格式的数字卡片数据：
+
+<pre class=""small text-muted""><code>
+{
+	""value"": value,
+	""fieldtype"": ""货币"",
+	""route_options"": {""from_date"": ""2023-05-23""},
+	""route"": [""query-report"", ""用户可访问文档""]
+}</code></pre>"
+"Thank you for reaching out to us. We will get back to you at the earliest.
+
+
+Your query:
+
+{0}","感谢您联系我们。我们将尽快给您回复。
+
+
+您的问题
+
+{0}"
+"The Client ID obtained from the Google Cloud Console under <a href=""https://console.cloud.google.com/apis/credentials"">
+""APIs &amp; Services"" &gt; ""Credentials""
+</a>","从Google Cloud Console的 <a href=""https://console.cloud.google.com/apis/credentials"">
+“API &amp; 服务” &gt; “凭据”
+</a>获取的客户端 ID"
+"The browser API key obtained from the Google Cloud Console under <a href=""https://console.cloud.google.com/apis/credentials"">
+""APIs &amp; Services"" &gt; ""Credentials""
+</a>","从Google Cloud Console的<a href=""https://console.cloud.google.com/apis/credentials"">
+“API &amp; 服务” &gt; “凭据”
+</a>中获取的浏览器API密钥"
+"The project number obtained from Google Cloud Console under <a href=""https://console.cloud.google.com/iam-admin/settings"">
+""IAM &amp; Admin"" &gt; ""Settings""
+</a>","从Google Cloud Console的<a href=""https://console.cloud.google.com/apis/credentials"">
+“IAM &amp; 管理” &gt; “设置”
+</a>中获取的项目编号"
+"This feature can not be used as dependencies are missing.
+				Please contact your system manager to enable this by installing pycups!","由于缺少依赖项，该功能无法使用。
+				请联系系统管理员，通过安装 pycups 来启用此功能！"
+"To add dynamic subject, use jinja tags like
+
+<div><pre><code>New {{ doc.doctype }} #{{ doc.name }}</code></pre></div>","使用Jinja标签添加动态主题
+
+<div><pre><code>新建{{ doc.doctype }} #{{ doc.name }}</code></pre></div>"
+"To add dynamic values from the document, use jinja tags like
+
+<div>
+<pre><code>{ ""id"": ""{{ doc.name }}"" }</code>
+</pre>
+</div>","使用Jinja标签添加文档动态值
+
+<div>
+<pre><code>{ ""id"": ""{{ doc.name }}"" }</code>
+</pre>
+</div>"
+"URIs for receiving authorization code once the user allows access, as well as failure responses. Typically a REST endpoint exposed by the Client App.
+<br>e.g. http://hostname/api/method/frappe.integrations.oauth2_logins.login_via_facebook","用户授权后接收授权码及错误响应的URI。通常为客户端应用暴露的REST端点。
+<br>示例：http://hostname/api/method/frappe.integrations.oauth2_logins.login_via_facebook"
+"Unique ID assigned by the client developer used to identify the client software to be dynamically registered.
+<br>
+<b>Should remain same</b> across multiple versions or updates of the software.",由客户端开发人员分配的唯一ID，用于标识要动态注册的客户端软件。<br><b>应在软件的多个版本或更新中保持不变</b>。
+Weight,重量
+"
+			The Batch {0} of an item {1} has negative stock in the warehouse {2}{3}.
+			Please add a stock quantity of {4} to proceed with this entry.
+			If it is not possible to make an adjustment entry, please enable 'Allow Negative Stock for Batch' in the batch {0} or in the Stock Settings to proceed.
+			However, enabling this setting may lead to negative stock in the system.
+			So please ensure the stock levels are adjusted as soon as possible to maintain the correct valuation rate.","物料 {1} 的批次 {0} 在仓库 {2}{3} 中的库存为负。
+			请添加库存数量 {4} 以继续输入。
+			如果无法进行调整分录，请在批次 {0} 或库存设置中启用“允许批号为负库存”以继续。
+			但是，启用此设置可能会导致系统中出现负库存。
+			因此，请确保尽快调整库存水平，以维持正确的估值率。"
+"<br>
+<h4>Note</h4>
+<ul>
+<li>
+You can use <a href=""https://jinja.palletsprojects.com/en/2.11.x/"" target=""_blank"">Jinja tags</a> in <b>Subject</b> and <b>Body</b> fields for dynamic values.
+</li><li>
+    All fields in this doctype are available under the <b>doc</b> object and all fields for the customer to whom the mail will go to is available under the  <b>customer</b> object.
+</li></ul>
+<h4> Examples</h4>
+<!-- {% raw %} -->
+<ul>
+    <li><b>Subject</b>:<br><br><pre><code>Statement Of Accounts for {{ customer.customer_name }}</code></pre><br></li>
+    <li><b>Body</b>: <br><br>
+<pre><code>Hello {{ customer.customer_name }},<br>PFA your Statement Of Accounts from {{ doc.from_date }} to {{ doc.to_date }}.</code> </pre></li>
+</ul>
+<!-- {% endraw %} -->","<br>
+<h4>注意事项</h4>
+<ul>
+<li>
+您可以在 ""<b>主题 ""</b>和<b>""正文</b>""字段中使用 ""<a href=""https://jinja.palletsprojects.com/en/2.11.x/"" target=""_blank"">Jinja ""标记</a>来获取动态值。
+</li><li>
+    该类型中的所有字段均可在<b>doc</b>对象下使用，而邮件将发送给的客户的所有字段均可在<b>客户</b>对象下使用。
+</li></ul>
+<h4>示例</h4>
+<!-- {% raw %} -->
+<ul>
+    <li><b>主题</b>：<br><br><pre><code> {{ customer.customer_name }}的账目报表 </code></pre><br></li>
+    <li><b>正文</b>：<br><br>
+<pre><code>您好 {{ customer.customer_name }},<br>PFA 您的会计报表从 {{ doc.from_date }} 转到 {{ doc.to_date }}。</code> </pre></li>
+</ul>
+<!-- {% endraw %} -->"
+"<div>
+<h3> All dimensions in centimeter only </h3>
+</div>","<div>
+<h3>所有尺寸均以厘米为单位 </h3>
+</div>"
+"<h3>Currency Exchange Settings Help</h3>
+<p>There are 3 variables that could be used within the endpoint, result key and in values of the parameter.</p>
+<p>Exchange rate between {from_currency} and {to_currency} on {transaction_date} is fetched by the API.</p>
+<p>Example: If your endpoint is exchange.com/2021-08-01, then, you will have to input exchange.com/{transaction_date}</p>","<h3>货币兑换设置帮助</h3>
+<p>在端点、结果键和参数值中可以使用 3 个变量。</p>
+<p>API 将获取 {transaction_date} 上 {from_currency} 和 {to_currency} 之间的汇率。</p>
+<p>举例说明：如果您的端点是 exchange.com/2021-08-01，则必须输入 exchange.com/{transaction_date}。 </p>"
+"<h4>Body Text and Closing Text Example</h4>
+
+<div>We have noticed that you have not yet paid invoice {{sales_invoice}} for {{frappe.db.get_value(""Currency"", currency, ""symbol"")}} {{outstanding_amount}}. This is a friendly reminder that the invoice was due on {{due_date}}. Please pay the amount due immediately to avoid any further dunning cost.</div>
+
+<h4>How to get fieldnames</h4>
+
+<p>The fieldnames you can use in your template are the fields in the document. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sales Invoice)</p>
+
+<h4>Templating</h4>
+
+<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">read this documentation.</a></p>","<h4>正文和结尾文本示例</h4>
+
+<div>我们注意到您尚未支付 {{sales_invoice}} 的发票 {{frappe.db.get_value(""Currency"", currency, ""symbol"")}} {{outstanding_amount}}。特此友情提醒，发票到期日为 {{due_date}}。请立即支付应付金额，以免产生更多扣款费用。</div>
+
+<h4>如何获取字段名</h4>
+
+<p>您可以在模板中使用的字段名是文档中的字段。您可以通过设置 &gt; 自定义表单视图并选择文档类型（如销售发票）来查找任何文档的字段。</p>
+
+<h4>模板</h4>
+
+<p>模板使用 Jinja 模板语言编译。要了解有关 Jinja 的更多信息，请<a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">阅读此文档。</a></p>"
+"<h4>Contract Template Example</h4>
+
+<pre>Contract for Customer {{ party_name }}
+
+-Valid From : {{ start_date }} 
+-Valid To : {{ end_date }}
+</pre>
+
+<h4>How to get fieldnames</h4>
+
+<p>The field names you can use in your Contract Template are the fields in the Contract for which you are creating the template. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Contract)</p>
+
+<h4>Templating</h4>
+
+<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">read this documentation.</a></p>","<h4>合同模板示例</h4>
+
+<pre>客户合同 {{ party_name }}
+
+-Valid From : {{ start_date }} 
+-Valid To : {{ end_date }}
+</pre>
+
+<h4>如何获取字段名</h4>
+
+<p>您可以在合同模板中使用的字段名称是您创建模板的合同中的字段。您可以通过设置 &gt; 自定义表单视图并选择文档类型（如合同）来查找任何文档的字段。</p>
+
+<h4>模板制作</h4>
+
+<p>模板使用 Jinja 模板语言编译。要了解有关 Jinja 的更多信息，请<a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">阅读此文档。</a></p>"
+"<h4>Standard Terms and Conditions Example</h4>
+
+<pre>Delivery Terms for Order number {{ name }}
+
+-Order Date : {{ transaction_date }} 
+-Expected Delivery Date : {{ delivery_date }}
+</pre>
+
+<h4>How to get fieldnames</h4>
+
+<p>The fieldnames you can use in your email template are the fields in the document from which you are sending the email. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sales Invoice)</p>
+
+<h4>Templating</h4>
+
+<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">read this documentation.</a></p>","<h4>标准条款和条件示例</h4>
+
+<pre>Delivery Terms for Order number {{ name }}
+
+-Order Date : {{ transaction_date }} 
+-Expected Delivery Date : {{ delivery_date }}
+</pre>
+
+<h4>如何获取字段名称</h4>
+
+<p>您可以在电子邮件模板中使用的字段名称是您发送电子邮件的文档中的字段。您可以通过设置 &gt; 自定义表单视图并选择文档类型（例如销售发票）找到任何文档的字段</p>
+
+<h4>模板</h4>
+
+<p> 模板是使用 Jinja 模板语言编译的。要了解有关 Jinja、<a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/""> 的更多信息，请阅读本文档。</a></p>"
+"<p>In your <b>Email Template</b>, you can use the following special variables:
+</p>
+<ul>
+        <li>
+            <code>{{ update_password_link }}</code>: A link where your supplier can set a new password to log into your portal.
+        </li>
+        <li>
+            <code>{{ portal_link }}</code>: A link to this RFQ in your supplier portal.
+        </li>
+        <li>
+            <code>{{ supplier_name }}</code>: The company name of your supplier.
+        </li>
+        <li>
+            <code>{{ contact.salutation }} {{ contact.last_name }}</code>: The contact person of your supplier.
+        </li><li>
+            <code>{{ user_fullname }}</code>: Your full name.
+        </li>
+    </ul>
+<p></p>
+<p>Apart from these, you can access all values in this RFQ, like <code>{{ message_for_supplier }}</code> or <code>{{ terms }}</code>.</p>","<p>在<b>电子邮件模板</b>中，您可以使用以下特殊变量：
+</p>
+<ul>
+        <li>
+            <code>{{ update_password_link }}</code>:供应商可以设置新密码登录门户网站的链接。
+        </li>
+        <li>
+            <code>{{ portal_link }}</code>:供应商门户网站中该询价单的链接。
+        </li>
+        <li>
+            <code>{{ supplier_name }}</code>:供应商的公司名称。
+        </li>
+        <li>
+            <code>{{ contact.salutation }} {{ contact.last_name }}</code>:供应商的联系人。
+        </li><li>
+            <code>{{ user_fullname }}</code>:您的全名。
+        </li>
+    </ul>
+<p></p>
+<p>除此之外，您还可以访问此 RFQ 中的所有值，如 <code>{{ message_for_supplier }}</code>或 <code>{{ terms }}</code>.</p>"
+"<pre><h5>Message Example</h5>
+
+&lt;p&gt; Thank You for being a part of {{ doc.company }}! We hope you are enjoying the service.&lt;/p&gt;
+
+&lt;p&gt; Please find enclosed the E Bill statement. The outstanding amount is {{ doc.grand_total }}.&lt;/p&gt;
+
+&lt;p&gt; We don't want you to be spending time running around in order to pay for your Bill.<br>After all, life is beautiful and the time you have in hand should be spent to enjoy it!<br>So here are our little ways to help you get more time for life! &lt;/p&gt;
+
+&lt;a href=""{{ payment_url }}""&gt; click here to pay &lt;/a&gt;
+
+</pre>
+","<pre><h5>信息示例</h5>
+
+&lt;p&gt; 感谢您成为 {{ doc.company }}的一员！希望您能享受我们的服务。&lt;/p&gt;
+
+&lt;p&gt; 随信附上电子账单。未付金额为 {{ doc.grand_total }}。&lt;/p&gt;
+
+&lt;p&gt; 我们不希望您为了支付账单而花费时间四处奔波。<br>毕竟，生活是美好的，您手中的时间应该用来享受生活！<br>因此，我们有一些小方法来帮助您获得更多的生活时间！ &lt;/p&gt;
+
+&lt;a href=""{{ payment_url }}""&gt; 点击此处付款 &lt;/a&gt;
+
+</pre>
+"
+"<pre><h5>Message Example</h5>
+
+&lt;p&gt;Dear {{ doc.contact_person }},&lt;/p&gt;
+
+&lt;p&gt;Requesting payment for {{ doc.doctype }}, {{ doc.name }} for {{ doc.grand_total }}.&lt;/p&gt;
+
+&lt;a href=""{{ payment_url }}""&gt; click here to pay &lt;/a&gt;
+
+</pre>
+","<pre><h5>消息示例</h5>
+
+&lt;p&gt;亲爱的 {{ doc.contact_person }}，&lt;/p&gt;
+
+&lt;p&gt;请求支付 {{ doc.doctype }}、 {{ doc.name }} 和 {{ doc.grand_total }}的费用。&lt;/p&gt;
+
+&lt;a href=""{{ payment_url }}""&gt; 点击此处支付 &lt;/a&gt;
+
+</pre>
+"
+"<span class=""h4""><b>Your Shortcuts
+			
+		
+			
+		
+			
+		</b></span>","<span class=""h4""><b>快速访问
+			
+		
+			
+		
+			
+		</b></span>"
+"<table class=""table table-bordered table-condensed"">
+<thead>
+  <tr>
+         <th class=""table-sr"" style=""width: 50%;"">Child Document</th>
+         <th class=""table-sr"" style=""width: 50%;"">Non Child Document</th>
+   </tr>
+</thead>
+<tbody>
+<tr>
+         <td>
+                  <p> To access parent document field use parent.fieldname and to access child table document field use doc.fieldname </p>
+
+         </td>
+         <td>
+                    <p>To access document field use doc.fieldname </p>
+         </td>
+</tr>
+<tr>
+        <td>
+                   <p><b>Example: </b> parent.doctype == ""Stock Entry"" and doc.item_code == ""Test"" </p>
+
+        </td>
+         <td>
+                   <p><b>Example: </b> doc.doctype == ""Stock Entry"" and doc.purpose == ""Manufacture""</p>    
+          </td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+
+
+","<table class=""table table-bordered table-condensed"">
+<thead>
+  <tr>
+         <th class=""table-sr"" style=""width: 50%;"">子文档</th>
+         <th class=""table-sr"" style=""width: 50%;"">非子文档</th>
+   </tr>
+</thead>
+<tbody>
+<tr>
+         <td>
+                  <p> 要访问父文档字段，请使用 parent.字段名；要访问子表文档字段，请使用doc.字段名 </p>
+
+         </td>
+         <td>
+                    <p>要访问文档字段，请使用 doc.字段名 </p>
+         </td>
+</tr>
+<tr>
+        <td>
+                   <p><b>示例： </b> parent.doctype == ""入库单"" 和 doc.item_code == ""测试物料"" </p>
+
+        </td>
+         <td>
+                   <p><b>示例： </b> doc.doctype == “入库单” 和 doc.purpose == “生产用途”</p>    
+          </td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+
+
+
+"
+Account Name,科目名称
+Account Type,科目类型
+Accounts,会计
+"Additional Transferred Qty {0}
+					cannot be greater than {1}.
+					To fix this, increase the percentage value
+					of the field 'Transfer Extra Raw Materials to WIP'
+					in Manufacturing Settings.",额外调拨数量{0}不得超过{1}。要修复此问题，请提高制造设置中“调拨额外原材料至在制品”字段的百分比值。
+Advance Payments,预付款
+"Blocks all further accounting entries on this customer's account. Only users with the frozen-entries role can override.
+",阻止该客户科目上的所有进一步会计分录。只有具有冻结条目角色的用户才能覆盖。
+"Creation of {0} failed.
+				Check <b><a href=""/app/bulk-transaction-log"">Bulk Transaction Log</a></b>","创建 {0} 失败。
+				检查 <b><a href=""/app/bulk-transaction-log"">批量事务日志</a></b>"
+"Creation of {0} partially successful.
+				Check <b><a href=""/app/bulk-transaction-log"">Bulk Transaction Log</a></b>","创建 {0} 部分成功。
+				检查 <b><a href=""/app/bulk-transaction-log"">批量事务日志</a></b>"
+"Enabling this will do the following:
+<ul style=""padding-left:16px"">
+<li>Make the rate column of all Packed/Bundle Items tables editable.</li>
+<li>Calculate the prices of all <a href=""/desk/product-bundle"" rel=""noopener noreferrer"">Product Bundles</a> in the Items table, based on the prices of its child Items, specified in the Packed/Bundle Items table. </li>
+</ul>
+Note: If this is enabled, updating the rate of the Product Bundle in the Items table will not change its price. It will get reset to the price based on its Child Items on saving the doc.","启用此功能将执行以下操作：
+<ul style=""padding-left:16px"">
+<li>Make the rate column of all Packed/Bundle Items tables editable.</li>
+<li> 根据“套件物料明细”表中指定的子物料的价格，计算“物料”表中所有 <a href=""/desk/product-bundle"" rel=""noopener noreferrer""> 产品套件 </a> 的价格。 </li>
+</ul>
+注意：如果启用此功能，则更新“物料”表中的“产品套装”的费率不会更改其价格。保存文档时，它将根据其子物料重置为价格。"
+"Enter the Operation, the table will fetch the Operation details like Hourly Rate, Workstation automatically.
+
+ After that, set the Operation Time in minutes and the table will calculate the Operation Costs based on the Hourly Rate and Operation Time.","输入操作后，表格将自动获取操作详细信息，如小时费率、工作站。
+
+ 之后，以分钟为单位设置操作时间，表格将根据小时费率和操作时间计算操作成本。"
+"Error: This asset already has {0} depreciation periods booked.
+					The `depreciation start` date must be at least {1} periods after the `available for use` date.
+					Please correct the dates accordingly.","错误：此资产已登记 {0} 个折旧期。
+					`折旧开始`日期必须至少在 `可供使用`日期之后 {1} 个期。
+					请相应地更正日期。"
+"If enabled, formula for <b>Qty to Order</b>: <br>
+Required Qty (BOM) - <a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">Projected Qty</a>. <br> This helps avoid over-ordering.","若启用，<b>订购数量</b>计算公式： <br>
+需求数量（物料清单） -<a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">预计数量</a>。 <br> 以避免过量订购。"
+"If enabled, formula for <b>Required Qty</b>: <br>
+Required Qty (BOM) - <a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">Projected Qty</a>. <br> This helps avoid over-ordering.","若启用，<b>需求数量</b>计算公式： <br>
+需求数量（物料清单） -<a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">预计数量</a>。 <br> 以避免过量订购。"
+In Process,进行中
+Is Subcontracted Item,是否为外包物料
+Issue,问题
+"Leave blank for home.
+This is relative to site URL, for example ""about"" will redirect to ""https://yoursitename.com/about""","主页留空。
+这是相对于网站 URL 而言的，例如 ""about ""将重定向到 ""https://yoursitename.com/about"""
+"Minimum quantity should be as per Stock UOM
+
+",最小数量应符合库存计量单位。
+Payments,付款
+Payslip,工资单
+"Per Day
+Shift Time (In Hours) * No of Workstations * No of Shift",每日班次时间（小时）× 工作站数 × 班次数
+Rate,单价
+"Replace a particular BOM in all other BOMs where it is used. It will replace the old BOM link, update cost and regenerate ""BOM Explosion Item"" table as per new BOM.
+It also updates latest price in all the BOMs.","在使用BOM的所有其他BOM中替换BOM。 它将替换旧的 BOM 链接，更新成本，并按照新建BOM 重新生成“BOM Explosion item”表。
+它也更新了所有BOMM的最新价格。"
+"Row #{0}: Selling rate for item {1} is lower than its {2}.
+					Selling {3} should be atleast {4}.<br><br>Alternatively,
+					you can disable '{5}' in {6} to bypass
+					this validation.","第 #{0}行：项目 {1} 的售价低于其 {2}。
+					出售 {3} 至少应为 {4}。<br><br>或者，
+					您可以禁用 {6} 中的 '{5}' 以绕过
+					此验证。"
+Sales Pipeline,销售管道
+Scan Job Card Qrcode,扫描工作卡二维码
+"Select whether to get items from a Sales Order or a Material Request. For now select <b>Sales Order</b>.
+ A Production Plan can also be created manually where you can select the Items to manufacture.","选择是否从销售订单或物料请求中获取物品。现在选择 <b>销售订单</b>。
+ 也可以手动创建生产计划，您可以在其中选择要制造的物品。"
+"Simple Python formula applied on Reading fields.<br> Numeric eg. 1: <b>reading_1 &gt; 0.2 and reading_1 &lt; 0.5</b><br>
+Numeric eg. 2: <b>mean &gt; 3.5</b> (mean of populated fields)<br>
+Value based eg.:  <b>reading_value in (""A"", ""B"", ""C"")</b>","简单的 Python 公式应用于阅读字段。<br> 数字例如 1： <b>reading_1 &gt; 0.2 和 reading_1 &lt; 0.5</b><br>
+数字例如 2： <b>平均值 &gt; 3.5</b> (填充字段的平均值)<br>
+基于值例如：  <b>reading_value in (""A"", ""B"", ""C"")</b>"
+Subcontracted Quantity,外协数量
+"Tax detail table fetched from item master as a string and stored in this field.
+Used for Taxes and Charges","税务细节表已作为字符串从项目主中获取并存储在此字段。
+用于税收和费用"
+"The following payment schedule(s) already exist:
+{0}","以下付款计划已存在：
+{0}"
+"<h3>Help</h3>
+
+<p>Notes:</p>
+
+<ol>
+<li>Use field <code>base</code> for using base salary of the Employee</li>
+<li>Use Salary Component abbreviations in conditions and formulas. <code>BS = Basic Salary</code></li>
+<li>Use field name for employee details in conditions and formulas. <code>Employment Type = employment_type</code><code>Branch = branch</code></li>
+<li>Use field name from Salary Slip in conditions and formulas. <code>Payment Days = payment_days</code><code>Leave without pay = leave_without_pay</code></li>
+<li>Direct Amount can also be entered based on Condition. See example 3</li></ol>
+
+<h4>Examples</h4>
+<ol>
+<li>Calculating Basic Salary based on <code>base</code>
+<pre><code>Condition: base &lt; 10000</code></pre>
+<pre><code>Formula: base * .2</code></pre></li>
+<li>Calculating HRA based on Basic Salary<code>BS</code> 
+<pre><code>Condition: BS &gt; 2000</code></pre>
+<pre><code>Formula: BS * .1</code></pre></li>
+<li>Calculating TDS based on Employment Type<code>employment_type</code> 
+<pre><code>Condition: employment_type==""Intern""</code></pre>
+<pre><code>Amount: 1000</code></pre></li>
+</ol>","<h3>帮助</h3>
+
+<p>注释：</p>
+
+<ol>
+<li>用字段 <code>base</code> 表示员工基本工资</li>
+<li>在条件和公式中使用工资组成部分的缩写。 <code>BS = Basic Salary</code></li>
+<li>在条件和公式中使用字段名称来显示员工详细信息。 <code>就业类型 = employment_type</code><code>分部 = branch</code></li>
+<li>在条件和公式中使用工资单中的字段名称。 <code>账期 = payment_days</code><code>无薪假期 = leave_without_pay</code></li>
+<li>也可以根据条件输入具体金额。参见示例 3</li></ol>
+
+<h4>示例</h4>
+<ol>
+<li>根据 <code>base</code> 计算基本工资
+<pre><code>条件：base &lt; 10000</code></pre>
+<pre><code>公式：base * .2</code></pre></li>
+<li>计算 HRA 基本工资 <code>BS</code>
+<pre><code>条件：BS &gt; 2000</code></pre>
+<pre><code>公式：BS * .1</code></pre></li>
+<li>计算基于 TDS 的员工类型 <code>employment_type</code> 
+<pre><code>条件：employment_type==""实习""</code></pre>
+<pre><code>金额：1000</code></pre></li>
+</ol>"
+"<h4>Condition Examples</h4>
+<ol>
+<li>Applying tax if employee born between 31-12-1937 and 01-01-1958 (Employees aged 60 to 80)<br>
+<code>Condition: date_of_birth&gt;date(1937, 12, 31) and date_of_birth&lt;date(1958, 01, 01)</code></li><br><li>Applying tax by employee gender<br>
+<code>Condition: gender==""Male""</code></li><br>
+<li>Applying tax by Salary Component<br>
+<code>Condition: base &gt; 10000</code></li></ol>","<h4>条件示例</h4>
+<ol>
+<li>如果员工出生在 1937 年 12 月 31 日至 1958 年 1 月 1 日之间（员工年龄在 60 岁至 80 岁之间），则需纳税<br>
+<code>条件：date_of_birth&gt;date(1937, 12, 31) and date_of_birth&lt;date(1958, 01, 01)</code></li><br><li>按员工性别算税<br>
+<code>条件：gender==""男""</code></li><br>
+<li>按工资组成算税<br>
+<code>条件：base &gt; 10000</code></li></ol>"
+"Choose how the hourly overtime amount is calculated:
+<ol style=""padding-left:15px;""><li>Fixed Hourly Rate: A fixed, manually entered hourly rate.</li>
+<li>Salary Component-Based:
+
+(Sum of selected component amounts) ÷ (Payment Days) ÷ (Standard Daily Hours)</li></ol>","选择小时加班费计算方式：
+<ol style=""padding-left:15px;""><li>固定小时费率：固定且手动输入的小时费率。</li>
+<li>基于工资组件
+
+（所选组件金额总和）÷（支付天数）÷（标准每日工时）</li></ol>"
+Jobs,任务队列
+"Multipliers that adjust the hourly overtime amount for specific scenarios
+
+","针对特定场景调整小时加班费的乘数
+
+"
+Make your first sale,完成第一笔销售
+Order from your suppliers,向供应商下单
+Plan and run production,计划并执行生产
+Plan and deliver projects,规划并交付项目
+Keep track of your stock,掌握库存情况
+Get to know ERPNext,熟悉 ERPNext
+Track what your business owns,管理企业资产
+Get your books ready,做好账务准备
+Keep quality in check,把好质量关
+A product or a service you sell. See [Item](https://docs.frappe.io/erpnext/user/manual/en/item).,你销售的产品或服务。参见[物料](https://docs.frappe.io/erpnext/user/manual/en/item)。
+Add an item you sell,添加你销售的物料
+Confirm what the customer ordered and when it is due. Deliver and invoice from the order itself. See [Sales Order](https://docs.frappe.io/erpnext/user/manual/en/sales-order).,确认客户订购的内容和交期，并可直接从订单发货和开票。参见[销售订单](https://docs.frappe.io/erpnext/user/manual/en/sales-order)。
+Confirm a sales order,确认销售订单
+Open Sales Analytics,打开销售统计分析
+"Sales by customer, item or territory, over any period. See [Sales Analytics](https://docs.frappe.io/erpnext/user/manual/en/sales-analytics).",按客户、物料或区域查看任意期间的销售情况。参见[销售统计分析](https://docs.frappe.io/erpnext/user/manual/en/sales-analytics)。
+Spot your best sellers,发现畅销品
+Open Accounts Receivable,打开应收账款
+"Who owes you, how much, and for how long. See [Accounts Receivable](https://docs.frappe.io/erpnext/user/manual/en/accounts-receivable).",谁欠你钱、欠了多少、欠了多久。参见[应收账款](https://docs.frappe.io/erpnext/user/manual/en/accounts-receivable)。
+Follow up on unpaid invoices,跟进未收款项
+Add Customer,添加客户
+A business or person you sell to. See [Customer](https://docs.frappe.io/erpnext/user/manual/en/customer).,你销售的对象（企业或个人）。参见[客户](https://docs.frappe.io/erpnext/user/manual/en/customer)。
+Add a customer,添加客户
+"When your customer pays, record it here. It is matched against their invoice, so you can see what is still owed. See [Payment Entry](https://docs.frappe.io/erpnext/user/manual/en/payment-entry).",客户付款时在此记录。系统会将其与发票核销，方便你查看还有多少未收。参见[收付款凭证](https://docs.frappe.io/erpnext/user/manual/en/payment-entry)。
+Get paid,完成收款
+"Once the customer agrees, turn it into a sales order or an invoice from the quotation itself. See [Quotation](https://docs.frappe.io/erpnext/user/manual/en/quotation).",客户认可后，可直接从报价单转为销售订单或发票。参见[报价](https://docs.frappe.io/erpnext/user/manual/en/quotation)。
+Quote a price,进行报价
+"Bill your customer for the item. Submit it, then use **Print** to see it on paper or send it as a PDF. See [Sales Invoice](https://docs.frappe.io/erpnext/user/manual/en/sales-invoice).",就所售物料向客户开票。提交后使用**打印**即可输出纸质单据或发送 PDF。参见[销售发票](https://docs.frappe.io/erpnext/user/manual/en/sales-invoice)。
+Send your first invoice,寄出第一张发票
+"The bill your supplier sent, so you know what you owe and when it is due. See [Purchase Invoice](https://docs.frappe.io/erpnext/user/manual/en/purchase-invoice).",供应商开来的账单，让你清楚应付金额与到期日。参见[采购发票](https://docs.frappe.io/erpnext/user/manual/en/purchase-invoice)。
+Enter their bill,录入供应商账单
+Add Supplier,添加供应商
+A business or person you buy from. See [Supplier](https://docs.frappe.io/erpnext/user/manual/en/supplier).,你采购的对象（企业或个人）。参见[供应商](https://docs.frappe.io/erpnext/user/manual/en/supplier)。
+Add a supplier,添加供应商
+Open Accounts Payable,打开应付账款
+"Who you owe, how much, and when each bill is due.",你欠谁的、欠多少、每笔何时到期。
+Check what you owe,查看应付款项
+"Order from the supplier. When the goods arrive, receive them and record the bill from the order itself. See [Purchase Order](https://docs.frappe.io/erpnext/user/manual/en/purchase-order).",向供应商下单。货物到达后入库，并可直接从订单生成账单。参见[采购订单](https://docs.frappe.io/erpnext/user/manual/en/purchase-order)。
+Place a purchase order,创建采购订单
+It clears their bill and takes the money out of your bank or cash account. See [Payment Entry](https://docs.frappe.io/erpnext/user/manual/en/payment-entry).,用于核销其账单，并从银行或现金账户付出款项。参见[收付款凭证](https://docs.frappe.io/erpnext/user/manual/en/payment-entry)。
+Pay your supplier,付款给供应商
+Open Purchase Order Analysis,打开采购订单分析
+"What you ordered, what has arrived, and what is still to come.",你已订购、已收到和尚待交付的数量。
+Track your orders,跟踪订单情况
+Goods or services you buy from suppliers. See [Item](https://docs.frappe.io/erpnext/user/manual/en/item).,向供应商采购的商品或服务。参见[物料](https://docs.frappe.io/erpnext/user/manual/en/item)。
+Add an item you buy,添加你采购的物料
+"Note down a price a supplier offered, so you can compare suppliers before you order. See [Supplier Quotation](https://docs.frappe.io/erpnext/user/manual/en/supplier-quotation).",记下供应商给出的报价，以便下单前比较各家价格。参见[供应商报价](https://docs.frappe.io/erpnext/user/manual/en/supplier-quotation)。
+Record a supplier's quote,记录供应商报价
+Open Work Order Summary,打开工单汇总
+"Every work order, how far along it is, and what is running late. See [Work Order Summary](https://docs.frappe.io/erpnext/user/manual/en/work-order-summary).",查看每一张工单的进度，以及哪些已经延期。参见[工单汇总](https://docs.frappe.io/erpnext/user/manual/en/work-order-summary)。
+See how production is going,查看生产进度
+Create Production Plan,创建生产计划
+"Pull in open sales orders and work out what to make, and what to buy, to fill them.",汇总未完成的销售订单，算出需要生产和采购的数量。
+Plan production from your orders,按订单安排生产
+"What comes out at the end of production, kept in the Products group. See [Item](https://docs.frappe.io/erpnext/user/manual/en/item).",生产结束时产出的物品，归入成品组。参见[物料](https://docs.frappe.io/erpnext/user/manual/en/item)。
+Add a product you make,添加你生产的成品
+"Raw materials come out of stock and the finished products go in. From the work order, **Finish** fills this in for you. See [Stock Entry](https://docs.frappe.io/erpnext/user/manual/en/stock-entry).",原材料出账、成品入账。在工单上点**完工**即可自动填好。参见[物料移动](https://docs.frappe.io/erpnext/user/manual/en/stock-entry)。
+Finish making it,完成生产
+Decide how many to make. The raw materials you need are worked out from the BOM. See [Work Order](https://docs.frappe.io/erpnext/user/manual/en/work-order).,确定生产数量，所需原材料由物料清单算出。参见[生产工单](https://docs.frappe.io/erpnext/user/manual/en/work-order)。
+Plan a work order,安排一张生产工单
+Create BOM,创建物料清单
+"The raw materials, and how much of each, that go into one unit of your product. Submit it to use it in production. See [BOM](https://docs.frappe.io/erpnext/user/manual/en/bill-of-materials).\n\nSending some of the work to a supplier? See [Subcontracting](https://docs.frappe.io/erpnext/user/manual/en/subcontracting).",生产一件成品所需的原材料及其用量。提交后才能用于生产。参见[物料清单](https://docs.frappe.io/erpnext/user/manual/en/bill-of-materials)。\n\n要把部分工序交给供应商做？参见[委外加工](https://docs.frappe.io/erpnext/user/manual/en/subcontracting)。
+Write its bill of materials,写下它的物料清单
+"Something you use to make your products, kept in the Raw Material group. See [Item](https://docs.frappe.io/erpnext/user/manual/en/item).",用于生产成品的物料，归入原材料组。参见[物料](https://docs.frappe.io/erpnext/user/manual/en/item)。
+Add a raw material,添加一种原材料
+"Anything with a start and an end: a client job, an installation, an internal initiative. See [Project](https://docs.frappe.io/erpnext/user/manual/en/project).",有开始和结束的事情：客户项目、安装任务或内部工作。参见[项目](https://docs.frappe.io/erpnext/user/manual/en/project)。
+Start a project,启动一个项目
+"Who does what, by when. Tasks roll up into the project's progress. See [Task](https://docs.frappe.io/erpnext/user/manual/en/task).",谁在什么时候做什么。任务进度会汇总到项目上。参见[任务](https://docs.frappe.io/erpnext/user/manual/en/task)。
+Break it into tasks,拆分为任务
+Open Project Summary,打开项目汇总
+"Progress, hours and costs for every project.",各项目的进度、工时与成本。
+Track progress and costs,跟踪进度与成本
+Record the hours spent on tasks. Bill them to the customer or use them to cost the project. See [Timesheet](https://docs.frappe.io/erpnext/user/manual/en/timesheets).,记录花在任务上的工时，可用于向客户计费或核算项目成本。参见[工时表](https://docs.frappe.io/erpnext/user/manual/en/timesheets)。
+Log time against it,登记工时
+Create Project Template,创建项目模板
+"Save the tasks you repeat on every job, and start the next project from them.",把每次都要重复的任务存起来，下一个项目可直接套用。
+Reuse it as a template,作为模板复用
+Open Delayed Tasks Summary,打开延期任务汇总
+"Tasks past their due date, and how late each one is.",已过截止日期的任务，以及各延误多久。
+Spot delayed tasks,发现延期任务
+Open Warehouse,打开仓库
+"We created a few to start with. Rename them, or add the places you actually keep stock. See [Warehouse](https://docs.frappe.io/erpnext/user/manual/en/warehouse).",我们已预置了几个仓库。你可以重命名，或按实际存放位置新增。参见[仓库](https://docs.frappe.io/erpnext/user/manual/en/warehouse)。
+Review your warehouses,检查你的仓库
+"Stock goes up in the warehouse you receive into, and the bill can be made from the receipt. See [Purchase Receipt](https://docs.frappe.io/erpnext/user/manual/en/purchase-receipt).",收货进入哪个仓库，库存就增加在哪里，账单也可由收货单生成。参见[采购入库](https://docs.frappe.io/erpnext/user/manual/en/purchase-receipt)。
+Receive goods from a supplier,从供应商收货
+Open Stock Ledger,打开库存明细账
+"Every movement of every item, in and out, with the balance after each. See [Stock Ledger](https://docs.frappe.io/erpnext/user/manual/en/stock-ledger).",每一种物料的每一次进出，以及每次变动后的余额。参见[库存明细账](https://docs.frappe.io/erpnext/user/manual/en/stock-ledger)。
+Follow every movement,跟踪每一次出入库
+"From the store to the shop floor, or between branches. See [Stock Entry](https://docs.frappe.io/erpnext/user/manual/en/stock-entry).",从库房到车间，或在各分仓之间调拨。参见[物料移动](https://docs.frappe.io/erpnext/user/manual/en/stock-entry)。
+Move stock between warehouses,在仓库之间调拨库存
+Create Stock Reconciliation,创建库存盘点调整
+"How much of each item is on your shelves, and what it is worth. From here, every receipt and delivery keeps it up to date. See [Stock Reconciliation](https://docs.frappe.io/erpnext/user/manual/en/stock-reconciliation).",每种物料在货架上有多少、值多少钱。此后每次收货和发货都会自动更新。参见[库存盘点调整](https://docs.frappe.io/erpnext/user/manual/en/stock-reconciliation)。
+Enter the stock you have today,录入当前实际库存
+"Stock goes down as the goods leave, and the invoice can be made from the delivery. See [Delivery Note](https://docs.frappe.io/erpnext/user/manual/en/delivery-note).",发货后库存减少，发票也可由发货单生成。参见[销售出库](https://docs.frappe.io/erpnext/user/manual/en/delivery-note)。
+Ship to a customer,发货给客户
+Open Stock Balance,打开库存余额
+"What you have in each warehouse, and what it is worth.",各仓库现有库存的数量与金额。
+Check your stock levels,检查库存水平
+Anything you keep on shelves and count. See [Item](https://docs.frappe.io/erpnext/user/manual/en/item).,任何放在货架上需要清点的东西。参见[物料](https://docs.frappe.io/erpnext/user/manual/en/item)。
+Add an item you stock,添加你库存的物料
+Open Buying,打开采购
+"Add a supplier, order from them and pay their bill.",添加供应商，向其下单并支付账单。
+Add User,添加用户
+Add the people you work with and choose what they can see.,把一起工作的同事加进来，并设置他们能看的内容。
+Invite your team,邀请你的团队
+Break a project into tasks and log the time your team spends.,把项目拆成任务，并记录团队投入的工时。
+Open Assets,打开资产
+Record an asset and see what it's worth year by year.,登记一项资产，并查看它逐年还剩多少价值。
+Open Stock,打开库存
+Set up your warehouses and enter the stock you have today.,设置好仓库，并录入当前实际库存。
+Open Quality,打开质量
+Set up an inspection and record your first check.,设置检查项并记录第一次检查结果。
+Open Selling,打开销售
+"Add an item and a customer, bill them and collect the payment.",添加物料和客户，向其开票并收回款项。
+Open Accounts,打开会计
+"Check your chart of accounts and taxes, and add the bank account you use.",检查科目表和税率，并添加你常用的银行账户。
+Open Manufacturing,打开生产
+Write down what goes into a product and make it with a work order.,记下产品的用料，并用生产工单把它做出来。
+Create Asset Movement,创建资产移动
+"Record who has it and where it is, so you always know. See [Asset Movement](https://docs.frappe.io/erpnext/user/manual/en/asset-movement).",记录由谁使用、放在何处，随时都能查到。参见[资产移动](https://docs.frappe.io/erpnext/user/manual/en/asset-movement)。
+Hand it to a person or place,交给某人或移到某处
+"Computers, vehicles, furniture: how each kind depreciates, and which accounts it posts to. See [Asset Category](https://docs.frappe.io/erpnext/user/manual/en/asset-category).",电脑、车辆、家具：各类资产的折旧方式，以及计入哪些科目。参见[资产类别](https://docs.frappe.io/erpnext/user/manual/en/asset-category)。
+Set up an asset category,设置资产类别
+Create Asset Maintenance,创建资产维护
+"Servicing, inspections and calibration, with reminders to the team doing it. See [Asset Maintenance](https://docs.frappe.io/erpnext/user/manual/en/asset-maintenance).",保养、巡检和校准，并提醒负责的同事。参见[资产维护](https://docs.frappe.io/erpnext/user/manual/en/asset-maintenance)。
+Schedule its upkeep,安排保养计划
+Open Fixed Asset Register,打开固定资产台账
+"What you own, where it is, and what it is worth today.",你拥有什么、放在哪里、现在值多少钱。
+See everything you own,查看拥有的全部资产
+"The kind of thing you own, marked as a fixed asset. See [Item](https://docs.frappe.io/erpnext/user/manual/en/item).",你拥有的、标记为固定资产的物品类别。参见[物料](https://docs.frappe.io/erpnext/user/manual/en/item)。
+Add an asset item,添加一项资产物料
+Add Asset,添加资产
+"Something you bought before using ERPNext, with what you paid, where it is, and how much has already depreciated. See [Asset](https://docs.frappe.io/erpnext/user/manual/en/asset).",使用 ERPNext 之前就已购入的东西，记录买价、位置和已计提折旧。参见[资产](https://docs.frappe.io/erpnext/user/manual/en/asset)。
+Record an asset you already own,登记已有的资产
+Open Asset Depreciation Ledger,打开资产折旧明细
+"Depreciation is posted on schedule, asset by asset, without a journal entry from you. See [Depreciation](https://docs.frappe.io/erpnext/user/manual/en/asset-depreciation).",折旧按计划逐项自动计提，无需你手工做凭证。参见[折旧](https://docs.frappe.io/erpnext/user/manual/en/asset-depreciation)。
+Check its depreciation,查看折旧情况
+Open Chart of Accounts,打开科目表
+"We set up a standard chart of accounts for your country. See how your accounts are grouped, and rename or add any to match how you report. See [Chart of Accounts](https://docs.frappe.io/erpnext/user/manual/en/chart-of-accounts).",我们已按你所在国家预置了标准科目表。看看科目如何分组，并按你的报表口径重命名或新增。参见[科目表](https://docs.frappe.io/erpnext/user/manual/en/chart-of-accounts)。
+Review your chart of accounts,检查你的科目表
+Open Balance Sheet,打开资产负债表
+"Assets, liabilities and equity on any date, straight from your ledger. See [Balance Sheet](https://docs.frappe.io/erpnext/user/manual/en/balance-sheet).",任一日期的资产、负债和权益，直接来自你的账簿。参见[资产负债表](https://docs.frappe.io/erpnext/user/manual/en/balance-sheet)。
+Know what you own and owe,了解你拥有和欠付的
+Open Sales Taxes and Charges Template,打开销售税费模板
+The taxes that fill in on every invoice. We added your country's where we had them; check the rates match what you charge. Purchase taxes live in [Purchase Taxes and Charges Template](/desk/purchase-taxes-and-charges-template). See [Setting Up Taxes](https://docs.frappe.io/erpnext/user/manual/en/setting-up-taxes).,每张发票自动带出的税。我们已尽可能加入你所在国家的税种，请核对税率是否与实际一致。采购税在[采购税费模板](/desk/purchase-taxes-and-charges-template)中设置。参见[设置税](https://docs.frappe.io/erpnext/user/manual/en/setting-up-taxes)。
+Review your taxes,检查你的税率
+Add Bank Account,添加银行账户
+"The account your customers pay into and you pay from, linked to its account in your chart of accounts. See [Bank Account](https://docs.frappe.io/erpnext/user/manual/en/bank-account).",客户打款进来、你对外付款使用的账户，并与科目表中的科目关联。参见[银行户头](https://docs.frappe.io/erpnext/user/manual/en/bank-account)。
+Add the bank account you use,添加你使用的银行账户
+Open Banking,打开银行
+"Import a statement from your bank and pair each line with a payment, so your books agree with it. See [Bank Reconciliation](https://docs.frappe.io/erpnext/user/manual/en/bank-reconciliation).",导入银行对账单，把每一行与收付款核对，使账面与银行一致。参见[银行对账](https://docs.frappe.io/erpnext/user/manual/en/bank-reconciliation)。
+Match your bank statement,核对银行对账单
+"For anything that isn't an invoice or a payment: accruals, depreciation, or fixing a mistake. See [Journal Entry](https://docs.frappe.io/erpnext/user/manual/en/journal-entry).",用于发票和收付款之外的业务：计提、折旧或更正错误。参见[日记账凭证](https://docs.frappe.io/erpnext/user/manual/en/journal-entry)。
+Post a journal entry,录入一张日记账凭证
+Open Profit and Loss,打开利润表
+"Income against expenses for any period, built from every invoice and payment you have recorded.",任一期间的收入与费用，由你已录入的全部发票和收付款汇总而成。
+Check your profit,查看利润情况
+Open General Ledger,打开会计总账
+"Every posting from your invoices and payments, with its debit and credit. See [General Ledger](https://docs.frappe.io/erpnext/user/manual/en/general-ledger).",发票和收付款产生的每一笔分录，及其借贷金额。参见[会计总账](https://docs.frappe.io/erpnext/user/manual/en/general-ledger)。
+Trace every posting,追溯每一笔分录
+"It posts the expense, and what you owe the supplier, to your ledger. See [Purchase Invoice](https://docs.frappe.io/erpnext/user/manual/en/purchase-invoice).",它把费用和对供应商的欠款记入账簿。参见[采购发票](https://docs.frappe.io/erpnext/user/manual/en/purchase-invoice)。
+Enter a supplier's bill,录入供应商账单
+Create Quality Inspection Template,创建质检模板
+"The parameters to inspect and what counts as a pass, reused on every inspection. See [Quality Inspection Template](https://docs.frappe.io/erpnext/user/manual/en/quality-inspection-template).",需要检查的参数和合格标准，可在每次检查时复用。参见[质检模板](https://docs.frappe.io/erpnext/user/manual/en/quality-inspection-template)。
+Decide what to check,确定检查内容
+Create Quality Inspection,创建质检单
+"Record the results against a receipt or a delivery, and accept or reject the goods. See [Quality Inspection](https://docs.frappe.io/erpnext/user/manual/en/quality-inspection).",针对收货或发货记录检查结果，并判定接收或拒收。参见[质检单](https://docs.frappe.io/erpnext/user/manual/en/quality-inspection)。
+Inspect goods coming in or going out,检查进出货物
+Create Quality Review,创建质量评审
+"Compare the results against the goal, and decide what to change. See [Quality Management](https://docs.frappe.io/erpnext/user/manual/en/quality-management).",把结果与目标对比，并决定要改进什么。参见[质量管理](https://docs.frappe.io/erpnext/user/manual/en/quality-management)。
+Review how a goal is going,评审目标进展
+Create Non Conformance,创建不合格报告单
+"When something falls short of the procedure, note what happened, the cause, and what you will do about it. See [Non Conformance](https://docs.frappe.io/erpnext/user/manual/en/non-conformance).",未达到流程要求时，记录发生了什么、原因及处理措施。参见[不合格报告单](https://docs.frappe.io/erpnext/user/manual/en/non-conformance)。
+Log a problem,记录一个问题
+Create Quality Goal,创建质量目标
+"Something you want to measure and improve, like on-time delivery or returns, reviewed on a schedule you choose. See [Quality Management](https://docs.frappe.io/erpnext/user/manual/en/quality-management).",你想衡量并改进的指标，例如按时交货率或退货率，按你设定的周期评审。参见[质量管理](https://docs.frappe.io/erpnext/user/manual/en/quality-management)。
+Set a quality goal,设定质量目标
+Create Maintenance Schedule,创建维护巡修计划
+"Regular service visits for equipment you sold, planned ahead for the whole contract. See [Maintenance Schedule](https://docs.frappe.io/erpnext/user/manual/en/maintenance-schedule).",为售出的设备安排定期上门服务，按合同期统一规划。参见[维护巡修计划](https://docs.frappe.io/erpnext/user/manual/en/maintenance-schedule)。
+Plan maintenance visits,安排巡修计划
+Create Quality Procedure,创建质量流程
+"The steps your team follows, so it is done the same way every time. See [Quality Management](https://docs.frappe.io/erpnext/user/manual/en/quality-management).",团队遵循的步骤，保证每次做法一致。参见[质量管理](https://docs.frappe.io/erpnext/user/manual/en/quality-management)。
+Write down how the work is done,把做法写下来
+Sales Reports,销售报表
+Customer Reports,客户报表
+Sales Team Reports,销售团队报表
+Annual Sales,年度销售额
+Purchase Reports,采购报表
+Order Status Reports,订单状态报表
+Supplier Reports,供应商报表
+Subcontracting Reports,委外加工报表
+Annual Purchase,年度采购额
+Production Reports,生产报表
+Planning Reports,计划报表
+BOM Reports,物料清单报表
+Visual Plant Floor,车间可视化
+Monthly Completed Work Order,月度完工工单
+Project Reports,项目报表
+Timesheet Working Hours,工时统计
+Issues Opened,新增问题
+Overdue Issues,逾期问题
+Resolved Issues,已解决问题
+Serial & Batch Reports,序列号与批号报表
+Movement Reports,库存移动报表
+Item Reports,物料报表
+Audit Reports,审计报表
+Item Standard Cost,物料标准成本
+Active Customers,活跃客户
+Active Suppliers,活跃供应商
+Asset Reports,资产报表
+Asset Maintenance Report,资产维护报表
+Receivables & Payables,应收与应付
+Registers & Profitability,台账与盈利能力
+Tax & Compliance,税务与合规
+Invoicing & Payments,开票与收付款
+Bank Reconciliation (old),银行对账（旧版）
+Reconciliation,对账
+Ledger Tools,账簿工具
+Total Outgoing Bills,销售发票总额
+Total Incoming Bills,采购发票总额
+Total Incoming Payment,收款总额
+Budgeting,预算
+Total Outgoing Payment,付款总额
+Banking Setup,银行设置
+Outgoing Bills (Sales Invoice),销售发票（应收）
+Quality Reports,质量报表
+Open Quality Actions,未完成的质量措施
+Open Non Conformances,未完成的不合格项
+Open Quality Reviews,未完成的质量评审
+Average Sales Order Value,销售订单平均金额
+Sales Orders Count,销售订单数
+Warehouse wise Stock Value,按仓库的库存金额
+Location-wise Asset Value,按位置的资产金额
+Territory Wise Sales,按区域销售额
+Accounts Receivable Ageing,应收账款账龄
+Incoming Bills (Purchase Invoice),采购发票（应付）
+Accounts Payable Ageing,应付账款账龄
+"A published list of codes, like units or tax categories, used in e-invoicing.",电子发票使用的标准代码清单，例如单位或税种分类。
+A code from a code list and what it maps to.,代码清单中的某个代码及其对应关系。
+A customer's confirmed order.,客户已确认的订单。
+Sells several items together as one item.,将多个物料打包成一个物料销售。
+A company or person you sell goods or services to.,你销售商品或服务的对象（企业或个人）。
+"How quotations, sales orders and pricing work.",报价、销售订单与定价的工作方式。
+Prices you offer a customer or lead.,你向客户或线索提供的报价。
+Ask suppliers for prices on the items you need.,向供应商索取所需物料的价格。
+"A band of scores, and what happens to suppliers in it.",一个得分区间，以及落在该区间供应商的处理方式。
+"Something a supplier is scored on, like on-time delivery.",供应商被评分的项目，例如按时交货。
+Prices a supplier offered you.,供应商提供给你的价格。
+A value a scorecard criterion is calculated from.,计算评分卡标准所依据的数值。
+A company or person you buy goods or services from.,你采购商品或服务的对象（企业或个人）。
+Rates a supplier over time on criteria you choose.,按你设定的标准对供应商进行长期评分。
+An order you place with a supplier.,你向供应商下达的订单。
+"A kind of workstation, with its costs.",一种工作站类型及其成本。
+An order to make a quantity of an item.,生产一定数量物料的订单。
+An agreement to buy or sell an item at a fixed price over a period.,在一段时间内以固定价格买卖物料的协议。
+"A step in making an item, like cutting or assembly.",制造物料的一道工序，例如切割或装配。
+Build a multi-level BOM in one place.,在一个界面中构建多层物料清单。
+A view of your workstations and what each is doing.,查看各工作站及其当前任务。
+The order of operations to make an item.,制造物料的工序顺序。
+"How much you expect to sell, to plan production.",预计销量，用于安排生产。
+The materials and operations it takes to make an item.,制造物料所需的材料与工序。
+The work done for one operation of a work order.,工单中某一工序完成的工作。
+A machine or place where operations are done.,执行工序的机器或场所。
+The progress of a BOM replacement or cost update.,物料清单替换或成本更新的进度。
+"How much of each item to make, and when.",每种物料的生产数量与时间。
+"Time a workstation stood idle, and why.",工作站停机时长及原因。
+Plans the work orders and materials needed for your demand.,根据需求规划所需的工单与物料。
+"Replace a BOM everywhere it is used, or update the cost of all BOMs.",替换所有使用到的物料清单，或更新全部物料清单的成本。
+"A grouping of projects, like internal or external.",项目的分类，例如内部项目或外部项目。
+"A kind of work you track time against, like design or support.",记录工时的活动类型，例如设计或支持。
+"A grouping of tasks, like bug or feature.",任务的分类，例如缺陷或功能。
+A set of tasks to start new projects from.,用于快速启动新项目的任务集合。
+"Time spent on tasks and activities, to bill or cost.",在任务与活动上花费的时间，用于计费或成本核算。
+What an employee costs and bills per hour for an activity.,员工在某活动上的每小时成本与收费。
+"A piece of work to be done, often part of a project.",一项待办工作，通常属于某个项目。
+"A piece of work with tasks, time and costs.",包含任务、工时和成本的一项工作。
+A progress update collected from the project team.,项目团队提交的进度更新。
+"A grouping of issues, like billing or technical.",问题的分类，例如计费或技术。
+How fast issues must be answered and resolved.,问题必须响应和解决的速度要求。
+A customer's claim to repair or replace an item under warranty.,客户提出的保修维修或更换申请。
+A problem or question raised by a customer.,客户提出的问题或咨询。
+How urgent an issue is.,问题的紧急程度。
+Which warehouse received items go to.,收货进入哪个仓库。
+"A property item variants differ by, like size or colour.",物料变体之间的差异属性，例如尺寸或颜色。
+"How items, warehouses and stock transactions work.",物料、仓库与库存业务的工作方式。
+"A set of item prices for buying, selling or both.",用于采购、销售或两者共用的物料价格表。
+"A grouping of warehouses, like transit or store.",仓库的分类，例如在途仓或存储仓。
+"An extra way to tag stock, like a rack or bin.",库存的额外标记维度，例如货架或储位。
+A place where you keep stock.,存放库存的地点。
+"Adds freight, duty and other charges to the cost of received items.",把运费、关税和其他费用计入所收物料的成本。
+The contents and weight of each package in a delivery.,每次发货中各包装的内容与重量。
+A company that makes the items you buy or sell.,生产你所买卖物料的企业。
+The items and quantities to pick from the warehouse.,需要从仓库拣出的物料与数量。
+"Moves, receives, issues or manufactures stock.",库存的调拨、收货、发料或生产。
+"A request to buy, transfer or make items.",采购、调拨或生产物料的申请。
+A vehicle's route to deliver to several customers.,向多个客户送货的车辆路线。
+"Something an item is checked for, like weight or colour.",物料需要检查的项目，例如重量或颜色。
+Stock set aside for a sales order or production.,为销售订单或生产预留的库存。
+An item you can use in place of another.,可替代另一种物料使用的物料。
+The parameters to check an item for.,物料需要检查的参数。
+A parcel you send through a carrier.,通过承运商寄送的包裹。
+The serial numbers and batches moved in a transaction.,一笔业务中流转的序列号与批号。
+Items received from a supplier.,从供应商收到的物料。
+"A kind of stock entry, like material transfer or manufacture.",一种库存移动类型，例如物料调拨或生产入库。
+Sets stock quantities and values to what is actually in your warehouses.,把库存数量与金额调整为仓库的实际数。
+A grouping of inspection parameters.,检查参数的分组。
+Items shipped to a customer.,发给客户的物料。
+The price of an item in a price list.,价格表中物料的价格。
+Checks an item against its quality parameters.,按质量参数检查物料。
+How long it takes to get or make an item.,采购或生产某物料所需的时间。
+Closes stock balances for a period so reports run faster.,关闭某期间的库存余额，以加快报表运行。
+A group of units of an item made or received together.,一起生产或收货的一批物料单位。
+The tariff code an item is declared under at customs.,物料报关时使用的税则号。
+A parcel size you ship often.,常用的包裹规格。
+Recalculates stock values after a backdated change.,补录历史业务后重新计算库存金额。
+"A product or service you buy, sell or keep in stock.",你采购、销售或库存管理的产品或服务。
+"A grouping of units, like weight or length.",计量单位的分组，例如重量或长度。
+"A single unit of an item, tracked by its own number.",按自身编号追踪的单个物料单位。
+A visit to service or repair what a customer bought.,上门服务或维修客户所购产品。
+Planned visits to service what a customer bought.,为客户所购产品安排的服务计划。
+A brand your items are sold under.,物料销售所用的品牌。
+"A distributor, dealer or reseller who sells for you on commission.",按佣金为你代销的分销商、经销商或代理商。
+A department of your company.,公司的部门。
+"Standard terms to add to quotes, orders and invoices.",可添加到报价单、订单和发票的标准条款。
+"Someone who sells for you, with targets and commission.",为你销售并承担指标与佣金的人员。
+"Groups suppliers, for terms and reporting.",对供应商分组，便于设置条款和统计报表。
+"Groups customers, for pricing and reporting.",对客户分组，便于定价和统计报表。
+The rate to convert one currency into another.,一种货币兑换为另一种货币的汇率。
+A regular email summing up how the business is doing.,定期汇总经营情况的邮件。
+A branch of your company.,公司的分支机构。
+"Deletes a company's transactions, keeping its masters.",删除公司的业务单据，保留其主数据。
+"A legal entity with its own books, like your business or a subsidiary.",独立建账的法律主体，例如你的公司或子公司。
+"A unit you measure items in, like kg or box.",物料的计量单位，例如千克或箱。
+"Groups items, for pricing, defaults and reporting.",对物料分组，便于定价、设置默认值和统计报表。
+"A job title, like manager or accountant.",职位名称，例如经理或会计。
+The holidays and weekly offs of a company or employee.,公司或员工的节假日与每周休息日。
+Requires approval for transactions above a limit.,超过限额的单据需要审批。
+"How many of one unit make another, like 1000 g in a kg.",一个单位等于多少另一个单位，例如 1 千克 = 1000 克。
+"A region you sell in, to group customers and set targets.",销售区域，用于对客户分组和设定指标。
+An order for a subcontractor to make items from your materials.,委托外协厂商用你的物料加工物料的订单。
+An order to make items for a customer from materials they send.,用客户提供的物料为其加工物料的订单。
+Items received from a subcontractor.,从外协厂商收到的物料。
+The materials a subcontractor uses to make an item for you.,外协厂商为你加工物料所使用的材料。
+Groups assets that share accounts and depreciation rules.,把使用相同科目和折旧规则的资产分组。
+"A repair made to an asset, and what it cost.",资产的维修记录及其费用。
+The people responsible for maintaining assets.,负责资产维护的人员。
+How much faster an asset depreciates on a given shift.,某班次下资产折旧的加速倍数。
+"Changes how many shifts an asset works, which changes its depreciation.",变更资产的工作班次，从而影响折旧。
+"When an asset depreciates, and by how much.",资产的折旧时间与折旧金额。
+A place where your assets are kept.,资产存放的地点。
+Moves an asset to another location or person.,把资产移到其他地点或交给其他人。
+Changes an asset's value outside its depreciation.,在折旧之外调整资产价值。
+A record of maintenance done on an asset.,资产已完成的维护记录。
+"Turns stock items or services into an asset, or one asset into another.",把库存物料或服务转为资产，或将一项资产转为另一项。
+"The upkeep tasks an asset needs, and who does them.",资产需要的维护任务及负责人。
+"Something your business owns and uses over time, like a machine or a laptop.",企业长期拥有并使用的物品，例如机器或笔记本电脑。
+"A channel customers reach you on, like a phone line.",客户联系你的渠道，例如电话线路。
+A meeting booked with a lead or customer.,与线索或客户约定的会面。
+A series of emails sent to leads or contacts on a schedule.,按计划向线索或联系人发送的系列邮件。
+"A company you are trying to win as a customer, with its leads.",正在争取成为客户的公司及其线索。
+"A marketing campaign, to see which leads and sales it brought in.",营销活动，用于查看它带来的线索与销售。
+A potential sale to a lead or customer.,面向线索或客户的潜在销售机会。
+"An agreement with a customer, supplier or employee.",与客户、供应商或员工签订的协议。
+"A step in your sales process, like qualification or negotiation.",销售流程中的一个阶段，例如资格审核或商务谈判。
+"How leads, opportunities and appointments work.",线索、商机与约见的工作方式。
+Someone who might buy from you.,有可能向你购买的人。
+A phone call made or received.,呼出或接听的电话。
+"A grouping of calls, like sales or support.",电话的分类，例如销售或支持。
+"Your calling preferences, like when you take calls.",通话偏好设置，例如接听时间。
+"Who answers incoming calls, and when.",谁在什么时候接听来电。
+A certificate that lets you withhold less tax from a supplier.,可向供应商少代扣税款的证书。
+The VAT accounts to report in the South Africa VAT audit report.,南非增值税审计报表中使用的增值税科目。
+Closes a POS shift and totals what was collected.,结束销售点班次并统计收款金额。
+"A direct entry in your books, for anything without its own form.",账簿中的直接分录，用于没有专门单据的业务。
+Bring in your chart of accounts from a spreadsheet.,从电子表格导入科目表。
+Rebuilds the ledger entries of transactions that were posted wrongly.,重新生成记账有误业务的分录。
+A code customers enter to get a discount from a pricing rule.,客户输入的优惠码，用于触发定价规则的折扣。
+How much a cost center or project may spend over a fiscal year.,成本中心或项目在一个财年内可支出的额度。
+Rebuilds the payment ledger so outstanding amounts are right again.,重建收付款台账，使未结金额恢复正确。
+Combine two or more accounts into one.,将两个或多个科目合并为一个。
+A batch of payments to send to your bank.,提交给银行的一批付款。
+"Ask a customer to pay, by email with a payment link.",通过带付款链接的邮件请客户付款。
+Undo a payment's match against invoices.,取消付款与发票的核销。
+"A set of discounts and free items, like buy two get one free.",一组折扣与赠品，例如买二送一。
+"Settings for a point of sale, like its warehouse, price list and payment methods.",销售点的设置，例如仓库、价格表和付款方式。
+"A record of shares issued, bought back or moved between shareholders.",股份发行、回购或在股东之间转让的记录。
+Splits one cost center's amounts across others by percentage.,按百分比把一个成本中心的金额分摊到其他成本中心。
+Shows which POS invoices were merged into a sales invoice.,显示哪些销售点发票已并入销售发票。
+Works out the shipping charge on a sale or purchase.,计算销售或采购的运费。
+"The taxes and charges, like shipping or insurance, to add to purchases.",采购需要加计的税费，例如运费或保险费。
+Closes a fiscal year by moving its profit or loss to equity.,把财年损益结转至权益以关闭财年。
+A saved set of accounts to start journal entries from.,预先保存的科目组合，用于快速录入日记账凭证。
+"A line from your bank statement, ready to be matched with a payment.",银行对账单中的一行，可与收付款核销。
+Raise money against unpaid sales invoices.,以未收款的销售发票融资。
+Restates foreign currency balances at today's exchange rate.,按当日汇率重估外币余额。
+Rewards customers with points they can spend on later purchases.,向客户赠送积分，供后续消费使用。
+A set of payment terms to apply to invoices and orders.,应用于发票和订单的一组付款条件。
+A bill from a supplier for what you bought.,供应商就你所采购货物开来的账单。
+Tax rates for items that are taxed differently from the rest.,与其他物料适用不同税率的物料税率。
+A person or company that owns shares in your company.,持有你公司股份的个人或企业。
+"A way you pay or get paid, like cash, bank transfer or card.",收付款方式，例如现金、银行转账或银行卡。
+Matches payments to invoices in the background.,在后台把付款与发票核销。
+Bills a customer or supplier for the same things on a schedule.,按周期就相同内容向客户或供应商开票。
+A sale made at the point of sale.,在销售点完成的销售。
+"What a subscription bills for, and at what price.",订阅的计费内容与价格。
+Groups accounts into the lines your financial statements show.,把科目归集为财务报表上的各个项目。
+Bring in a bank statement to match its lines against your books.,导入银行对账单，将其明细与账面核对。
+A bank you or your customers and suppliers hold accounts with.,你或你的客户、供应商开户的银行。
+Points a customer earned or spent under a loyalty program.,客户在积分计划中获得或使用的积分。
+"A part of your business you track income and expenses for, like a branch or product line.",需要单独核算收支的业务单元，例如分支或产品线。
+The wording and fee for a kind of payment reminder.,某种催款提醒的措辞与费用。
+"A separate set of books, for example to depreciate assets under another rule.",独立的一套账簿，例如按另一规则计提资产折旧。
+"Picks the right tax template for a customer, supplier or address.",为客户、供应商或地址自动匹配合适的税率模板。
+A reminder to a customer about an overdue invoice.,向客户发出的逾期发票提醒。
+"A grouping of bank accounts, like checking or credit card.",银行账户的分类，例如支票账户或信用卡账户。
+Opens a POS shift with the cash in the drawer.,以钱箱中的现金开始销售点班次。
+"Money you received or paid, matched against invoices.",已收或已付并与发票核销的款项。
+The rows and formulas of a custom financial statement.,自定义财务报表的项目行与公式。
+A group of tax withholding categories that apply together.,需要同时适用的一组代扣税类别。
+The year your books are kept and closed for.,账簿记账与结账的年度。
+Emails customers their statements on a schedule.,按周期向客户发送对账单邮件。
+A ledger in your chart of accounts that entries are posted to.,科目表中用于记账的明细账簿。
+"An extra way to tag entries, like branch or region, beyond cost centers.",除成本中心外的额外记账维度，例如分支或区域。
+"A guarantee a bank gives on your behalf, or on a customer's or supplier's.",银行为你或你的客户、供应商提供的担保。
+"A class of shares, like equity or preference.",股份的类别，例如普通股或优先股。
+Spreads a yearly budget or target across months for seasonal businesses.,把年度预算或目标按月分摊，适用于季节性业务。
+"When part of an invoice is due, like 50% in 30 days.",发票的分期到期安排，例如 30 天内支付 50%。
+A date range you can close so no one posts into it.,可以关闭的日期区间，关闭后不允许再记账。
+A bank account of yours or of a customer or supplier.,你或你的客户、供应商的银行账户。
+"Rates and thresholds for tax withheld on payments, like TDS.",付款代扣税的税率与起征点，例如 TDS。
+"The taxes and charges, like shipping or insurance, to add to sales.",销售需要加计的税费，例如运费或保险费。
+Changes a price or gives a discount when its conditions are met.,满足条件时调整价格或给予折扣。
+A bill to a customer for what you sold.,就所售商品向客户开立的账单。
+Where each detail goes when you print on your bank's cheque.,使用银行支票打印时各项内容的打印位置。
+"A finer grouping of bank accounts, like savings or current.",银行账户的细分类型，例如储蓄账户或往来账户。
+Books deferred revenue or expense for a period.,按期确认递延收入或递延费用。
+Applies a tax template automatically when its conditions match.,条件匹配时自动应用税率模板。
+The result of creating or submitting many documents at once.,批量创建或提交多个单据的结果。
+What you did to fix or prevent a quality problem.,为解决或预防质量问题所采取的措施。
+Something that did not meet your quality standard.,未达到质量标准的事项。
+Feedback on your quality from a customer or employee.,客户或员工对质量的反馈。
+The steps of a process you follow to keep quality in check.,为保证质量所遵循的流程步骤。
+The questions to ask when collecting quality feedback.,收集质量反馈时要询问的问题。
+"A meeting to review quality, with its agenda and minutes.",评审质量的会议，含议程与会议纪要。
+A periodic check of how a quality goal is going.,对质量目标进展的定期检查。
+"Something you measure and improve on a schedule, like on-time delivery.",按周期衡量并改进的事项，例如按时交货率。
+Fix issues,修复问题
+Sr. No,序号
+".csv, .xlsx up to {0} MB",.csv、.xlsx，最大 {0} MB
+1 row,1 行
+{0} rows,{0} 行
+Import steps,导入步骤
+Import settings,导入设置
+Select a Document Type to upload a file or Google Sheet.,请先选择单据类型，再上传文件或 Google 表格。
+File upload,文件上传
+Google Sheet,Google 表格
+You have 1 pending {0} import with a file attached.,你有 1 个已上传文件的{0}导入尚未完成。
+You have {0} pending {1} imports with files attached.,你有 {0} 个已上传文件的{1}导入尚未完成。
+Review pending imports,查看待处理的导入
+"Drag a CSV or Excel file here, or click to browse",把 CSV 或 Excel 文件拖到此处，或点击选择文件
+Checking import file for issues...,正在检查导入文件中的问题……
+Attach an import file to validate rows and mappings.,上传导入文件后才能校验数据与字段映射。
+This import is complete. There are no pending warnings or mapping issues.,本次导入已完成，没有待处理的警告或映射问题。
+No warnings or mapping issues were found. You can continue to import.,未发现警告或映射问题，可以继续导入。
+No issues to fix,没有需要修复的问题
+Fix issues summary,修复问题汇总
+Rows checked,已检查行数
+Columns matched,已匹配列数
+Rows skipped,已跳过行数
+Loading preview...,正在加载预览……
+Start the import before opening the Import step.,请先开始导入，再进入“导入”步骤。
+Complete the earlier steps before continuing.,请先完成前面的步骤再继续。
+Save your changes before importing.,导入前请先保存修改。
+Pass either an existing {0} name or a {1} to import into.,请传入已存在的{0}名称或{1}作为导入目标。
+Import {0},导入{0}
+Not imported:,未导入：
+Showing first {0} rows of {1},显示前 {0} 行，共 {1} 行
+Showing all {0} rows,显示全部 {0} 行
+Select format,选择格式
+Select date format,选择日期格式
+{0} (detected),{0}（自动识别）
+Map each file column to a field. Save to apply changes.,把文件中的每一列映射到字段，保存后生效。
+1 node,1 个节点
+Tree preview of {0} nodes,{0} 个节点的树形预览
+Filter nodes,筛选节点
+Reset all,全部重置
+Expand all,全部展开
+Collapse all,全部折叠
+No valid tree nodes found in the import file.,导入文件中没有找到有效的树形节点。
+1 warning found.,发现 1 条警告。
+{0} warnings found.,发现 {0} 条警告。
+See warning icons on nodes below or check the Warnings section.,请查看下方节点上的警告图标，或查看“警告”部分。
+Edited,已编辑
+unlinked,已解除关联
+Move to…,移动到……
+Mark as group,标记为组
+Mark as leaf,标记为末级
+Reset node,重置节点
+No actions available,没有可用的操作
+Top level,顶层
+No available parents,没有可用的上级
+"Importing or updating {0} of {1}, {2}",正在导入或更新 {1} 条中的第 {0} 条：{2}
+Successfully inserted {0} and updated {1} out of {2} records.,成功新增 {0} 条、更新 {1} 条，共处理 {2} 条记录。
+Successfully inserted {0},成功新增 {0}
+No preview data for this row,该行没有预览数据
+Undo skip,取消跳过
+Or skip rows instead,或者改为跳过这些行
+Skip every row that has one of these values. Skipped rows are not imported.,跳过包含以下任一值的行，被跳过的行不会被导入。
+Failed to load import file,导入文件加载失败
+Could not load import file,无法加载导入文件
+Loading import log,正在加载导入日志
+Loading import preview...,正在加载导入预览……
+Loading tree preview...,正在加载树形预览……
+Import could not start. Please resolve the errors in the import file.,无法开始导入，请先处理导入文件中的错误。
+Importing your data,正在导入数据
+You can continue other work while this runs. Progress updates will appear here.,导入期间你可以继续其他工作，进度更新会显示在这里。
+Finishing up...,正在收尾……
+".csv, .xlsx",.csv、.xlsx
+Import is running. Progress updates will appear shortly.,导入正在进行，稍后会显示进度更新。
+Fetching latest status...,正在获取最新状态……
+Failed to load the import wizard. Please hard-refresh and try again.,导入向导加载失败，请强制刷新页面后重试。
+Failed to load the import wizard bundle.,导入向导组件加载失败。
+Please select Document Type and Import Type.,请选择单据类型和导入类型。
+Please attach an import file or provide a Google Sheets URL.,请上传导入文件或填写 Google 表格网址。
+Starting import...,正在开始导入……
+Preparing import...,正在准备导入……
+"Use 'Download Failed Rows' on the Failed metric, fix the errors and import again.",请在“失败”指标上使用“下载失败的行”，修正错误后重新导入。
+Use 'Download Skipped Rows' on the Skipped metric to export the skipped rows.,请在“已跳过”指标上使用“下载已跳过的行”导出这些行。
+Job was not running; status updated.,任务并未在运行，状态已更新。
+No error log found for this import.,没有找到本次导入的错误日志。
+Undo Skip,取消跳过
+Skip Row,跳过此行
+"Some columns have invalid values. Map them to valid values below, or skip the rows that have them. Affected columns: {0}.",部分列存在无效值。请在下方把它们映射为有效值，或跳过包含这些值的行。受影响的列：{0}。
+Undo Skip Duplicates,取消跳过重复行
+"Keep Row {0}, Skip Rest",保留第 {0} 行，跳过其余行
+Row errors,行错误
+Mapping warnings,映射警告
+Column warnings,列警告
+Import failed,导入失败
+Toggle error details,展开/收起错误详情
+No failed log entries,没有失败日志记录
+No successful log entries,没有成功日志记录
+No rows were imported,没有导入任何行
+Go to list,前往列表
+Download Skipped Rows,下载已跳过的行
+Download Failed Rows,下载失败的行
+Total rows,总行数
+Inserted,已新增
+Started by,发起人
+Started on,开始时间
+Last modified by,最后修改人
+Last modified on,最后修改时间
+Filter import log,筛选导入日志
+All ({0}),全部（{0}）
+Success ({0}),成功（{0}）
+Failed ({0}),失败（{0}）
+Importing row {0} of {1},正在导入第 {0} 行，共 {1} 行
+Live activity updates will appear here.,实时进度更新会显示在这里。
+Progress summary,进度汇总
+Recent activity,最近动态
+Import log,导入日志
+Upsert,存在则更新，不存在则新增
+No {0} created,尚未创建{0}
+Clear the filters to see all records.,清除筛选条件即可查看全部记录。
+Create your first {0} to get started.,创建第一个{0}即可开始使用。
+Nothing has been added yet.,暂无任何内容。
+Documentation,使用文档
+List virtualization failed to load. Rendering full list.,列表虚拟滚动加载失败，已改为渲染完整列表。
+{0} and {1} more,{0} 及其他 {1} 项
+Custom HTML format,自定义 HTML 格式
+Not a builder format,不是构建器格式
+Custom CSS in the Style box,样式框中的自定义 CSS
+Letterhead with custom CSS,含自定义 CSS 的信头
+Letterhead with HTML content,含 HTML 内容的信头
+Letterhead footer with HTML content,含 HTML 内容的信头页脚
+HTML block,HTML 区块
+Field Template block,字段模板区块
+Barcode that is not a QR code,不是二维码的条码
+Image loaded from a web address,从网址加载的图片
+Colours that are not hex codes: {0},不是十六进制的颜色值：{0}
+Custom CSS on fields: {0},字段上的自定义 CSS：{0}
+"Section background, padding, radius or custom CSS",分区背景、内边距、圆角或自定义 CSS
+Visibility conditions,显示条件
+{0} block,{0} 区块
+Table styling,表格样式
+Merged table columns,已合并的表格列
+Table column conditions,表格列条件
+System default,系统默认
+Zoom,缩放
+Viewing {0} ({1}). Editing is off.,正在查看 {0}（{1}），已关闭编辑。
+Restore this version,恢复此版本
+Discard your unapplied changes and go back to what this format prints?,放弃尚未应用的修改，回到当前实际打印的效果？
+Replace your current draft with {0}? Nothing prints differently until you Save & Apply.,用 {0} 替换当前草稿？在点击“保存并应用”之前，打印效果不会改变。
+You are not permitted to change Print Settings,你没有权限修改打印设置
+Print Settings updated,打印设置已更新
+Pick a {0} to preview...,选择一个{0}进行预览……
+"You cannot read {0} documents, so there is nothing to preview",你没有查看{0}单据的权限，因此无法预览
+Save & Apply,保存并应用
+Save & Apply Print Format,保存并应用打印格式
+Saving…,正在保存……
+Save failed,保存失败
+Unsaved changes,未保存的修改
+The latest changes could not be saved and will be lost if you leave.,最新的修改无法保存，离开后将丢失。
+Leave anyway,仍然离开
+The latest changes to {0} could not be saved.,{0} 的最新修改未能保存。
+Back to the builder,返回构建器
+Pick a record in the toolbar above to preview it.,请在上方工具栏选择一条记录进行预览。
+This document is cancelled and cannot be printed.,该单据已取消，无法打印。
+This document is a draft and cannot be printed.,该单据为草稿，无法打印。
+Generating preview…,正在生成预览……
+Could not render the preview,无法生成预览
+Current version,当前版本
+Working draft · not applied yet,工作草稿 · 尚未应用
+Same as what prints,与实际打印一致
+Published version,已发布版本
+What prints now,当前实际打印的版本
+Discard the draft and go back to this,放弃草稿并回到此版本
+Saved versions,已保存的版本
+Restore this version as your draft,把此版本恢复为草稿
+Delete this version,删除此版本
+Delete the version {0}? This cannot be undone.,删除版本 {0}？此操作无法撤销。
+No fields match,没有匹配的字段
+No printable fields,没有可打印的字段
+Try a different word.,请换一个关键词试试。
+This document type has no fields to print.,该单据类型没有可打印的字段。
+Saved Snippets,已保存的片段
+"Drag into the layout, or click to insert",拖入版面，或点击插入
+Delete snippet,删除片段
+No sections yet,还没有分区
+Add a section to the canvas to see it here.,在画布上添加一个分区后即可在此显示。
+Shown only when: {0},仅在以下条件下显示：{0}
+Field “{0}” no longer exists on {1},字段“{0}”在{1}上已不存在
+Layers,图层
+Blocks,区块
+A new area to place fields in,用于放置字段的新区域
+Force a new page,强制分页
+Typst,Typst
+Raw Typst markup,原始 Typst 标记
+Raw HTML or Jinja template,原始 HTML 或 Jinja 模板
+Vertical whitespace,垂直空白
+Horizontal rule,水平分隔线
+Upload an image or use a URL,上传图片或使用网址
+Barcode or QR code from a field or static value,由字段或固定值生成的条码或二维码
+Custom Table,自定义表格
+Child table rows laid out with your own template,按自定义模板排布的子表明细
+Fixed text like a title or a note,标题或说明等固定文字
+Linked Field,关联字段
+A value from a linked document,来自关联单据的值
+Delete the snippet '{0}'?,删除片段“{0}”？
+Untitled section,未命名分区
+PDF Renderer,PDF 渲染器
+Chromium,Chromium
+Typst (fast),Typst（快速）
+WeasyPrint,WeasyPrint
+Font Size (px),字号（像素）
+Colon after labels,标签后显示冒号
+Margins (mm),页边距（毫米）
+.print-format p { margin: 0; },.print-format p { margin: 0; }
+"Deprecated, removed in version 17",已弃用，将在第 17 版移除
+"Deprecated, removed in version 17. Renders with the v16 stylesheet; new blocks and styling need Chromium or Typst.",已弃用，将在第 17 版移除。按 v16 样式表渲染；新增区块和样式需要 Chromium 或 Typst。
+Chromium unavailable: this format uses a Typst block.,Chromium 不可用：此格式使用了 Typst 区块。
+Typst cannot render:,Typst 无法渲染：
+WeasyPrint cannot render:,WeasyPrint 无法渲染：
+Label Color,标签颜色
+Value Color,数值颜色
+No letter head,无信头
+Go back to the current version before applying,请先回到当前版本再应用
+Applying…,正在应用……
+Applied,已应用
+The latest changes to this letter head are not saved.,此信头的最新修改尚未保存。
+The latest changes to this print format are not saved.,此打印格式的最新修改尚未保存。
+Autosave failed,自动保存失败
+Version saved,版本已保存
+Version deleted,版本已删除
+Restoring…,正在恢复……
+Version restored,版本已恢复
+Converted from the old Print Format Builder,由旧的打印格式构建器转换而来
+These fields no longer exist in the DocType and were removed from the layout: {0},以下字段在单据类型中已不存在，已从版面中移除：{0}
+Could not convert this print format,无法转换此打印格式
+Starting from the default layout instead.,已改为从默认版面开始。
+Discarding…,正在放弃修改……
+Draft discarded,草稿已放弃
+WeasyPrint cannot render: {0},WeasyPrint 无法渲染：{0}
+This can't be saved with a Typst block: {0},包含 Typst 区块时无法保存：{0}
+Switched back to Chromium: {0},已切换回 Chromium：{0}
+A snippet named {0} already exists for {1}.,{1} 下已存在名为 {0} 的片段。
+{0} saved section(s) already exist by name and were not imported,已有 {0} 个同名分区，未导入
+Snippet name,片段名称
+Field saved as snippet,字段已保存为片段
+Section saved as snippet,分区已保存为片段
+Save Field as Snippet,把字段保存为片段
+Save Section as Snippet,把分区保存为片段
+Copy,复制
+Save as snippet,保存为片段
+Based on,基于
+Letter head changes are saved right away and apply to every print format that uses it.,信头的修改会立即保存，并对所有使用它的打印格式生效。
+No HTML content yet.,还没有 HTML 内容。
+Could not load this image,无法加载该图片
+Edit Letter Head HTML,编辑信头 HTML
+Select table…,选择表格……
+Optional heading,可选标题
+Show title,显示标题
+Column settings,列设置
+Table title,表格标题
+Styled,带样式
+Plain,朴素
+Cell padding,单元格内边距
+Radius,圆角
+Min height,最小高度
+Add column...,添加列……
+All available columns added.,已添加全部可用列。
+Merge fields,合并字段
+Date format,日期格式
+Text style,文字样式
+Image size,图片尺寸
+Add field...,添加字段……
+Direction,方向
+Show column when,列的显示条件
+e.g. doc.apply_discount,例如：doc.apply_discount
+Border,边框
+Show row when,行的显示条件
+e.g. row.qty > 0,例如：row.qty > 0
+Leave blank to show every row. Reference the row with,留空则显示所有行。请使用以下方式引用行：
+Grid,网格
+Rows,行
+Striped,斑马纹
+Secondary,次要
+Muted,弱化
+Vertical,垂直
+Horizontal,水平
+Remove selected,移除已选
+Mixed,混合
+"Type text, / for a field",输入文字，输入 / 可插入字段
+No matching field,没有匹配的字段
+Write the text to print,输入要打印的文字
+Show label,显示标签
+e.g. doc.status == 'Paid',例如：doc.status == 'Paid'
+Can't check this condition,无法校验此条件
+Currently visible,当前显示
+Currently hidden,当前隐藏
+Load a document to see live status,载入单据后查看实时状态
+Font size,字号
+Height,高度
+Field label,字段标签
+Spacing,间距
+Space Between,两端对齐
+Space Evenly,均匀分配
+Label gap,标签间距
+Split across pages,跨页拆分
+Hide colon,隐藏冒号
+Print if empty,为空时仍打印
+Decrease,减小
+Increase,增大
+Version history,版本历史
+Save a named version,保存为命名版本
+Select parent section (Esc),选择上级分区（Esc）
+Section:,分区：
+Untitled,未命名
+Version name,版本名称
+Save version,保存版本
+Selection,所选内容
+Canvas,画布
+{0} items,{0} 项
+{0} fields,{0} 个字段
+Select a link field,选择关联字段
+Select a field,选择字段
+Align left,左对齐
+Align center,居中对齐
+Align right,右对齐
+Write Typst here. Use {0} for values from the document. Check the PDF preview to see the result.,在此编写 Typst。用 {0} 引用单据中的值，可在 PDF 预览中查看效果。
+or image URL,或图片网址
+Label side,标签位置
+Gap,间隔
+Background,背景
+Transparent,透明
+Borders,边框
+Field borders,字段边框
+Grid lines,网格线
+Border color,边框颜色
+Keep together,保持在同一页
+Padding,内边距
+Margin,外边距
+Value from,取值来源
+Static value,固定值
+Value text,数值文本
+Couldn't render this letter head for the previewed document,无法为预览单据渲染此信头
+{0} is empty — click to add,{0} 为空，点击添加
++ {0} more rows in this document — all print in the real output,本单据还有 {0} 行，实际打印时会全部输出
+Drop fields here,把字段拖到此处
+Nothing to paste,没有可粘贴的内容
+Drag to change {0} {1},拖动可调整{0}{1}
+Pick a source table,选择来源子表
+Invalid value for {0},{0} 的值无效
+No value to encode,没有可编码的值
+No barcode value — set one in the panel,未设置条码值，请在右侧面板设置
+How do you want to start?,你想如何开始？
+Choose a starting point for your print format.,为打印格式选择一个起始版面。
+Start from default,从默认版面开始
+Pre-filled with all document fields. Customize from there.,已预填单据的全部字段，可在此基础上调整。
+Start blank,从空白开始
+Empty canvas. Drag and drop fields to build from scratch.,空白画布，拖放字段从零开始搭建。
+Add Section,添加分区
+No linked field set,未设置关联字段
+No columns configured,未配置任何列
+No source table selected,未选择来源子表
+Edit Typst,编辑 Typst
+Typst Markup,Typst 标记
+Use {0} for values from the document.,用 {0} 引用单据中的值。
+Drag to change corner radius,拖动可调整圆角
+1 of N,第 1 页，共 N 页
+Add a section,添加一个分区
+Sections hold the columns and fields of your document.,分区用于承载单据的列与字段。
+Page break must follow a section,分页符必须位于分区之后
+Couldn't render this template for the previewed document,无法为预览单据渲染此模板
+Empty Typst block,空的 Typst 区块
+No image — set one in the panel,未设置图片，请在右侧面板设置
+Empty text,空文本
+Start with,起始方式
+Builder is visual. HTML is hand-written.,构建器为可视化操作，HTML 需手工编写。
+"Ship as files in an app, tracked in git.",以文件形式随应用发布，由 git 管理。
+New Print Format,新建打印格式
+The classic builder will be removed in version 17. Convert this format to the new builder to keep editing it.,经典构建器将在第 17 版移除。请把此格式转换到新构建器以继续编辑。
+WeasyPrint is deprecated and will be removed in version 17. Switch this format to Chrome.,WeasyPrint 已弃用，将在第 17 版移除。请把此格式切换为 Chrome。
+wkhtmltopdf is deprecated. Chrome is the supported PDF renderer.,wkhtmltopdf 已弃用，推荐使用 Chrome 作为 PDF 渲染器。
+Convert to new builder,转换到新构建器
+Restore classic layout,恢复经典版面
+This restores the classic layout backup and discards the converted layout. Continue?,此操作将恢复经典版面备份并丢弃已转换的版面，是否继续？
+{0} is the default print format for {1}. Disabling it will remove it as the default. Do you want to continue?,{0} 是{1}的默认打印格式，停用后将不再是默认格式，是否继续？
+{0} is rendered from an HTML file and cannot be edited in the builder.,{0} 由 HTML 文件渲染，无法在构建器中编辑。
+{0} is a custom HTML format and cannot be edited in the builder.,{0} 是自定义 HTML 格式，无法在构建器中编辑。
+The classic builder will be removed in version 17.,经典构建器将在第 17 版移除。
+wkhtmltopdf is deprecated; Chrome is the supported renderer.,wkhtmltopdf 已弃用，推荐使用 Chrome 作为渲染器。
+Max Bulk Print Documents,批量打印最大单据数
+Maximum number of documents that can be combined into a single bulk PDF export.,单次批量导出 PDF 时可合并的最大单据数量。
+Max Concurrent Bulk Exports Per User,每用户最大并发批量导出数
+Maximum number of bulk PDF export jobs a single user can have queued or running at once.,单个用户同时排队或运行的批量 PDF 导出任务上限。
+Tree Preview,树形预览
+Tree Parent Overrides,树形上级覆盖设置
+"Per-row parent / is_group overrides for tree DocType imports, keyed by sheet row number. Applied at import time.",树形单据导入时按表格行号逐行覆盖上级节点/是否分组，导入时生效。
+Value Mappings,值映射
+Skipped Rows,已跳过的行
+Marketplace,应用市场
+Domains,域名
+Site config,站点配置
+Cloud Settings,云设置
+Close Cloud Settings,关闭云设置
+Panel,面板
+"Visa, Mastercard, RuPay, Amex",Visa、Mastercard、RuPay、Amex
+UPI,UPI
+Pay from any UPI app,通过任意 UPI 应用付款
+"Checkout opened in a new tab. Add your card there, then check its status.",已在新标签页打开收银台，请在那里添加银行卡，然后回来查看状态。
+Could not load Razorpay Checkout.,无法加载 Razorpay 收银台。
+Frappe Cloud,Frappe Cloud
+Set up UPI Autopay,设置 UPI 自动付款
+Save card for billing,保存银行卡用于扣费
+Setup cancelled.,设置已取消。
+Authorisation failed.,授权失败。
+Saved but not active ({0}).,已保存但未启用（{0}）。
+"Not confirmed yet — finish adding the card, then check again.",尚未确认，请先完成添加银行卡，然后再查看。
+Add payment method,添加支付方式
+Choose a payment method,选择支付方式
+Pay through,支付渠道
+Try again,重试
+No gateway is available for this payment type in your billing currency.,当前结算币种下没有可用于该支付方式的网关。
+Manage account,管理账户
+The gateway collects your card securely — this site never sees it.,网关会安全地采集你的银行卡信息，本站不会接触这些信息。
+Reopen checkout,重新打开收银台
+Check status,查看状态
+Continue with {0},继续使用 {0}
+Update all,全部更新
+Update 1 app,更新 1 个应用
+Update {0} apps,更新 {0} 个应用
+Updates,更新
+Updating selected apps. This can take a few minutes.,正在更新所选应用，可能需要几分钟。
+Plan change has been queued.,套餐变更已排队。
+Change plan,更换套餐
+Loading plans,正在加载套餐
+Region,区域
+Available plans,可选套餐
+No plans are available for this server right now.,该服务器当前没有可用套餐。
+Insufficient balance — set up billing to switch.,余额不足，请先设置账单信息再切换。
+Go to Billing,前往账单
+Compare plans,对比套餐
+Settings table,设置表
+"{0} stops working on the site. Its data stays, so installing it again brings it back.",{0} 将在站点上停止工作，其数据会保留，重新安装即可恢复。
+Uninstall,卸载
+"{0} stops working, and all of its data is deleted.",{0} 将停止工作，其全部数据会被删除。
+Remove {0},移除 {0}
+Uninstall {0},卸载 {0}
+This can't be undone.,此操作无法撤销。
+Everything {0} stores on this site is deleted. Back the site up first if you need the data.,{0} 在本站点存储的所有数据都会被删除。如需保留数据，请先备份站点。
+Legal name,法定名称
+Billing email,账单邮箱
+Billing address,账单地址
+Street address,街道地址
+PIN / ZIP,邮编
+GSTIN,GSTIN（印度商品服务税号）
+Add billing details,添加账单信息
+These are visible on every invoice and are needed to add a payment method.,这些信息会显示在每张发票上，也是添加支付方式所必需的。
+"No billing currencies are configured, so this form can't be saved yet.",尚未配置结算币种，因此该表单暂时无法保存。
+Couldn't load this section,无法加载此部分内容
+Needs Version {0},需要版本 {0}
+Incompatible,不兼容
+Needs Version {0} — change your server's version to install it,需要版本 {0}，请先更换服务器版本再安装
+Not available for this version of Frappe,当前 Frappe 版本不支持
+Install {0},安装 {0}
+More actions for {0},{0} 的更多操作
+Central is not configured.,未配置 Central。
+"Your plan, credit and payment method.",你的套餐、余额与支付方式。
+Billing isn't available for this site yet,该站点暂未开通账单功能
+"This site isn't connected to a billing account, or the connection isn't ready.",该站点尚未关联账单账户，或关联尚未就绪。
+Opening…,正在打开……
+View plans,查看套餐
+{0} plan,{0} 套餐
+Current plan,当前套餐
+Estimated this cycle,本期预计费用
+Trial credit,试用额度
+No payment method yet,还没有支付方式
+Used for your monthly bill.,用于支付每月账单。
+You're on trial credit. Add a payment method to keep this site running after it.,你正在使用试用额度，请添加支付方式，以便额度用完后站点继续运行。
+Public files,公开文件
+Private files,私有文件
+Couldn't measure usage.,无法统计用量。
+How much of your server and storage your site uses.,你的站点对服务器和存储的使用量。
+Site storage,站点存储
+of {0} used,已用 {0}
+used,已用
+Measured {0},统计时间：{0}
+Download Database,下载数据库
+Download Public,下载公开文件
+Download Private,下载私有文件
+Download Config,下载配置
+Offsite,异地备份
+Couldn't back up the site.,站点备份失败。
+Backup done.,备份完成。
+This file is not in the offsite backup.,该文件不在异地备份中。
+Couldn't delete the backup.,删除备份失败。
+Backup deleted.,备份已删除。
+Delete backup,删除备份
+Back up your site and download past backups.,备份站点并下载历史备份。
+Backing up,正在备份
+Back up now,立即备份
+No backups yet.,还没有备份。
+Local only,仅本地
+Actions for {0},{0} 的操作
+The backup from {0} will be deleted. This can't be undone.,将删除 {0} 的备份，此操作无法撤销。
+Open your server,打开你的服务器
+"Deploys, scaling, SSH, backups, sites — the full server controls.",部署、扩容、SSH、备份、站点——完整的服务器管理功能。
+Open server,打开服务器
+Deeper controls for your server.,服务器的更多高级控制。
+Account & billing,账户与账单
+"Payment methods, invoices, billing email and account settings.",支付方式、发票、账单邮箱与账户设置。
+Opening billing,正在打开账单
+Manage billing,管理账单
+6 hours,6 小时
+12 hours,12 小时
+24 hours,24 小时
+1 week,1 周
+Requests,请求
+Background jobs,后台任务
+Uptime,可用率
+How your site has been doing.,站点近期运行情况。
+Time period,时间范围
+No checks,没有检查项
+Top pages,访问最多的页面
+No requests in this period.,该时间段内没有请求。
+Clear cache,清除缓存
+Drops cached pages and settings. Safe to run any time something looks stale.,清除已缓存的页面和设置项。任何时候发现内容陈旧都可以安全执行。
+Cache cleared.,缓存已清除。
+Run migrations,运行数据迁移
+Applies pending database changes from your apps. The site can be slow while it runs.,应用各应用中待执行的数据库变更，运行期间站点可能会变慢。
+Migrations finished.,迁移已完成。
+Couldn't finish: {0}.,未能完成：{0}。
+Housekeeping tasks for your site.,站点的日常维护任务。
+Installing,正在安装
+installed,已安装
+install,安装
+Uninstalling,正在卸载
+uninstalled,已卸载
+uninstall,卸载
+Disabling,正在停用
+disabled,已停用
+updated,已更新
+update,更新
+All categories,全部分类
+Installed,已安装
+Open updates,查看可更新
+all apps,全部应用
+All apps,全部应用
+Couldn't uninstall {0}. Another installed app may depend on it.,无法卸载 {0}，其他已安装的应用可能依赖它。
+Couldn't {0} {1}.,无法{0}{1}。
+{0} {1} is taking longer than expected. It will keep running in the background — reopen to check.,{0} {1} 耗时超出预期，将在后台继续运行，可重新打开查看进度。
+Install apps and keep them up to date.,安装应用并保持它们为最新版本。
+Update all ({0}),全部更新（{0}）
+Search apps,搜索应用
+No apps match your search.,没有符合搜索条件的应用。
+Clear filters,清除筛选
+SSL,SSL
+"Enter a valid domain, like shop.example.com.",请输入有效域名，例如 shop.example.com。
+{0} is already added.,{0} 已添加。
+Make primary,设为主域名
+The addresses this site answers on.,本站点响应的访问地址。
+shop.example.com,shop.example.com
+"Add these records at your DNS provider, then add the domain.",请在你的 DNS 服务商处添加这些记录，然后再添加域名。
+Site address,站点地址
+Custom domain,自定义域名
+HTTPS,HTTPS
+HTTP only,仅 HTTP
+Remove domain,移除域名
+{0} will stop pointing to this site. You can add it again later.,{0} 将不再指向本站点，之后可以重新添加。
+Settings your site reads from site_config.json.,站点从 site_config.json 读取的配置项。
+Add key,添加配置项
+No config keys yet.,还没有配置项。
+Edit key,编辑配置项
+maintenance_mode,maintenance_mode
+"Numbers, true, false and JSON are saved as-is. Anything else is saved as text.",数字、true、false 与 JSON 按原样保存，其他内容按文本保存。
+Remove key,移除配置项
+{0} will be removed from the site config.,{0} 将从站点配置中移除。
+Serial & Batch,序列号与批号
+Access,权限设置
+Appointment Booking,预约
+Stock Reposting,库存重算
+Value Changes,价值变动
+Meetings & Feedback,会议与反馈
+Background Job Activity,后台任务动态
+Notifications By Type,按类型统计的通知
+Scheduled Jobs,定时任务
+Failed Scheduled Jobs,失败的定时任务
+Profiles,配置档案
+Desk,桌面工具
+Geo,地区
+Automation Flow,自动化流程
+Automation Trigger Queue,自动化触发器队列
+Background Task,后台任务
+Active RQ Worker,活跃的 RQ 工作进程
+Total System Users,系统用户总数
+Total Website Users,网站用户总数
+Webpage Views,网页访问量
+Email Activity,邮件动态
+No charts or cards yet,还没有图表或卡片
+Click Customize to add your first widget.,点击“自定义”添加你的第一个组件。
+shortcut,快捷方式
+card,卡片
+onboarding,引导
+quick list,快捷列表
+number card,数字卡片
+custom block,自定义区块
+widget,组件
+"Another {0} in this workspace is already labelled {1}. Labels are used to tell widgets apart when the workspace is saved, so the two would overwrite each other. Please pick a different label.",此工作台中的另一个{0}已使用标签 {1}。标签用于在工作台保存时区分各组件，否则两者会互相覆盖，请换一个标签。
+Duplicate Label,标签重复
+This label is already used by another {0} in this workspace.,此标签已被工作台中的另一个{0}使用。
+This chart couldn't load,该图表加载失败
+No data yet,暂无数据
+"Good morning, {0}",早上好，{0}
+Good morning,早上好
+"Good afternoon, {0}",下午好，{0}
+Good afternoon,下午好
+"Good evening, {0}",晚上好，{0}
+Good evening,晚上好
+{0} of {1} done · {2} skipped,已完成 {0}/{1} · 已跳过 {2}
+{0} of {1} steps done,已完成 {0}/{1} 步
+Play video,播放视频
+YouTube video player,YouTube 视频播放器
+Submit it to finish this step.,提交后即可完成此步骤。
+Done: {0},已完成：{0}
+You're all set.,全部完成。
+Only to you,仅自己可见
+To a group of users,对一组用户可见
+To everyone,所有人可见
+No private workspaces yet,还没有私有工作台
+A private workspace is yours alone. Only you can see it.,私有工作台只有你自己能看到。
+Reset to Standard,恢复为标准版本
+This workspace is hidden from other users. You can see it because you're a Workspace Manager.,此工作台对其他用户隐藏，你因为是工作台管理员才能看到。
+Not in any app,不属于任何应用
+"This workspace isn't in any app's sidebar, so it can only be found through search. Ask a Workspace Manager to add it to an app.",此工作台未出现在任何应用的侧边栏中，只能通过搜索找到。请联系工作台管理员将其加入某个应用。
+Add {0} to a module,将{0}加入模块
+"This workspace isn't in any module's sidebar yet, so there's no way to navigate to it. Pick the module it belongs to.",此工作台尚未加入任何模块的侧边栏，无法导航到它。请选择它所属的模块。
+Which module's sidebar this workspace appears in,此工作台显示在哪个模块的侧边栏
+Added {0} to {1},已将{0}加入{1}
+The workspace list may not load. Please refresh the page.,工作台列表可能无法加载，请刷新页面。
+Manage Workspaces,管理工作台
+No module,无模块
+"{0} workspace(s) name the module {1}, which doesn't exist on this site — nothing can navigate to them. Give each one a module below.",{0} 个工作台指定了站点上不存在的模块 {1}，无法导航到它们。请在下文为每个工作台指定模块。
+"{0} workspace(s) have no module, so nothing can navigate to them. Give each one a module below.",{0} 个工作台没有指定模块，无法导航到它们。请在下文为每个工作台指定模块。
+"{0} workspace(s) in this module, which {1} ships.",此模块中有 {0} 个工作台，由{1}自带。
+"{0} workspace(s) in this module, which this site owns.",此模块中有 {0} 个工作台，属于本站点。
+No workspaces in this module.,此模块中没有工作台。
+A standard workspace is shipped by the app; changes are saved as customizations.,标准工作台由应用自带，修改会作为自定义内容保存。
+Control who can see this workspace and how it appears.,控制谁可以看到此工作台以及它的显示方式。
+The title of a standard workspace is managed by the app.,标准工作台的标题由应用管理。
+A standard workspace stays in the module that ships it.,标准工作台始终属于自带它的模块。
+Who can see this workspace,谁可以看到此工作台
+Users with any of these roles can see this workspace,拥有以下任一角色的用户可以看到此工作台
+Workspace updated,工作台已更新
+Delete the <b>{0}</b> workspace? This cannot be undone.,删除工作台 <b>{0}</b>？此操作无法撤销。
+Workspace {0} deleted,工作台 {0} 已删除
+"Reset <b>{0}</b> to the standard, app-shipped version? This removes all site customizations.",将 <b>{0}</b> 恢复为应用自带的标准版本？这将清除站点上的全部自定义内容。
+Workspace reset to standard,工作台已恢复为标准版本
+"<b>{0}</b> is shipped by its app. Saving this layout keeps your arrangement, and the app's later changes to this page's layout will stop showing up here. Its roles, icon and visibility keep following the app either way, and <b>Reset to Standard</b> undoes this.",<b>{0}</b> 由所属应用自带。保存当前布局会保留你的排布，之后应用对该页面布局的修改将不再显示在这里。其角色、图标和可见性仍跟随应用，可用<b>恢复为标准版本</b>撤销此操作。
+Save Layout,保存布局
+Click on the {0} menu to edit,点击{0}菜单进行编辑
+"Please {0}, click on the three dots (⋯) and select Manage to configure it.",请{0}，点击三个点（⋯）并选择“管理”进行配置。
+visit the workspace,进入工作台
+We do not allow editing of this document.,不允许编辑此单据。
+Please select a Document Type first,请先选择单据类型
+Please select a Report first,请先选择报表
+No filters available for this report,该报表没有可用的筛选条件
+Enter expressions that will be evaluated when the card is displayed. For example:,输入卡片显示时计算的表达式。例如：
+Add Filter,添加筛选条件
+Untitled {0},未命名 {0}
+Create Folder,新建文件夹
+Add To Folder,添加到文件夹
+Places,位置
+Administration,管理
+Your session has expired due to inactivity. Please log in again to continue.,由于长时间未操作，会话已过期，请重新登录后继续。
+Switching you to the new navigation…,正在为你切换到新版导航……
+No problem. You can try it anytime from Desktop Settings.,没问题，你随时可以在“桌面设置”中启用。
+Try the new navigation,试试新版导航
+Navigation on the desktop has two modes:,桌面导航有两种模式：
+"{0}: a grid of icons you can arrange, which is what you use today.",{0}：可自由排列的图标网格，也就是你现在使用的模式。
+Desktop Icons,桌面图标
+"{0}: your modules sit in a dock, and each one has its own sidebar.",{0}：模块收纳在侧边 Dock 中，每个模块都有自己的侧边栏。
+"Your icons and their layout stay just as they are, and you can switch back anytime from Desktop Settings.",你的图标和排布保持不变，随时可以在“桌面设置”中切回。
+Read the migration guide,阅读迁移指南
+Try it,试一试
+No thanks,不用了
+Minimize,最小化
+No results,没有结果
+Doc Status Reset,单据状态已重置
+The <strong>Doc Status</strong> for all states has been reset to <strong>Draft</strong> because <strong>{0}</strong> is not submittable,由于 <strong>{0}</strong> 不可提交，所有状态的<strong>单据状态</strong>已重置为 <strong>草稿</strong>
+Set as Primary,设为主要
+Unset as Primary,取消主要
+Unlink {0},解除{0}的关联
+Unlink {0} {1} from {2}?,解除 {1} 与 {2} 的{0}关联？
+{0} unlinked,{0} 已解除关联
+Password changed,密码已修改
+"File ""{0}"" was skipped because only {1} uploads are allowed for DocType ""{2}""",文件“{0}”已跳过，因为单据类型“{2}”只允许上传 {1}
+"File ""{0}"" was skipped because only {1} uploads are allowed",文件“{0}”已跳过，因为只允许上传 {1}
+"File ""{0}"" was skipped because size exceeds {1} MB",文件“{0}”已跳过，因为大小超过 {1} MB
+Please enter a valid URL,请输入有效的网址
+Upload Failed,上传失败
+Add More,添加更多
+Step {0} of {1},第 {0} 步，共 {1} 步
+Allows the user to submit documents.,允许用户提交单据。
+Allows the user to cancel submitted documents.,允许用户作废已提交的单据。
+Allows the user to amend a cancelled document into a new copy.,允许用户将已作废单据修订为新的一份。
+Allows the user to search and select records in other forms. This does not allow the user to view the record itself.,允许用户在其他表单中搜索并选择记录，但不允许查看记录本身。
+Allows the user to view the value of a masked field in the document.,允许用户查看单据中脱敏字段的值。
+Reporting & Sharing,报表与共享
+Allows the user to export document data from the system.,允许用户从系统中导出单据数据。
+Allows the user to use import documents into the system.,允许用户将单据导入系统。
+Allows the user to share document access with other users who may not have access to the document themselves.,允许用户将单据访问权共享给原本无权访问该单据的其他用户。
+Allows the user to print or download the document as a PDF.,允许用户打印单据或下载为 PDF。
+Allows the user to send emails linked to the document.,允许用户发送与单据关联的邮件。
+{0} Permission for {1},{1} 的{0}权限
+Add Permission for {0},为{0}添加权限
+Creator's Access,创建者的权限
+Only if Creator,仅限创建者
+Remove Permission,移除权限
+Permission updated.,权限已更新。
+Permission added.,权限已添加。
+Failed to save permission.,权限保存失败。
+Remove this role's permission on {0}?,移除该角色对 {0} 的权限？
+Permission removed.,权限已移除。
+Failed to remove permission.,移除权限失败。
+Preferences,偏好设置
+Manage your preferences,管理你的偏好设置
+More actions,更多操作
+Failed to load settings,设置加载失败
+Refresh to see changes,刷新后查看变更
+Failed to save,保存失败
+Manage your profile information and display picture.,管理你的个人资料和头像。
+Upload Photo,上传照片
+Configure your email settings.,配置你的邮件设置。
+Send notifications for email threads,邮件会话通知
+Get notified when there's a new reply in an email thread you're part of.,你参与的邮件会话有新回复时通知你。
+Send me a copy of outgoing emails,发件时抄送给自己
+Receive a copy of every email you send in your inbox.,你发出的每封邮件都会在你的收件箱中留一份副本。
+Request read receipts for outgoing emails,发件时请求已读回执
+Get notified when a recipient opens an email you send.,收件人打开你发送的邮件时通知你。
+Appearance,外观
+Theme and layout preferences.,主题与布局偏好。
+"Switch between light, dark, or system theme.",在浅色、深色或跟随系统主题之间切换。
+Choose whether forms should be displayed in compact or full width.,选择表单以紧凑宽度还是全宽显示。
+Dock,侧边 Dock
+"Keep the app dock beside the sidebar, or let it slide in from the left edge.",让 Dock 常驻侧边栏旁，或从左侧边缘滑入。
+Compact,紧凑
+Floating,浮动
+"Language, timezone and notification preferences.",语言、时区与通知偏好。
+Allow notifications,允许通知
+Show desktop and in-app notifications for activity on your account.,为账户动态显示桌面和应用内通知。
+Show search bar,显示搜索栏
+Display the search bar in the navigation area for quick access.,在导航区域显示搜索栏，方便快速访问。
+Show My Space,显示“我的空间”
+Add a link to your own private workspaces in the user menu.,在用户菜单中添加你私有工作台的入口。
+Mute sounds,静音
+Disable all notification and alert sounds across the application.,关闭应用内所有通知与提示音。
+Locale,区域设置
+Change Language,修改语言
+Change Time Zone,修改时区
+Lists,列表
+Configure list view behaviour.,配置列表视图行为。
+Display the filter and group-by sidebar in list views.,在列表视图中显示筛选与分组侧栏。
+Allow bulk actions,允许批量操作
+Enable checkboxes to select multiple records and perform bulk operations.,启用复选框以选择多条记录并执行批量操作。
+Show view switcher,显示视图切换器
+"Allow switching between list, kanban, report, and other views from the toolbar",允许从工具栏在列表、看板、报表等视图之间切换
+Forms,表单
+Configure form view behaviour.,配置表单视图行为。
+"Display a sidebar in forms with attachments, preview image, tags, and other details.",在表单中显示侧栏，包含附件、预览图、标签等详情。
+Show timeline,显示时间线
+"Show the activity timeline with comments, emails, and version history.",显示包含评论、邮件和版本记录的活动时间线。
+Show dashboard,显示仪表盘
+"Show a summary dashboard with charts and statistics, where available, at the top of forms.",在表单顶部显示包含图表和统计的摘要仪表盘（如有）。
+Show absolute datetime in timeline,时间线显示完整时间
+Display exact timestamps instead of relative time in the activity timeline.,在活动时间线中显示精确时间，而不是相对时间。
+Show navigation buttons,显示导航按钮
+Show navigation buttons to view the previous and next record in the form toolbar.,在表单工具栏显示上一条/下一条记录的导航按钮。
+Configure report view behaviour.,配置报表视图行为。
+Split view,分屏视图
+Open a linked document in a side panel instead of navigating away from the report. Not available on mobile.,在侧边面板中打开关联单据，无需离开报表。移动端不可用。
+An error occurred while updating your session defaults.,更新会话默认值时出错。
+Set default values for the current session. Values set here will be autofilled in forms and reports.,为当前会话设置默认值，这些值会自动填入表单和报表。
+No session defaults configured.,尚未配置会话默认值。
+Get around the system quickly with keyboard shortcuts.,使用键盘快捷键快速操作系统。
+Drag to resize,拖动调整大小
+No records found.,没有找到记录。
+No matching records.,没有匹配的记录。
+Failed to load data.,数据加载失败。
+Showing {0},显示 {0}
+Showing {0} of {1},显示 {0} / {1}
+Action failed.,操作失败。
+This site is in read-only mode - it is undergoing maintenance or being updated.,本站点处于只读模式：正在维护或升级。
+You are impersonating {0}.,你正在以 {0} 的身份操作。
+Open in full page,全屏打开
+Row #{0},第 {0} 行
+Could not load this document,无法加载此单据
+Open in Desk,在桌面中打开
+Breadcrumb,面包屑
+Camera access needs a secure (HTTPS) connection and a browser with camera support.,使用摄像头需要 HTTPS 安全连接并支持摄像头。
+Camera permission was denied. Allow camera access in your browser settings and try again.,摄像头权限被拒绝。请在浏览器设置中允许访问摄像头后重试。
+Could not start the camera.,无法启动摄像头。
+Toggle Flash,开关闪光灯
+Keep scanner open after scan,扫描后保持扫描器打开
+Exit full screen,退出全屏
+Full screen,全屏
+More options,更多选项
+Send read receipt,发送已读回执
+More send options,更多发送选项
+Schedule email,定时发送邮件
+Schedule Send,定时发送
+You will receive a copy of this email and a read receipt,你将收到此邮件的副本和已读回执
+You will receive a copy of this email,你将收到此邮件的副本
+You will receive a read receipt,你将收到已读回执
+Change print settings,修改打印设置
+Formatting options,格式选项
+Attach document print,附带单据打印件
+Attach files,添加附件
+Select attachments,选择附件
+Add new attachments,添加新附件
+Use template,使用模板
+No templates,没有模板
+Use HTML editor,使用 HTML 编辑器
+Default template: {0},默认模板：{0}
++{0} more,另有 {0} 项
+Print format,打印格式
+Reload Tree,重新加载树
+Expand/Collapse,展开/折叠
+Show all (including disabled),显示全部（含已停用）
+No {0} records yet,还没有{0}记录
+Records you add will appear here.,你添加的记录会显示在这里。
+No matching records,没有匹配的记录
+Try a different search.,换个关键词试试。
+Loading full tree...,正在加载完整树……
+Move to...,移动到……
+Root records can't be renamed,根节点不能重命名
+Root records can't be deleted,根节点不能删除
+Move {0},移动 {0}
+New Parent,新的上级
+Moving {0},正在移动 {0}
+{0} moved under {1},{0} 已移动到 {1} 之下
+Depends on: {0},依赖：{0}
+Autoname: {0},自动命名：{0}
+Deprecated,已弃用
+This DocType is deprecated and may be removed in a future release,该单据类型已弃用，可能在后续版本中移除
+Default Layout,默认版面
+Global Layouts,全局版面
+Your Layouts,你的版面
+Standard Report,标准报表
+Saved Reports,已保存的报表
+Related Reports,相关报表
+Create Board,新建看板
+Width (px),宽度（像素）
+You can also drag column borders directly in the list view to resize,也可以直接在列表中拖动列边界来调整宽度
+QZ Tray Connection Active!,QZ Tray 连接正常！
+New Format Name,新格式名称
+{0} (New Builder),{0}（新构建器）
+{0} is a standard format and cannot be changed. A copy with this name will open in the new builder.,{0} 是标准格式，不能修改。将以此名称在新构建器中打开一个副本。
+Create copy,创建副本
+The layout of {0} will be rewritten for the new builder. The original layout is kept as a backup you can restore from the Print Format form. Continue?,{0} 的版面将为新构建器重写。原版面会保留为备份，可在“打印格式”表单中恢复。是否继续？
+Width in pixels,宽度（像素）
+value,值
+Previous page,上一页
+Next page,下一页
+Start with # to search by tag,以 # 开头可按标签搜索
+All Results,全部结果
+Open {0} Workspace,打开{0}工作台
+This document is locked,该单据已锁定
+No options,没有可选项
+Couldn't load options,选项加载失败
+Deleting...,正在删除……
+Submitting...,正在提交……
+Importing,正在导入
+No invoices yet,还没有发票
+Create your first invoice to get started.,创建第一张发票即可开始。
+Working...,处理中……
+Background Tasks,后台任务
+Open the app dock,打开应用 Dock
+Could not open the sidebar editor. Please refresh the page.,无法打开侧边栏编辑器，请刷新页面。
+Just for me,仅对我生效
+Dock updated,Dock 已更新
+For everyone,对所有人生效
+Dock updated for everyone,已为所有人更新 Dock
+Ship with the app,随应用发布
+Exported to the app,已导出到应用
+Manage {0} Dock,管理{0}的 Dock
+Manage Dock,管理 Dock
+Export to app,导出到应用
+Entries,条目
+Drag to reorder. The eye takes an entry off the dock.,拖动可排序，点击眼睛图标可将条目从 Dock 中移除。
+Bring every entry back onto the dock.,将所有条目重新放回 Dock。
+This app has nothing to arrange,该应用没有可编排的内容
+The dock as this arrangement leaves it.,按当前编排后的 Dock 效果。
+Nothing on the dock,Dock 上没有任何内容
+Could not load the dock. Please try again.,无法加载 Dock，请重试。
+Ship this off by default,默认不随应用发布
+Reset for everyone,为所有人重置
+"Drops every person's own arrangement of this rail as well as the site's, so everybody is back on what the app ships.",清除每个人以及本站点对这条 Dock 的编排，所有人恢复为应用自带的样式。
+{0} of this app's modules are on no tier at all,该应用有 {0} 个模块不在任何层级中
+app ships this off,应用默认不发布此项
+"This drops the dock arrangement of every person on this site for {0}, and the site's own, back to what the app ships. It cannot be undone.",这将把本站点所有人及站点对 {0} 的 Dock 编排恢复为应用自带的样式，且无法撤销。
+Everyone is back on the dock this app ships,所有人已恢复为应用自带的 Dock
+Add to the dock,添加到 Dock
+What it opens,点击后打开
+Web address,网址
+How it reads on the rail.,它在 Dock 上显示的名称。
+Opens the module's home and shows its sidebar.,打开模块主页并显示其侧边栏。
+Its sidebar is derived from the module that owns it.,其侧边栏由所属模块自动生成。
+Leaves the desk. It has no sidebar.,离开桌面端，没有侧边栏。
+Pick something for it to open.,请选择点击后要打开的内容。
+Sidebar updated,侧边栏已更新
+Sidebar updated for everyone,已为所有人更新侧边栏
+Sidebar saved to its app,侧边栏已保存到所属应用
+For {0},作用于 {0}
+the app,应用
+Manage {0} Sidebar,管理{0}的侧边栏
+"This sidebar is customized on this site, and that arrangement is applied on top of what you save here.",该侧边栏在本站点已被自定义，该编排会叠加在你在此保存的内容之上。
+Clear Customizations,清除自定义
+"Drop the site's arrangement of this sidebar and every person's own, so what you save here is what shows.",清除本站点及每个人对该侧边栏的编排，使你在此保存的样式直接生效。
+"Put <b>{0}</b> back to the sidebar its app ships? This removes the site's arrangement and every person's own, so nobody keeps a customization of this module.",将 <b>{0}</b> 恢复为应用自带的侧边栏？这将清除站点和每个人的编排，任何人都不会保留对该模块的自定义。
+{0} is back to standard,{0} 已恢复为标准样式
+the site's,站点的编排
+what the apps ship,应用自带的样式
+the sidebar generated from this module's contents,由该模块内容自动生成的侧边栏
+Put this sidebar back to the site's arrangement? Everything you have arranged here is dropped.,将此侧边栏恢复为站点的编排？你在此做的所有编排都会丢失。
+"Put this sidebar back to what the apps ship? Everything the site has arranged here is dropped, for everyone.",将此侧边栏恢复为应用自带的样式？站点在此做的所有编排都会对所有人失效。
+"Stop shipping this sidebar with {0}? Its document and its exported file are both removed, and the module goes back to the sidebar generated from its contents.",不再随 {0} 发布此侧边栏？其文档和导出文件都会被删除，该模块将改回由自身内容自动生成的侧边栏。
+Sidebar reset to the site's,侧边栏已恢复为站点的编排
+Sidebar reset for everyone,已为所有人重置侧边栏
+Sidebar is no longer shipped with {0},侧边栏不再随 {0} 发布
+"Drag to reorder, and under a section to put an entry in it. The eye takes an entry off the sidebar; the pencil renames one and says how a section draws.",拖动可排序，拖到分区下可放入该分区。眼睛图标将条目从侧边栏移除，铅笔图标可重命名并设置分区的显示方式。
+"Drag to reorder, and under a section to put an entry in it. The eye takes an entry off the sidebar; the pencil renames it.",拖动可排序，拖到分区下可放入该分区。眼睛图标将条目从侧边栏移除，铅笔图标可重命名。
+Drop this arrangement and go back to {0}.,放弃当前编排，恢复为{0}。
+This module has nothing to arrange,该模块没有可编排的内容
+The sidebar as this arrangement leaves it.,按当前编排后的侧边栏效果。
+Nothing on the sidebar,侧边栏上没有任何内容
+Could not load the sidebar. Please try again.,无法加载侧边栏，请重试。
+Add to the Sidebar,添加到侧边栏
+Links To,关联到
+{0} is already on the sidebar,{0} 已在侧边栏中
+"{0} was hidden, and is back on the sidebar",{0} 原已隐藏，现已重新显示在侧边栏
+"Draw it as a row with its entries nested under it, rather than as a heading over them.",以行内嵌套的方式显示其条目，而不是作为条目标题。
+Start Closed,默认收起
+Leave it empty to keep the one it inherits.,留空则沿用继承的设置。
+Rename Entry,重命名条目
+There is already a section called {0}.,已存在名为 {0} 的分区。
+Nothing left to navigate to,没有可导航的内容
+"A sidebar needs at least one entry that leads somewhere. Put one back, or use Reset to drop this arrangement.",侧边栏至少需要一个可跳转的条目。请恢复一个条目，或使用“重置”放弃当前编排。
+My Space,我的空间
+Could not open Settings. Please refresh the page.,无法打开设置，请刷新页面。
+Could not open the dock manager. Please refresh the page.,无法打开 Dock 管理器，请刷新页面。
+Collapse sidebar,收起侧边栏
+Expand sidebar,展开侧边栏
+Arrange,编排
+Arranging,编排中
+Sidebar Menu,侧边栏菜单
+Set <strong>{0}</strong> = <em>?</em> to auto complete,将 <strong>{0}</strong> 设为 <em>?</em> 可自动补全
+Notification categories,通知分类
+No New Notifications,没有新通知
+You have no new notifications,你没有新通知
+Upcoming events,即将开始的事件
+No email account associated with the User. Please add an account under User > Settings > User Emails.,该用户未关联邮箱账户。请在“用户 > 设置 > 用户邮箱”中添加账户。
+Incorrect configuration,配置有误
+Please configure the start field for this Doctype in the controller file.,请在该单据类型的控制器文件中配置开始日期字段。
+Quarter Day,季度日
+Gantt View Mode,甘特图视图模式
+{0} missing,缺少 {0}
+"For comparison, use >5, <10 or =324.\nFor ranges, use 5:10 (for values between 5 & 10).",用于比较时，可用 >5、<10 或 =324。\n用于区间时，可用 5:10（表示 5 到 10 之间的值）。
+Failed to load Kanban board,看板加载失败
+Board Settings,看板设置
+How cards look in the new Kanban experience.,新版看板中卡片的显示方式。
+Board Name,看板名称
+Footer Date,页脚日期
+Which timestamp to show in the card footer.,卡片页脚显示哪个时间。
+ID or a text field.,ID 或文本字段。
+Attach Image field for card thumbnail.,用作卡片缩略图的“附加图片”字段。
+Show Assigned To,显示指派给
+Show Tags on Cards,在卡片上显示标签
+"The field cards are grouped into columns by, and the column list.",卡片按哪个字段分列，以及列的清单。
+Column Field,分列字段
+Select field whose options become the board columns.,选择字段，其选项将作为看板的列。
+Fields shown on cards and in the hover preview.,卡片上和悬停预览中显示的字段。
+Card Fields,卡片字段
+Preview Fields,预览字段
+Swimlanes,泳道
+Fields the board can group cards into swimlanes by.,看板可将卡片按这些字段分入泳道。
+Swimlanes (Group By),泳道（分组依据）
+Board settings saved,看板设置已保存
+My Action,我的操作
+My Bulk,我的批量操作
+Clear selection,清除选择
+{0} selected,已选择 {0} 项
+No Kanban Board specified.,未指定看板。
+Kanban Board {0} not found.,未找到看板 {0}。
+Save Filters,保存筛选条件
+Copy this board to change its setup,复制此看板以修改其设置
+{0} (Copy),{0}（副本）
+Duplicate Kanban Board,复制看板
+Could not move {0} cards,无法移动 {0} 张卡片
+Could not move {0},无法移动 {0}
+Loading groups…,正在加载分组……
+Could not load groups.,无法加载分组。
+Not set,未设置
+No cards to group.,没有可分组的卡片。
+Created {0},已创建 {0}
+Updated {0},已更新 {0}
+Set {0}…,设置 {0}……
+Open in New Tab,在新标签页中打开
+Move to,移动到
+Add assignee,添加指派对象
+Unassign,取消指派
+Unassign {0} from {1}?,取消 {0} 对 {1} 的指派？
+Unassigned {0},已取消 {0} 的指派
+Card title…,卡片标题……
+Add card,添加卡片
+The card was saved in another column,该卡片已保存到其他列
+{0} of {1} cards could not be moved,{1} 张卡片中有 {0} 张无法移动
+Some cards were saved in another column,部分卡片已保存到其他列
+Manage Layouts,管理版面
+No saved layouts yet,还没有保存的版面
+Layouts you create will show up here.,你创建的版面会显示在这里。
+Delete layout <strong>{0}</strong>?,删除版面 <strong>{0}</strong>？
+Layout <b>{0}</b> deleted,版面 <b>{0}</b> 已删除
+Search by label or field name,按标签或字段名搜索
+Layout name,版面名称
+Available to all users,所有用户可用
+Exported to the module and shipped with its app,已导出到模块并随应用发布
+Filters & Sorting,筛选与排序
+Descending,降序
+Ascending,升序
+Edit layout,编辑版面
+Create layout,创建版面
+Layout name is required,版面名称为必填项
+Module is required for a standard layout,标准版面必须指定模块
+A layout with this name already exists,已存在同名的版面
+Select at least one field,请至少选择一个字段
+Layout <b>{0}</b> updated,版面 <b>{0}</b> 已更新
+Layout <b>{0}</b> created,版面 <b>{0}</b> 已创建
+Create Layout,新建版面
+added,已添加
+removed,已移除
+Nothing here yet,这里还没有内容
+No access,无权限
+You don't have permission to view this.,你没有查看权限。
+Could not load this tab.,无法加载此标签页。
+Default updated,默认值已更新
+Default removed,默认值已移除
+Print Formats,打印格式
+Email Templates,邮件模板
+Global Search,全局搜索
+Could not update,无法更新
+Some settings tabs may not load. Please refresh the page.,部分设置标签页可能无法加载，请刷新页面。
+DocType Settings,单据类型设置
+Open file in new tab,在新标签页中打开文件
+Copy file URL to clipboard,复制文件链接
+Preview not available for this file type.,该文件类型不支持预览。
+Open file,打开文件
+Only files up to {0} MB are supported for preview.,仅支持预览不超过 {0} MB 的文件。
+Showing {0} of {1} rows and {2} of {3} columns.,显示 {0}/{1} 行，{2}/{3} 列。
+Showing {0} of {1} rows.,显示 {0}/{1} 行。
+Showing {0} of {1} columns.,显示 {0}/{1} 列。
+Resizing preview...,正在调整预览……
+Condition based field,条件字段
+Heading {0},标题 {0}
+Paragraph,段落
+Italic,斜体
+Underline,下划线
+Strikethrough,删除线
+Remove formatting,清除格式
+Blockquote,引用
+Code block,代码块
+Insert link,插入链接
+Insert image,插入图片
+Insert video,插入视频
+Numbered list,有序列表
+Bullet list,无序列表
+Task list,任务列表
+Increase indent,增加缩进
+Decrease indent,减少缩进
+Subscript,下标
+Superscript,上标
+Text direction,文字方向
+Text color,文字颜色
+Background color,背景颜色
+{0}: {1} did not match any results.,{0}：{1} 没有匹配的结果。
+No addresses added yet,还没有添加地址
+This feature is deprecated and may be removed in a future release,该功能已弃用，可能在后续版本中移除
+No contact details,没有联系方式
+No contacts added yet,还没有添加联系人
+Settings from across the system that apply to {0}.,系统各处适用于 {0} 的设置。
+No related settings,没有相关设置
+No settings from other areas are linked to {0}.,没有其他区域的设置关联到 {0}。
+"Control who can access {0}, by role.",按角色控制谁可以访问 {0}。
+Add role,添加角色
+No roles have access yet.,还没有任何角色拥有访问权限。
+Only own,仅本人
+Permission row not found after add. Please refresh.,添加后未找到权限行，请刷新。
+Permission row not found after conversion. Please refresh.,转换后未找到权限行，请刷新。
+Granted,已授权
+Reset {0} permissions to their default? This removes all customizations.,将 {0} 的权限恢复为默认？这将清除所有自定义内容。
+Permissions reset,权限已重置
+Permissions for this doctype have been customized.,该单据类型的权限已被自定义。
+Open Role Permissions Manager,打开角色权限管理器
+Configure naming series options for {0}. You can choose a series when creating a document.,配置 {0} 的命名序列选项，创建单据时可以选择序列。
+Add Series,添加序列
+This doctype isn't named by a series.,该单据类型不使用序列命名。
+Delete series {0}?,删除序列 {0}？
+e.g. {0},例如：{0}
+Next: {0},下一个：{0}
+Current value,当前值
+The next generated name continues after this number.,下一个生成的名称将在此数字之后继续。
+Edit Series,编辑序列
+Series already exists,序列已存在
+Series updated,序列已更新
+Series added,序列已添加
+Series removed,序列已移除
+Naming Rules,命名规则
+Configure conditional naming rules for {0}. Rules are applied in priority order.,配置 {0} 的条件命名规则，规则按优先级依次应用。
+No rules found.,没有找到规则。
+Delete naming rule {0}?,删除命名规则 {0}？
+Manage priority,管理优先级
+Configure fields to show when searching for {0} globally. Open global search via {1}.,配置全局搜索 {0} 时显示的字段。使用 {1} 打开全局搜索。
+Include {0} in global search,将 {0} 纳入全局搜索
+{0} documents become searchable for everyone in this site,本站点所有人都可以搜索{0}单据
+Configure fields,配置字段
+Added to global search,已加入全局搜索
+Removed from global search,已从全局搜索移除
+Updating global search,正在更新全局搜索
+Global search updated,全局搜索已更新
+Reuse email templates when emailing {0}.,向 {0} 发邮件时复用邮件模板。
+Remove Default,移除默认
+No Email Templates found,没有找到邮件模板
+Create a template to reuse when emailing {0}.,创建模板以便向 {0} 发邮件时复用。
+New Template,新建模板
+Setup a multi-step workflow for {0}.,为 {0} 设置多步工作流。
+No Workflows found,没有找到工作流
+Create a workflow to control the states {0} moves through.,创建工作流以控制 {0} 流转的状态。
+New Workflow,新建工作流
+Restrict specific users to specific {0} records.,限制特定用户只能访问特定的{0}记录。
+No user permissions yet.,还没有用户权限。
+Delete this user permission?,删除这条用户权限？
+All DocTypes,全部单据类型
+Add User Permission,添加用户权限
+User permission added,用户权限已添加
+Configure print formats for {0}. You can choose a format when printing or emailing a document.,配置 {0} 的打印格式。打印或邮件发送单据时可以选择格式。
+No Print Formats found,没有找到打印格式
+Create a print format to customize how {0} prints.,创建打印格式以自定义 {0} 的打印样式。
+Set as default,设为默认
+No document to preview,没有可预览的单据
+Create a {0} document first to preview this print format.,请先创建一张{0}单据以预览此打印格式。
+Preview: {0},预览：{0}
+Send automatic notifications for events on any {0}.,为任意 {0} 的事件发送自动通知。
+No notifications configured,没有配置通知
+Create a notification to alert users about {0} events.,创建通知，在 {0} 事件发生时提醒用户。
+Set up your company,设置你的公司
+We'll use these to create your company and its accounts.,我们将用这些信息创建你的公司及其科目。
+"A short code added to account names, like Cash - AC.",添加到科目名称后的简码，例如 现金 - AC。
+The standard chart for your country works for most businesses.,你所在国家的标准科目表适用于大多数企业。
+Add demo data so you can explore,添加演示数据以便体验
+You can delete it anytime.,随时可以删除。
+Please pick a company name other than Company.,请选择“Company”之外的公司名称。
+Please enter a valid date for when your financial year begins.,请输入有效的财年起始日期。
+Company Abbreviation cannot have more than {0} characters,公司简码不能超过 {0} 个字符
+Add Raw Material,添加原材料
+Expand / Collapse All,全部展开/折叠
+Convert to Sub Assembly,转为半成品
+Convert to Phantom Item,转为虚拟物料
+Delete Item,删除物料
+"Enabling this will do the following:\n<ul style=""padding-left:16px"">\n<li>Make the rate column of all Packed/Bundle Items tables editable.</li>\n<li>Calculate the prices of all <a href=""/desk/product-bundle"" rel=""noopener noreferrer"">Product Bundles</a> in the Items table, based on the prices of its child Items, specified in the Packed/Bundle Items table. </li>\n</ul>\nNote: If this is enabled, updating the rate of the Product Bundle in the Items table will not change its price. It will get reset to the price based on its Child Items on saving the doc.","启用后将执行以下操作：\n<ul style=""padding-left:16px"">\n<li>使所有“打包/组合物料”表的单价列可编辑。</li>\n<li>根据“打包/组合物料”表中指定的子件价格，计算“物料”表中所有<a href=""/desk/product-bundle"" rel=""noopener noreferrer"">产品组合</a>的价格。</li>\n</ul>\n注意：启用后，在“物料”表中修改产品组合的单价不会改变其价格，保存单据时会按子件价格重新计算。"
+Tax detail table fetched from item master as a string and stored in this field.\nUsed for Taxes and Charges,税率明细表由物料主数据以字符串形式取出并保存在此字段中。\n用于税费计算
+"Scorecard variables can be used, as well as:\n{total_score} (the total score from that period),\n{period_number} (the number of periods to present day)",可使用评分卡变量，以及：\n{total_score}（该期间的总分），\n{period_number}（截至当日的期数）
+Default source Warehouse,默认源仓库
+Scheduling & Costing,排产与成本
+Stock Entries,库存分录
+Total Completed qty,完工数量
+To Manufacture,生产数量
+Process Loss qty,损耗数量
+Time logs,工时记录
+Backflush Materials from WIP Warehouse,从在制品仓倒冲材料
+Pending qty,待处理数量
+"If enabled, formula for <b>Required Qty</b>: <br>\nRequired Qty (BOM) - <a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">Projected Qty</a>. <br> This helps avoid over-ordering.","启用后，<b>所需数量</b>的计算公式为：<br>\n所需数量（BOM） - <a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">预计数量</a>。<br> 有助于避免超量订购。"
+Raw Material Group Warehouse,原材料组仓库
+Optional group warehouse. Raw material availability is checked across its child warehouses; material is still received into For Warehouse.,可选的组仓库。原材料可用量会在其下级仓库中检查；物料仍收入“目标仓库”。
+"If enabled, formula for <b>Qty to Order</b>: <br>\nRequired Qty (BOM) - <a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">Projected Qty</a>. <br> This helps avoid over-ordering.","启用后，<b>需订购数量</b>的计算公式为：<br>\n所需数量（BOM） - <a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">预计数量</a>。<br> 有助于避免超量订购。"
+Task Progress,任务进度
+"Partial stock can be reserved. For example, If you have a Sales Order of 100 units and the Available Stock is 90 units then a Stock Reservation Entry will be created for 90 units.",可以部分预留库存。例如销售订单为 100 件而可用库存为 90 件时，系统会为 90 件创建库存预留分录。
+"If enabled, do not update serial / batch values in the stock transactions on creation of auto Serial \n / Batch Bundle.",如勾选，自动创建序列号/批号捆绑包时，不会更新库存业务中的序列号/批号值。
+"Simple Python formula applied on Reading fields.<br> Numeric eg. 1: <b>reading_1 &gt; 0.2 and reading_1 &lt; 0.5</b><br>\nNumeric eg. 2: <b>mean &gt; 3.5</b> (mean of populated fields)<br>\nValue based eg.:  <b>reading_value in (""A"", ""B"", ""C"")</b>","应用于读数字段的简单 Python 公式。<br> 数值示例 1：<b>reading_1 &gt; 0.2 and reading_1 &lt; 0.5</b><br>\n数值示例 2：<b>mean &gt; 3.5</b>（已填字段的平均值）<br>\n取值示例：<b>reading_value in (""A"", ""B"", ""C"")</b>"
+Finished Good Quantity,成品数量
+Adjustment Entry,调整分录
+Per Day\nShift Time (In Hours) * No of Workstations * No of Shift,每天\n班次时长（小时）* 工作站数量 * 班次数
+"Example: ABCD.#####\nIf series is set and Serial No is not mentioned in transactions, then automatic serial number will be created based on this series. If you always want to explicitly mention Serial Nos for this item. leave this blank.",示例：ABCD.#####\n如果设置了序列且单据中未填写序列号，将按此序列自动生成序列号。如果你总是希望为物料明确填写序列号，请留空。
+Minimum quantity should be as per Stock UOM,最小数量应以库存单位为基准
+If <b>Enabled</b> - Reconciliation happens on the <b>Advance Payment posting date</b><br>\nIf <b>Disabled</b> - Reconciliation happens on oldest of 2 Dates: <b>Invoice Date</b> or the <b>Advance Payment posting date</b><br>,若<b>启用</b>：在<b>预付款记账日期</b>进行核销<br>\n若<b>禁用</b>：在<b>发票日期</b>或<b>预付款记账日期</b>两者中较早的日期核销<br>
+Default Work In Progress Warehouse,默认在制品仓库
+Distribute Additional Costs Based On,附加成本分摊依据
+Total Number of Booked Depreciations,已计提折旧总次数
+Task Name,任务名称
+Email Campaign For,邮件营销对象
+Stage,阶段
+"Leave blank for home.\nThis is relative to site URL, for example ""about"" will redirect to ""https://yoursitename.com/about""",留空表示首页。\n此处相对于站点网址，例如“about”会跳转到“https://yoursitename.com/about”
+"System will use the latest saved Currency Exchange rate on or before the transaction date, however old it is. <br>\nUncheck to ignore rates older than Stale Days and fetch a fresh rate from the exchange rate provider instead.",系统将使用交易日期当日或之前最近一次保存的汇率，无论其有多久远。<br>\n取消勾选则忽略超过“过期天数”的汇率，改为从汇率服务商获取最新汇率。
+"The percentage you are allowed to bill more against the amount ordered. For example, if the order value is $100 for an item and tolerance is set as 10%, then you are allowed to bill up to $110",允许超出订单金额开票的百分比。例如订单金额为 $100，容差设为 10%，则最多可开票 $110
+Role Allowed to over bill,允许超额开票的角色
+Allow multi-currency invoices against single party account,允许单一往来科目使用多币种发票
+Financial reports will be generated using GL Entry doctypes (should be enabled if Period Closing Voucher is not posted for all years sequentially or missing),财务报表将基于总账分录生成（若各年度未连续做结账凭证或凭证缺失，建议启用）
+"System will do an implicit conversion using the pegged currency. <br>\nEx: Instead of AED -&gt; INR, system will do AED -&gt; USD -&gt; INR using the pegged exchange rate of AED against USD.",系统将使用钉住汇率进行隐式换算。<br>\n例如：不做 AED -&gt; INR，而是按 AED 对 USD 的钉住汇率做 AED -&gt; USD -&gt; INR。
+"Only values between [0,1) are allowed. Like {0.00, 0.04, 0.09, ...}\nEx: If allowance is set at 0.07, accounts that have balance of 0.07 in either of the currencies will be considered as zero balance account","只允许 [0,1) 之间的值，例如 {0.00, 0.04, 0.09, ...}\n例如：若容差设为 0.07，则任一币种余额为 0.07 的科目将被视为零余额科目"
+Template Name,模板名称
+Select Dispatch Address,选择发货地址
+Only Deduct Tax On Excess Amount,仅对超出部分计税
+Conditions will be applied on all the selected items combined.,条件将应用于所选物料的合计。
+System will notify to increase or decrease quantity or amount,系统将提示增加或减少数量或金额
+Page to show on the website,网站显示的页面
+"<p>Set context before rendering a template. Example:</p><p>\n</p><div><pre><code>\ncontext.project = frappe.get_doc(""Project"", frappe.form_dict.name)\n</code></pre></div>","<p>渲染模板前请先设置上下文。示例：</p><p>\n</p><div><pre><code>\ncontext.project = frappe.get_doc(""Project"", frappe.form_dict.name)\n</code></pre></div>"
+"Brand is what appears on the top-left of the toolbar. If it is an image, make sure it\nhas a transparent background and use the &lt;img /&gt; tag. Keep size as 200px x 30px",品牌显示在工具栏左上角。若为图片，请确保背景透明并使用 &lt;img /&gt; 标签，尺寸保持 200px x 30px
+Snippet Type,片段类型
+Leave blank to make this snippet available for all document types,留空则该片段对所有单据类型可用
+Export this snippet to its module so it ships with the app. Requires developer mode.,将该片段导出到其模块，以便随应用发布。需要开发者模式。
+"Ship as files in an app, tracked in git. Developer mode only; duplicate to edit.",以文件形式随应用发布，由 git 管理。仅开发者模式可用；请复制后再编辑。
+Write the format by hand in HTML and Jinja.,手工用 HTML 和 Jinja 编写格式。
+Send raw ESC/POS commands to a label or thermal printer.,向标签或热敏打印机发送原始 ESC/POS 指令。
+Preview Image,预览图
+Auto-generated thumbnail of this format. Use the 'Generate Preview' button to (re)generate.,该格式自动生成的缩略图。使用“生成预览”按钮可（重新）生成。
+Classic Format Data,经典格式数据
+Edit in the visual builder.,在可视化构建器中编辑。
+Show Colon After Field Labels,字段标签后显示冒号
+"Show a colon after field labels (e.g. ""Name:""), matching the older print style.",在字段标签后显示冒号（如“名称:”），与旧版打印样式一致。
+Draft Data,草稿数据
+Leave blank to make this template available in all print formats,留空则该模板在所有打印格式中可用
+Load the template from a file in a module instead of the Template field. Requires developer mode.,从模块中的文件加载模板，而不是使用“模板”字段。需要开发者模式。
+"Path to the template file inside the app, e.g. templates/print_formats/my_template.html",应用内模板文件的路径，例如 templates/print_formats/my_template.html
+Row Data,行数据
+These announcements will appear inside an alert below the Navbar.,这些公告会显示在导航栏下方的提示条中。
+Widget Color,组件颜色
+Is Dismissible,可关闭
+Value in File,文件中的值
+No. of Rows,行数
+Row Numbers,行号
+Map To,映射到
+Select Options,选项列表
+Settings DocType,设置单据类型
+A Single (Settings) doctype.,单条（设置）类单据。
+Setting Field,设置字段
+Fieldname on the Settings DocType to surface for this doctype.,该单据类型要展示的、位于设置单据类型上的字段名。
+"Marks this DocType as deprecated. It will continue to work, but users will be warned against using it.",将该单据类型标记为已弃用。它仍可正常使用，但会提醒用户避免使用。
+Include in Import Template,包含在导入模板中
+Enable this option to include the field in the data import template,启用后，该字段会包含在数据导入模板中
+Document Permissions,单据权限
+Pages,页面
+Change the starting / current sequence number of an existing series. <br>\n\nWarning: Incorrectly updating counters can prevent documents from getting created.,修改已有序列的起始/当前编号。<br>\n\n警告：错误地更新计数器可能导致单据无法创建。
+Configure how amended documents will be named.<br>\n\nDefault behaviour is to follow an amend counter which adds a number to the end of the original name indicating the amended version. <br>\n\nDefault Naming will make the amended document to behave same as new documents.,配置修订单据的命名方式。<br>\n\n默认行为是使用修订计数器，在原名称末尾添加序号以表示修订版本。<br>\n\n选择“默认命名”则修订单据的行为与新单据一致。
+"Settings from Single doctypes applied to a doctype, with one standard and one custom record shown in DocType Settings → General.",适用于某单据类型的单条设置，标准与自定义记录各显示一条，位于“单据类型设置 → 通用”。
+Applies to DocType,适用的单据类型
+The DocType these settings apply to.,这些设置适用的单据类型。
+Standard maps are shipped with an app and can only be changed in Developer Mode. Leave unchecked for user-created (custom) maps.,标准映射随应用发布，只能在开发者模式下修改。用户创建的（自定义）映射请勿勾选。
+"When active, this map is used for its doctype. An active custom map overrides the standard one.",启用后，该映射会用于其单据类型。启用的自定义映射会覆盖标准映射。
+Mappings,映射
+Each row maps a field on a Single (Settings) doctype to surface for this doctype.,每行将单条（设置）单据类型上的一个字段映射为对该单据类型展示。
+0 - too guessable: risky password.\n<br>\n1 - very guessable: protection from throttled online attacks. \n<br>\n2 - somewhat guessable: protection from unthrottled online attacks.\n<br>\n3 - safely unguessable: moderate protection from offline slow-hash scenario.\n<br>\n4 - very unguessable: strong protection from offline slow-hash scenario.,0 - 极易猜到：密码不安全。\n<br>\n1 - 很容易猜到：可抵御限速的在线攻击。\n<br>\n2 - 较容易猜到：可抵御不限速的在线攻击。\n<br>\n3 - 难以猜到：对离线慢哈希场景有中等防护。\n<br>\n4 - 极难猜到：对离线慢哈希场景有强防护。
+OTP placeholder should be defined as <code>{{ otp }}</code>,一次性密码占位符应写为 <code>{{ otp }}</code>
+Import Action,导入操作
+Someone who can log in to your site.,可以登录你站点的人。
+"<a href=""https://docs.frappe.io/framework/user/en/api/rest#1-token-based-authentication"" target=""_blank"">\n  Click here to learn about token-based authentication\n</a>","<a href=""https://docs.frappe.io/framework/user/en/api/rest#1-token-based-authentication"" target=""_blank"">\n  点击了解基于令牌的认证\n</a>"
+Pinned sits beside the sidebar. Floating slides in from the left edge.,常驻模式位于侧边栏旁，浮动模式从左边缘滑入。
+Report Settings,报表设置
+Split view in reports,报表分屏视图
+Open linked documents in a side panel instead of navigating away from the report.,在侧边面板中打开关联单据，无需离开报表。
+The app whose dock lists this module. A custom module may leave it empty and stand on its own.,其 Dock 列出该模块的应用。自定义模块可以留空并独立存在。
+Insert or Update Records,插入或更新记录
+<pre>*  *  *  *  *\n┬  ┬  ┬  ┬  ┬\n│  │  │  │  │\n│  │  │  │  └ day of week (0 - 6) (0 is Sunday)\n│  │  │  └───── month (1 - 12)\n│  │  └────────── day of month (1 - 31)\n│  └─────────────── hour (0 - 23)\n└──────────────────── minute (0 - 59)\n\n---\n\n* - Any value\n/ - Step values\n</pre>,<pre>*  *  *  *  *\n┬  ┬  ┬  ┬  ┬\n│  │  │  │  │\n│  │  │  │  └ 星期几 (0 - 6)（0 为周日）\n│  │  │  └───── 月份 (1 - 12)\n│  │  └────────── 日期 (1 - 31)\n│  └─────────────── 小时 (0 - 23)\n└──────────────────── 分钟 (0 - 59)\n\n---\n\n* - 任意值\n/ - 步长\n</pre>
+"Send this notification's content from an Email Template instead of Subject/Message. Also used for the bell if Send System Notification is checked. The template is looked up fresh on every send, so editing it later changes what gets sent here too.",从邮件模板发送此通知的内容，而不是使用主题/正文。若勾选“发送系统通知”，铃铛也使用该模板。每次发送时都会重新读取模板，因此之后修改模板也会改变此处发送的内容。
+"Track if your email has been opened by the recipient.\n<br>\nNote: If you're sending to multiple recipients, even if 1 recipient reads the email, it'll be considered ""Opened""",跟踪收件人是否打开了你的邮件。\n<br>\n注意：若同时发送给多个收件人，只要有 1 位收件人阅读，即视为“已打开”
+"Naming Options:\n<ol><li><b>field:[fieldname]</b> - By Field</li><li><b>naming_series:</b> - By Naming Series (field called naming_series must be present)</li><li><b>Prompt</b> - Prompt user for a name</li><li><b>[series]</b> - Series by prefix (separated by a dot); for example PRE.#####</li>\n<li><b>format:EXAMPLE-{MM}morewords{fieldname1}-{fieldname2}-{#####}</b> - Replace all braced words (fieldnames, date words (DD, MM, YY), series) with their value. Outside braces, any characters can be used.</li></ol>",命名选项：\n<ol><li><b>field:[fieldname]</b> - 按字段</li><li><b>naming_series:</b> - 按命名序列（必须存在名为 naming_series 的字段）</li><li><b>Prompt</b> - 提示用户输入名称</li><li><b>[series]</b> - 带前缀的序列（以点分隔），例如 PRE.#####</li>\n<li><b>format:EXAMPLE-{MM}morewords{fieldname1}-{fieldname2}-{#####}</b> - 将大括号中的内容（字段名、日期词（DD、MM、YY）、序列）替换为对应值。大括号之外可使用任意字符。</li></ol>
+This field will appear only if the fieldname defined here has value OR the rules are true (examples):\nmyfield\neval:doc.myfield=='My Value'\neval:doc.age&gt;18,仅当此处定义的字段名有值或规则成立时，该字段才会显示（示例）：\nmyfield\neval:doc.myfield=='My Value'\neval:doc.age&gt;18
+"To add dynamic values from the document, use jinja tags like\n\n<div>\n<pre><code>{ ""id"": ""{{ doc.name }}"" }</code>\n</pre>\n</div>","如需从单据中获取动态值，可使用如下 jinja 标签\n\n<div>\n<pre><code>{ ""id"": ""{{ doc.name }}"" }</code>\n</pre>\n</div>"
+"URIs for receiving authorization code once the user allows access, as well as failure responses. Typically a REST endpoint exposed by the Client App.\n<br>e.g. http://hostname/api/method/frappe.integrations.oauth2_logins.login_via_facebook",用户授权后用于接收授权码以及接收失败响应的 URI。通常是客户端应用提供的 REST 接口。\n<br>例如 http://hostname/api/method/frappe.integrations.oauth2_logins.login_via_facebook
+Unique ID assigned by the client developer used to identify the client software to be dynamically registered.\n<br>\n<b>Should remain same</b> across multiple versions or updates of the software.,由客户端开发者分配的、用于动态注册时标识客户端软件的唯一 ID。\n<br>\n<b>必须保持不变</b>，即使软件有多个版本或更新。
+A version identifier string for the client software.\n<br>\nThe value of the should change on any update of the client software with the same Software ID.,客户端软件的版本标识字符串。\n<br>\n同一软件 ID 的客户端软件更新时，该值应随之变化。
+"The Client ID obtained from the Google Cloud Console under <a href=""https://console.cloud.google.com/apis/credentials"">\n""APIs &amp; Services"" &gt; ""Credentials""\n</a>","在 Google Cloud Console 的 <a href=""https://console.cloud.google.com/apis/credentials"">\n“API 和服务” &gt; “凭据”\n</a> 中获取的客户端 ID"
+"The browser API key obtained from the Google Cloud Console under <a href=""https://console.cloud.google.com/apis/credentials"">\n""APIs &amp; Services"" &gt; ""Credentials""\n</a>","在 Google Cloud Console 的 <a href=""https://console.cloud.google.com/apis/credentials"">\n“API 和服务” &gt; “凭据”\n</a> 中获取的浏览器 API 密钥"
+"The project number obtained from Google Cloud Console under <a href=""https://console.cloud.google.com/iam-admin/settings"">\n""IAM &amp; Admin"" &gt; ""Settings""\n</a>","在 Google Cloud Console 的 <a href=""https://console.cloud.google.com/iam-admin/settings"">\n“IAM 和管理” &gt; “设置”\n</a> 中获取的项目编号"
+"New line separated list of allowed public client URLs (eg <code>https://frappe.io</code>), or <code>*</code> to accept all.\n<br>\nPublic clients are restricted by default.",允许的公共客户端 URL 列表，以换行分隔（例如 <code>https://frappe.io</code>），或使用 <code>*</code> 接受全部。\n<br>\n默认情况下公共客户端受限。
+1 Currency = [?] Fraction\nFor e.g. 1 USD = 100 Cent,1 货币 = [?] 辅币单位\n例如 1 USD = 100 Cent
+"A person you deal with, at a customer, supplier or anywhere else.",与你往来的个人，可能是客户、供应商或其他方面的人员。
+"A postal address of a customer, supplier, company or contact.",客户、供应商、公司或联系人的通讯地址。
+"<h4>Default Template</h4>\n<p>Uses <a href=""http://jinja.pocoo.org/docs/templates/"">Jinja Templating</a> and all the fields of Address (including Custom Fields if any) will be available</p>\n<pre><code>{{ address_line1 }}&lt;br&gt;\n{% if address_line2 %}{{ address_line2 }}&lt;br&gt;{% endif -%}\n{{ city }}&lt;br&gt;\n{% if state %}{{ state }}&lt;br&gt;{% endif -%}\n{% if pincode %} PIN:  {{ pincode }}&lt;br&gt;{% endif -%}\n{{ country }}&lt;br&gt;\n{% if phone %}Phone: {{ phone }}&lt;br&gt;{% endif -%}\n{% if fax %}Fax: {{ fax }}&lt;br&gt;{% endif -%}\n{% if email_id %}Email: {{ email_id }}&lt;br&gt;{% endif -%}\n</code></pre>","<h4>默认模板</h4>\n<p>使用 <a href=""http://jinja.pocoo.org/docs/templates/"">Jinja 模板</a>，Address 的所有字段（含自定义字段）均可用</p>\n<pre><code>{{ address_line1 }}&lt;br&gt;\n{% if address_line2 %}{{ address_line2 }}&lt;br&gt;{% endif -%}\n{{ city }}&lt;br&gt;\n{% if state %}{{ state }}&lt;br&gt;{% endif -%}\n{% if pincode %} PIN:  {{ pincode }}&lt;br&gt;{% endif -%}\n{{ country }}&lt;br&gt;\n{% if phone %}Phone: {{ phone }}&lt;br&gt;{% endif -%}\n{% if fax %}Fax: {{ fax }}&lt;br&gt;{% endif -%}\n{% if email_id %}Email: {{ email_id }}&lt;br&gt;{% endif -%}\n</code></pre>"
+Step Key,步骤标识
+Detail,详情
+Truncated to 5k characters.,已截断为 5k 字符。
+"What the action threw as a message, if it failed.",操作失败时抛出的消息内容。
+The step condition that skipped this step.,导致跳过该步骤的步骤条件。
+Condition Values,条件值
+Small structured result returned by the action.,操作返回的小型结构化结果。
+Blocked for child tables (istable). Required for document and date-based triggers.,子表（istable）不可用。文档触发器和日期触发器必填。
+Enabling requires at least one action and a valid trigger.,启用至少需要一个操作和一个有效的触发器。
+Trigger,触发器
+Doc Created,文档创建
+Doc Updated,文档更新
+Field Value Changed,字段值变更
+Doc Deleted,文档删除
+Doc Submitted,文档提交
+Doc Cancelled,文档作废
+Date Based,按日期
+Custom Event,自定义事件
+Trigger Field,触发字段
+Empty = any value.,留空表示任意值。
+Matches the event name passed to emit().,匹配传给 emit() 的事件名称。
+Date Field,日期字段
+Date Offset (Days),日期偏移（天）
+Date Direction,日期方向
+"Standard 5-field cron, for example <code>0 9 * * 1</code>.",标准的 5 段式 cron，例如 <code>0 9 * * 1</code>。
+Next Run,下次运行
+Match Fields,匹配字段
+Advanced Condition,高级条件
+Advanced Expression using Python,使用 Python 的高级表达式
+"Optional. For logic the match fields cannot express, such as OR groups. The document is available as <code>doc</code>; the match fields and this expression must all be true.",可选。用于匹配字段无法表达的逻辑，例如 OR 组合。单据可通过 <code>doc</code> 访问；匹配字段和此表达式必须同时为真。
+Relationships,关联关系
+Revalidate on Run,运行时重新校验
+Re-check filters and condition in the worker before executing.,执行前在工作进程中重新检查筛选条件和表达式。
+Run As,运行身份
+Triggering User,触发用户
+Document Owner,单据所有者
+Automation User,自动化用户
+Stop on Error,出错时停止
+Correlation Key,关联键
+Resume Queue,恢复队列
+Event Payload,事件负载
+Step Type,步骤类型
+Named record alias this action operates on.,该操作处理的具名记录别名。
+Output Alias,输出别名
+Optional alias for the destination reference returned by this action.,该操作返回的目标引用的可选别名。
+Step Condition,步骤条件
+Optional. The step runs only if this expression is true.,可选。仅当该表达式为真时才执行此步骤。
+Related Record Condition,关联记录条件
+Optional. Checked against a related record.,可选。针对关联记录进行检查。
+If,如果
+Else,否则
+"To add dynamic subject, use jinja tags like\n\n<div><pre><code>New {{ doc.doctype }} #{{ doc.name }}</code></pre></div>",如需动态主题，可使用如下 jinja 标签：\n\n<div><pre><code>New {{ doc.doctype }} #{{ doc.name }}</code></pre></div>
+Automation Flow Title,自动化流程标题
+Denormalized so the run survives deletion of its Automation Flow.,冗余存储，使运行记录在其自动化流程被删除后仍可保留。
+Partially Failed,部分失败
+Recursion Depth,递归深度
+Trigger Queue Row,触发器队列表行
+Error Summary,错误摘要
+Snapshot,快照
+Actions Snapshot,操作快照
+"The flow's steps as they were when the run started. A resumed run executes these, not the current flow.",运行开始时的流程步骤。恢复运行时执行这些步骤，而不是当前流程。
+Relationships Snapshot,关联关系快照
+Run State,运行状态
+"Step outputs, record aliases and branch choices a resumed run picks up.",恢复运行时接着使用的步骤输出、记录别名和分支选择。
+"Tuning for the automation engine: dispatch limits, drain behaviour, retention and payload limits.",自动化引擎的调优项：派发上限、消费行为、保留期和负载上限。
+Disable Automations,停用自动化
+Stop dispatching automations site-wide. Queued rows are left untouched.,全站停止派发自动化。已排队的行保持不动。
+Maximum Recursion Depth,最大递归深度
+How many times an automation may trigger another before the chain is refused.,一个自动化在被拒绝前可触发另一个自动化的次数。
+Reliability,可靠性
+Failure Threshold,失败阈值
+Consecutive failures after which a flow is auto-disabled and its owner notified.,连续失败达到该次数后，流程将自动停用并通知其所有者。
+Stale Running Minutes,运行超时分钟数
+How long a claimed row may stay Running before it is assumed crashed and requeued.,已认领的行保持“运行中”多久后被判定为崩溃并重新排队。
+Maximum Attempts,最大尝试次数
+"How many times a claimed row is retried when its run fails outside the flow's own steps, before the row is marked Failed.",当运行在流程自身步骤之外失败时，已认领的行在被标记为失败前重试的次数。
+Drain Seconds,消费秒数
+Seconds a drain may keep claiming batches. 0 derives it from the queue's own timeout.,一次消费可持续认领批次的时间（秒）。0 表示根据队列自身的超时推导。
+Commit Every,每 N 行提交
+Rows a drain runs between commits.,一次消费在两次提交之间处理的行数。
+Retention,保留期
+Queue Retention Days,队列保留天数
+Days a Failed or Skipped queue row is kept before the nightly sweep removes it.,失败或跳过的队列表行在每日清理前保留的天数。
+Limits,限制
+Step Output Limit,步骤输出上限
+"Bytes of output a step may publish to later steps. Larger output is dropped, not failed.",步骤可向后续步骤发布的输出字节数。超出部分会被丢弃，而不是报错。
+Event Payload Limit,事件负载上限
+Bytes an emitted event payload may carry.,单一事件负载可携带的字节数。
+Allow Unregistered Events,允许未注册的事件
+Accept emit() calls for events no app registered through the automation_events hook.,接受对任何未通过 automation_events 钩子注册的事件的 emit() 调用。
+Triggered At,触发时间
+Run After,延迟到
+Null = run as soon as possible. Used by waits and date/cron triggers.,空表示尽快运行。用于等待以及日期/cron 触发器。
+Triggered By,触发者
+Payload for custom emit() events.,自定义 emit() 事件的负载。
+Wait Resume,等待恢复
+Resume Run,恢复运行
+Resume From Step,从某步骤恢复
+Is Optional,可选
+Empty State Message,空状态提示
+Desktop Page,桌面页面
+Apps shows the hook-driven apps screen. Desktop Icons shows the arrangeable desktop icon grid instead.,“应用”显示由钩子驱动的应用界面；“桌面图标”则显示可自由排列的图标网格。
+The module this workspace belongs to. Decides which module's dock entry and sidebar it appears under.,此工作台所属的模块。决定它出现在哪个模块的 Dock 入口和侧边栏下。
+Archive of the previous navigation. Nothing reads it at runtime; it is kept as the migration's source so the conversion to module sidebars can be run again.,旧版导航的存档。运行时不读取，仅作为迁移的来源保留，以便随时重新执行到模块侧边栏的转换。
+"One entry on the dock. `link_type` says what kind of thing it opens, and each kind answers the two questions a click asks -- which page comes up and which shell comes up beside it -- in its own way. A `Sidebar` row *is* the shell: it selects that sidebar and opens its landing route. A `Workspace` row opens a page and derives its shell from the module that owns it. A `URL` row leaves the desk and has no shell at all. Every row also carries its own `icon` and `title`, so the rail reads the way its author wrote it -- blank at an upper layer means inherit. What a row points at *is* its identity, and none of it is stored: re-labelling cannot detach a row from itself, and re-pointing is not an edit but a different row. The same rows at all three layers -- the app's own dock, the site's arrangement and one person's -- told apart by the parent `Dock`, never by the row.",Dock 上的一个条目。`link_type` 说明它打开的是什么，每种类型以自己的方式回答一次点击的两个问题——显示哪个页面、旁边显示哪个外壳。`Sidebar` 行本身就是外壳：它选中该侧边栏并打开其落地路由。`Workspace` 行打开一个页面，并根据拥有它的模块推导外壳。`URL` 行会离开桌面，没有外壳。每行还带有自己的 `icon` 和 `title`，因此 Dock 的显示与作者所写一致——上层留空表示继承。行指向的对象就是它的身份，且这些都不存储：重新命名不会让行与自身脱离，改变指向也不是编辑，而是另一行。三个层级（应用自身的 Dock、站点的编排、个人的编排）使用相同的行，仅通过父级 `Dock` 区分，而不是靠行本身。
+"What kind of thing this entry opens. Spelled the way `Sidebar Item` spells it, so `frappe.ui.sidebar_item.get_route(row)` takes the two page kinds unchanged. `Sidebar` is a value here because a module entry is an entry like any other: it opens the shell, which is the one destination that is not a page.",此条目打开的对象类型。拼写方式与 `Sidebar Item` 一致，因此 `frappe.ui.sidebar_item.get_route(row)` 可以不加改动地处理这两种页面类型。此处 `Sidebar` 也是一个取值，因为模块条目和其他条目一样：它打开外壳，而外壳是唯一不是页面的目标。
+"The record this entry opens, in the doctype `link_type` names. A `Sidebar` target need not exist as a document: most modules have a computed base and no `Sidebar` row at all, so a row of that kind names a shell rather than referencing one, which is why link validation on a `Dock` is a deliberate no-op.",此条目打开的记录，位于 `link_type` 指定的单据类型中。`Sidebar` 目标不必真的存在文档：大多数模块使用计算出的基础侧边栏，根本没有 `Sidebar` 行，因此这类行是在命名一个外壳而不是引用一个外壳，这也是 Dock 上的链接校验被有意设为空操作的原因。
+Where a web address entry goes. A URL row has no shell and is gated by nothing.,网址条目的跳转目标。URL 行没有外壳，也不受任何限制。
+"What the rail draws this entry with. Required when the row *adds* an entry, because nothing below it holds one; optional when it references an entry a lower layer already has, where blank means inherit and filled is an override.",Dock 绘制此条目所用的图标。当该行“新增”条目时必填，因为其下层没有任何可继承的对象；当它引用下层已有的条目时可空，留空表示继承，填写表示覆盖。
+"How this entry reads on the rail. Required when the row adds and optional when it references, exactly as `icon` is -- and outside the row's identity, so re-labelling can never detach a row from itself.",此条目在 Dock 上的显示名称。与 `icon` 相同：新增时必填、引用时可空，且不属于行的身份，因此重新命名绝不会让行与自身脱离。
+"This row *is* the entry, rather than an opinion about one a lower layer holds. Stored rather than inferred from the row carrying a body: under partial opinions a reference may carry an icon and no title, so body-presence stops telling the two apart -- and a reference to a row the app has since deleted would resurrect as a label-less button.",该行“就是”这个条目，而不是对下层条目的某种意见。采用存储而非根据行是否带有内容来推断：在部分意见下，引用也可能带有图标而没有标题，于是“是否有内容”无法区分两者；而对应用已删除行的引用会复活成没有标签的按钮。
+"Kept in the row so an explicitly hidden entry stays hidden when its app later adds entries, instead of reappearing because it is simply absent.",保存在行中，使显式隐藏的条目在其所属应用之后新增条目时仍保持隐藏，而不是因为不存在而重新出现。
+"A site's overrides on a standard (app-shipped) workspace. Site-owned and standard-only: there is no user layer, deliberately -- a private workspace is already yours to edit directly, and a public one is the site's. The merge is split on purpose. Roles, icon, visibility and sequence are a true diff, so an app's later changes to them keep flowing through. Content is a snapshot, so customizing the layout freezes it against app updates: workspace content is nested editor blocks where headings, paragraphs and spacers carry no key at all, and a delta cannot be written against unkeyed prose. Do not ""fix"" this into one or the other; `reset_workspace_customization` is the escape hatch.",站点对标准（应用自带）工作台的覆盖。由站点拥有且仅针对标准工作台：有意不设用户层级——私有工作台本就由你直接编辑，公共工作台则属于站点。合并被有意拆分：角色、图标、可见性和排序是真正的差异合并，因此应用之后对这些项的修改仍会生效；内容则是快照，一旦自定义布局就与应用的更新脱钩，因为工作台内容是由编辑器区块嵌套而成，其中标题、段落和间隔块根本没有键，无法对无键的文本写出增量。不要把它“修正”成两者之一；`reset_workspace_customization` 是兜底手段。
+"Override whether the standard workspace is shown. ""Inherit"" keeps the app-shipped value.",覆盖是否显示标准工作台。“继承”保留应用自带的值。
+Inherit,继承
+Visible,可见
+Added Roles,增加的角色
+Roles granted access on top of the app-shipped roles.,在应用自带角色之外额外授予访问权的角色。
+Removed Roles,移除的角色
+App-shipped roles whose access is revoked on this site.,在本站点撤销访问权的应用自带角色。
+Leave blank to inherit the app-shipped icon.,留空则继承应用自带的图标。
+Leave blank to inherit the app-shipped color.,留空则继承应用自带的颜色。
+Override Sidebar Position,覆盖侧边栏位置
+Sidebar Position,侧边栏位置
+"The site's editor.js block layout for this workspace, shown verbatim. Once set, the app's later changes to this workspace's layout stop reaching the site; roles, icon and visibility keep updating. Managed by the workspace editor.",此工作台在本站点的 editor.js 区块布局，按原样显示。一旦设置，应用之后对该工作台布局的修改将不再生效；角色、图标和可见性仍会继续更新。由工作台编辑器管理。
+Added Widgets,增加的组件
+"Item definitions (shortcuts / charts / cards ...) backing blocks the site added, so they can be rendered. Managed by the workspace editor.",支撑站点新增区块的条目定义（快捷方式 / 图表 / 卡片等），以便渲染。由工作台编辑器管理。
+Route Signature,路由标识
+Layout Order,布局顺序
+Set this to decide which position a layout appears in the dropdown,设置此项以决定该布局在下拉列表中的位置
+"The module this sidebar belongs to. Neither required nor unique: one module may own several sidebars, and which of them answers for the module itself is decided by the name -- the one called after the module -- rather than by a column here. May also be blank, which means the sidebar belongs to its app rather than to any one of the app's modules; such a sidebar is exported to the app's own folder and says which app in `app`.",此侧边栏所属的模块。既非必填也非唯一：一个模块可以拥有多个侧边栏，其中哪个代表模块本身由名称决定——即与模块同名的那一个——而不是由此处的某个字段决定。也可以留空，表示该侧边栏属于其应用而不是应用的某个模块；此类侧边栏会导出到应用自己的目录，并通过 `app` 字段说明所属应用。
+"What this sidebar is called, on screen and as its record name (`autoname: field:title`). Defaults to the module's name, and the default is stored -- so a module's own sidebar keeps the name it has always had, and a second sidebar under that module is told apart by being called something else. `unique` on top of that adds one thing the primary key does not: it refuses a second sidebar claiming the title of a row whose name has drifted away from it -- a legacy row, or one written straight to the table.",此侧边栏的名称，用于显示，也作为记录名（`autoname: field:title`）。默认为模块名称，且该默认值会被存储——因此模块自带的侧边栏保持其一直使用的名称，而同一模块下的第二个侧边栏通过取其他名称来区分。在此基础上再加 `unique` 还能做到主键做不到的一点：拒绝第二个声称使用了某一行的标题、而该行的名称已与其不一致的侧边栏——例如遗留行，或直接写入数据表的行。
+"The app this sidebar is placed in. Derived from the module when there is one -- a module sits in exactly one app. Author-set when there is not: an app-rooted sidebar has no module to derive it from, and this is then the only thing that says which app ships the file.",此侧边栏所在的应用。有模块时由模块推导——一个模块只属于一个应用。没有模块时由作者指定：以应用为根的侧边栏没有模块可推导，此时这是唯一说明由哪个应用发布该文件的信息。
+"Owned by an app: exported to its module's folder -- or to the app's own folder when it has no module -- and re-imported by migrate. Set via the Mark as Standard action, not by hand -- a standard sidebar with no exported file is an orphan and gets deleted on the next migrate. Everything else belongs to this site, however it got here.",由应用拥有：导出到其模块目录——无模块时导出到应用自己的目录——并在 migrate 时重新导入。应通过“标记为标准”操作设置，而不要手工设置——没有导出文件的标准侧边栏属于孤儿，会在下次 migrate 时被删除。除此之外的一切都属于本站点，无论它是如何到这里来的。
+Merged From,合并来源
+Workspaces whose sidebars were merged to build this one. Read by the module-split tool.,为构建此侧边栏而合并的其侧边栏的工作台。由模块拆分工具读取。
+"Fields shown on each card, in order. Set an Icon to show it on the card (label on hover); leave Icon empty to show the Label text. Leave the table empty to auto-pick.",每张卡片上按顺序显示的字段。设置图标则卡片上显示图标（悬停显示标签）；图标留空则直接显示标签文本。表格留空则自动选择。
+"Fields shown in the card hover preview, in order. Icon and Label behave the same as Card Fields. Leave empty to use the doctype's preview fields, then card fields.",卡片悬停预览中按顺序显示的字段。图标和标签的行为与“卡片字段”相同。留空则使用单据类型的预览字段，其次使用卡片字段。
+Fields the board can group cards by (swimlanes). New boards are pre-filled with the doctype's Select fields (except the column field). Add Link fields to offer more groupings; leave empty to hide the Group button.,看板可将卡片分组的字段（泳道）。新建看板会预填该单据类型的 Select 字段（分列字段除外）。可添加 Link 字段以提供更多分组；留空则隐藏“分组”按钮。
+Use Kanban v2 (New Experience),使用看板 v2（新体验）
+"Open this board in the new Kanban experience. When off, the classic Kanban is used. Same List / Kanban route either way.",在新版看板体验中打开此看板。关闭时使用经典看板。两种方式的列表/看板路由相同。
+New Kanban,新看板
+Layout and fields used by the new Kanban experience for this board.,此看板在新版看板体验中使用的布局和字段。
+Field shown as the card title: ID or a text field.,作为卡片标题显示的字段：ID 或文本字段。
+Show the assignee stack and Assign control on cards and in the hover preview.,在卡片和悬停预览中显示指派人叠层和指派控件。
+"Show document tags on cards (left of footer date), using the standard colored tag style.",在卡片上显示单据标签（位于页脚日期左侧），使用标准的彩色标签样式。
+Attach Image field shown as a thumbnail before the card title.,作为卡片标题前缩略图显示的“附加图片”字段。
+Modified,修改时间
+Card and Preview Fields,卡片与预览字段
+Complete Onboarding,完成引导
+Field of the board's reference doctype to show on the card.,看板的引用单据类型中要显示在卡片上的字段。
+"Optional. When set, the card shows this icon and the label on hover; when empty, the label is shown directly.",可选。设置后卡片显示该图标、悬停显示标签；留空则直接显示标签。
+"Shown as the field label, or as the icon tooltip when an icon is set. Auto-filled from the field; edit to override.",作为字段标签显示，或在设置图标时作为图标提示。由字段自动填充；可编辑覆盖。
+Allow editing even if the doctype has a workflow set up.\n\nDoes nothing if a workflow isn't set up.,即使单据类型配置了工作流也允许编辑。\n\n未配置工作流时此设置无效。
+"Sidebar intent for a module, at either of the two layers a site has. `user` is what tells them apart: blank is the site layer, curated by a Workspace Manager and applying to everyone; a user's name is that person's own arrangement, which is applied on top and wins. The `Custom *` prefix elsewhere in this repo means site-owned override of app-shipped content, and this doctype knowingly overloads it: with the layers structurally identical there is nothing to gain from a second doctype, and `user` makes the layer unambiguous at a glance. Do not ""fix"" this by splitting it.",模块的侧边栏意图，位于站点具有的两个层级之一。`user` 用于区分二者：留空为站点层，由工作台管理员维护并适用于所有人；填写用户名则是该人自己的编排，叠加在上并优先生效。本仓库其他地方的 `Custom *` 前缀表示站点对应用自带内容的覆盖，而此单据类型有意复用了它：既然两个层级结构完全相同，再拆一个单据类型毫无收益，而 `user` 让人一眼就能看出层级。不要把它“修正”成拆分的做法。
+"Blank means the site layer, which applies to everyone and is overridden by each user's own arrangement.",留空表示站点层，适用于所有人，并会被每个用户自己的编排覆盖。
+Overrides the dock label for this module.,覆盖该模块的 Dock 显示名称。
+"One ordered list holding both references to base items (`added` unset -- non-empty fields override, empty fields mean no opinion) and items this layer added (`added` set -- full items, rendered as they stand). Row order is the arrangement; base items not named here keep their base order and follow the ones that are, which is how a newly installed app's items still reach someone who has already reordered.",一个有序列表，同时保存对基础条目的引用（`added` 未设置——非空字段表示覆盖，空字段表示无意见）和本层新增的条目（`added` 已设置——完整条目，按原样渲染）。行顺序就是编排；此处未列出的基础条目保持其基础顺序并排在这些条目之后，因此新安装应用的条目仍能到达已经重新排序过的用户。
+"One layer of one app's dock. Three of them share this table, told apart by `app`, `user` and `standard`: the app's own dock, which an app ships as an exported document and a developer authors; the site's arrangement of it, curated by a Workspace Manager and applying to everyone; and one person's own, applied last and winning. A dock belongs to an app, so arranging ERPNext's rail does not touch frappe's -- and a layer is addressed by app plus user rather than by user alone. Same shape at all three, because the rows are identical and the parent is what says whose they are; see `Custom Sidebar`, which layers a sidebar the same way in a table of its own.",某个应用 Dock 的一个层级。三个层级共用这张表，通过 `app`、`user` 和 `standard` 区分：应用自身的 Dock（应用以导出文档形式发布，由开发者编写）、站点对它的编排（由工作台管理员维护并适用于所有人）、以及个人自己的编排（最后应用并优先生效）。Dock 属于应用，因此编排 ERPNext 的 Dock 不会影响 frappe 的——层级通过应用加用户来定位，而不是只靠用户。三者结构相同，因为行是完全一样的，而父级决定了它们属于谁；参见 `Custom Sidebar`，它以同样的方式在自己的表中分层侧边栏。
+"The app whose dock this layer arranges. Required: a dock belongs to an app, and a layer that named none would be one arrangement spanning every rail. An `Autocomplete` over installed apps rather than a Link, because there is no `App` doctype -- the house spelling, shared with `Sidebar.app` and `Desktop Icon.app`.",此层所编排 Dock 所属的应用。必填：Dock 属于应用，未指定应用的层将成为横跨所有 Dock 的一套编排。此处使用基于已安装应用的 `Autocomplete` 而不是 Link，因为并不存在 `App` 单据类型——这是本仓库的既定写法，与 `Sidebar.app` 和 `Desktop Icon.app` 一致。
+"The person whose own arrangement this is. Blank means the app's own dock or the site's arrangement of it, told apart by `standard`.",此编排所属的用户。留空表示应用自身的 Dock 或站点对它的编排，由 `standard` 区分。
+"Owned by the app: exported to `<app>/dock/<app>/<app>.json` and re-imported by migrate. This is the app layer, and the layer the other two are laid over. Ordinarily set via the Export to App action rather than by hand, which is why it is writable only in developer mode -- a standard dock with no exported file is an orphan and gets deleted on the next migrate.",由应用拥有：导出到 `<app>/dock/<app>/<app>.json`，并在 migrate 时重新导入。这是应用层，也是另外两层叠加其上的基础层。通常通过“导出到应用”操作设置而非手工设置，因此只在开发者模式下可写——没有导出文件的标准 Dock 属于孤儿，会在下次 migrate 时被删除。
+Mount On,挂载到
+"The app this one mounts on, for a companion app -- one with no rail of its own, whose entries live on a host's. Blank on every ordinary dock. An **app name** rather than a Link to a `Dock`: every consumer wants a string, and a pin aimed at a record would be a pin aimed at one of that app's three layers, which means nothing. App-layer only: `depends_on` hides it elsewhere and `validate` blanks it, because hiding a field does not stop an API write.",此应用挂载到哪个应用，用于伴随应用——即自身没有 Dock、其条目位于宿主应用上的应用。普通 Dock 中留空。此处是**应用名称**而不是指向 `Dock` 的 Link：所有使用方都需要字符串，而指向记录的引用会指向该应用三个层级中的某一个，毫无意义。仅应用层使用：`depends_on` 会在其他位置隐藏它，`validate` 会将其置空，因为隐藏字段并不能阻止 API 写入。
+Dock Items,Dock 条目
+"The ordered entries this layer has an opinion about. Row order is the arrangement; an entry this layer never names keeps its incoming order and follows the ones it does, which is how a newly installed app's modules still reach someone who has already arranged their dock.",本层有意见的有序条目。行顺序就是编排；本层从未提及的条目保持其传入顺序并排在这些条目之后，因此新安装应用的模块仍能到达已经编排过 Dock 的用户。
+Is Default Module,是默认模块
+"This module is the linked entity's default home — where it opens when nothing else decides — even when another app defines it. A sidebar that already lists the entity still holds you, so this settles cold entry rather than overriding where you are. Flag what you mean to own: a claim is declarative, so set it on the entities your app is about rather than only where you expect the default to disagree with you. Only an app-shipped sidebar may claim.",此模块是所关联实体的默认主页——当没有其他依据时就在这里打开——即使它是由另一个应用定义的。已经列出该实体的侧边栏仍会留住用户，因此这里解决的是冷启动入口，而不是覆盖用户当前的所在位置。只标记你确实想拥有的实体：声明是主张性的，因此请把它设在你的应用所针对的实体上，而不是只设在你预计默认值会与你不一致的地方。只有应用自带的侧边栏才能声明。
+"Only meaningful on a `Custom Sidebar`, where a row is either a reference to a base item or an item the site or the user added.",仅在 `Custom Sidebar` 上有意义：其中的行要么引用基础条目，要么是站点或用户新增的条目。
+"Hide this item. Explicit rather than implied by the row's presence, which is what lets a user's `hidden: 0` un-hide something the site hid.",隐藏此条目。是显式设置而非由行的存在推断，这样用户的 `hidden: 0` 才能取消站点所做的隐藏。
+"0 means this row references a base item: non-empty fields override it, empty fields mean no opinion. 1 means a full item the layer added, rendered as it stands.",0 表示此行引用基础条目：非空字段覆盖它，空字段表示无意见。1 表示这是本层新增的完整条目，按原样渲染。
+"Only meaningful on a `Custom Sidebar` row referring to a base item that has no link -- a Section Break or a spacer -- which is the one kind of row with nothing else to name it by. A base row stores none: an unlinked one is identified by a hash of its type and label, and a linked one by its own link columns, which is what lets a rename repair the base row and the customization naming it together.",仅在引用无链接基础条目（分区标题或间隔块）的 `Custom Sidebar` 行上有意义——这是唯一没有其他字段可标识自身的行类型。基础行不存储该值：无链接的基础行通过其类型与标签的哈希标识，有链接的通过其自身的链接列标识，这样才能让重命名同时修复基础行和引用它的自定义行。
+Enable if on click\nopens modal.,勾选后，点击将打开弹窗。
+Select or Link field of the board's reference doctype to group cards by (swimlanes).,看板引用单据类型中用于将卡片分组的 Select 或 Link 字段（泳道）。
+Shown as the group option's name. Auto-filled from the field; edit to override.,作为分组选项的名称显示。由字段自动填充；可编辑覆盖。
+Overdue Limit,逾期限额
+New Sales Invoices are blocked when the customer's overdue amount exceeds this. Requires 'Restrict Customer Over Billing' in Accounts Settings.,当客户的逾期金额超过此值时，将无法新建销售发票。需在“会计设置”中启用“限制客户超额开票”。
+"Blocks new transactions and further accounting entries on this customer's account. Only users with the role set in Company's ""Roles Allowed to Set and Edit Frozen Account Entries"" can transact.",冻结客户账户上的新交易和后续会计分账。只有拥有“公司”中“允许设置和编辑冻结账户分录的角色”所设角色的用户才能进行交易。
+Credit & Overdue Limits,信用与逾期限额
+"Transactions are blocked when the outstanding balance exceeds the credit limit. When Restrict Customer Over Billing is enabled, new invoices are also blocked when the customer's overdue amount exceeds the Overdue Limit.",当未结余额超过信用额度时，交易将被阻止。启用“限制客户超额开票”后，当客户的逾期金额超过逾期限额时，新的发票也会被阻止。
+"Frozen suppliers block new transactions and ledger entries until unfrozen. Only users with the role set in Company's ""Roles Allowed to Set and Edit Frozen Account Entries"" can transact.",冻结的供应商会阻止新的交易和账簿分录，直到解除冻结。只有拥有“公司”中“允许设置和编辑冻结账户分录的角色”所设角色的用户才能进行交易。
+Rate at which document currency is converted to company currency,单据币种折算为公司币种的汇率
+Rate at which Price List Currency is converted to Company Currency,价格表币种折算为公司币种的汇率
+Valuation Type,计价方式
+"Valuation Rate and Manual value this item on its own and deduct that cost from the raw material cost, like the pre-v16 scrap items. % of Component Cost allocates a percentage of the remaining raw material cost.",“计价单价”和“手动”会单独为该物料计价，并从原材料成本中扣减该成本，与 v16 之前的废料处理一致。“组件成本百分比”则按比例分摊剩余的原材料成本。
+% of Component Cost,组件成本百分比
+On hold,暂挂
+Auto Map Raw Materials to Finished Goods,自动将原材料对应到成品
+"On submit of a Manufacture / Repack entry, map the raw material serial / batch nos that were not mapped in draft to the finished goods, in order",提交制造/再包装分录时，将草稿中未对应的原材料序列号/批号按顺序对应到成品
+Finished Good Serial No,成品序列号
+Finished good serial no this raw material was consumed into (Manufacture / Repack),该原材料被消耗到的成品序列号（制造/再包装）
+Finished Good Batch No,成品批号
+Finished good batch this raw material was consumed into (Manufacture / Repack),该原材料被消耗到的成品批号（制造/再包装）
+"Account to track value added to stock via Stock Entry, Stock Reconciliation or Landed Cost Voucher",用于记录通过物料移动、库存盘点调整或到岸成本凭证加计到库存的价值的科目
+Used to balance the books when recording expenses added to stock,记录加计到库存的费用时用于平衡账务
+Auto Reposting of Incorrect Valuation,自动重算错误计价
+Auto Repost Incorrect Valuation Entries (Weekly),每周自动重算错误计价分录
+"If enabled, a weekly scheduler scans the Stock Ledger Variance for item-warehouses with incorrect valuation in the current financial year and auto-creates Item & Warehouse based reposts to fix them.",启用后，每周调度会扫描当前财年内计价有误的物料-仓库的库存分类账差异，并自动创建基于物料和仓库的重算任务予以修正。
+"Set automatically to the day after the previous Stock Closing Entry, or to the first stock transaction's date",自动设为上一张库存结账分录的次日，或第一笔库存业务的日期
+Serialized items are valued at Moving Average once stock transactions exist and Serial No Wise Valuation is disabled.,一旦存在库存业务且未启用按序列号计价，序列号物料将采用移动平均计价。
+Use Serial No Wise Valuation,按序列号计价
+"Value every outward movement at each Serial No's own incoming rate. If unchecked, the item is valued at Moving Average once stock transactions exist. Cannot be enabled once Serial Nos exist for this item.",每笔出库业务按各序列号自身的入库单价计价。若不勾选，则一旦存在库存业务即按移动平均计价。该物料一旦有序列号，就无法再启用。
+Stock Expense,库存费用
+Enable Item Search Index,启用物料搜索索引
+"Speeds up Item search on large catalogues. Requires a single app server: the index is a file on that server's disk, and several servers would each answer from a different copy. Building it takes about 20 minutes for 3 million items, and runs in the background.",加快大目录下的物料搜索。需要单个应用服务器：索引是该服务器磁盘上的文件，多台服务器会各自返回不同的副本。为 300 万个物料建立索引约需 20 分钟，并在后台运行。
+Created through Portal,通过门户创建
+Email Verified,邮箱已验证
+Verification Token,验证令牌
+Appointment Scheduling,预约排程
+Appointment Booking Portal Settings,预约门户设置
+Verification Link Expiry Duration,验证链接有效期
+"In Minutes (min: 15 mins, max: 60 mins)",分钟（最短 15 分钟，最长 60 分钟）
+Enable Appointment Booking Through Portal,允许通过门户预约
+Action for Expired Unverified Appointments,逾期未验证预约的处理方式
+Mark as Closed,标记为已关闭
+Delete Permanently,永久删除
+Partially Reposted,部分已重算
+Prevent Sales Invoice when Customer is Overdue,客户逾期时禁止开具销售发票
+Enabling this option prevents the creation of a new Sales Invoice when the customer has an overdue limit set and their outstanding overdue amount exceeds that limit.,启用后，当客户设置了逾期限额且未结逾期金额超过该限额时，将无法创建新的销售发票。
+Role Allowed to Bypass Over Billing Restriction,可绕过超额开票限制的角色
+Users with this role can still submit invoices for customers who have crossed their Overdue Limit.,拥有此角色的用户仍可为超过逾期限额的客户提交发票。
+General Ledger Report,会计总账报表
+Accounts Receivable / Payable Report,应收 / 应付报表
+Stock Expense Accounting,库存费用会计
+Book Stock Expense GL Entries,记账库存费用总账分录
+"Books Purchase Expense and Expenses Added To Stock account pairs against stock value. On enabling this, the accounts become mandatory in Company or Item Defaults for Purchase Receipt, Purchase Invoice, Stock Entry, Stock Reconciliation and Landed Cost Voucher",将“采购费用”与“加计到库存的费用”科目对与库存价值相互记账。启用后，这些科目在“公司”或“物料默认值”中将成为采购入库、采购发票、物料移动、库存盘点调整和到岸成本凭证的必填项
+"Disable ""Consider Accounting Dimension"" Filter",禁用“考虑辅助核算维度”筛选
+Reposting Status,重算状态
+Reposted,已重算
+Send Acknowledgement Email,发送确认邮件
+Send an acknowledgement email to the email address entered in the contact form.,向联系表单中填写的邮箱发送确认邮件。
+Web Form Values,网页表单值
+Doc Values,单据值
+First Used On,首次使用时间
+Key required,需要密钥
+"If enabled, the web form can only be used with a <i>Key</i> from a corresponding <b>Web Form Request</b>.",启用后，该网页表单只能配合来自对应<b>网页表单请求</b>的<i>密钥</i>使用。
+Attachment Gallery,附件图库
+Filters applied to Link queries and Attachment Gallery files.,应用于关联查询和附件图库文件的筛选条件。
+Only users with one of these roles can send SMS. Leave empty to allow only System Manager.,只有拥有这些角色之一的用户才能发送短信。留空则仅允许系统管理员。
+Number of Events,事件数量
+Apps Involved,涉及的应用
+"Ordered timeline of document lifecycle methods and doc_events handlers that ran during this request, attributed to the app(s) that hook them.",本次请求期间执行的单据生命周期方法和 doc_events 处理器的有序时间线，并标注挂接它们的应用。
+Queries,查询
+Duration (ms),耗时（毫秒）
+Raw Method,原始方法
+Depth,层级
+Handlers,处理器
+Sync In Batches,分批同步
+Max Zip Extract Size (MB),ZIP 最大解压大小（MB）
+Maximum total size a ZIP archive is allowed to expand to when extracted.,ZIP 压缩包解压后允许展开的最大总大小。
+Notification Type,通知类型
+Category for the in-app notification. Used for filtering and per-user email preferences.,应用内通知的分类，用于筛选和按用户的邮件偏好。
+Notification Title,通知标题
+Headline of the in-app notification. Falls back to Subject if left blank. Supports Jinja.,应用内通知的标题。留空则使用主题。支持 Jinja。
+Notification Message,通知正文
+Optional body of the in-app notification. Supports Jinja.,应用内通知的可选正文。支持 Jinja。
+Redact Message After Send,发送后隐去正文
+"Replace the message body with a placeholder once the email has been sent, so that sensitive content like password reset links is not retained in the queue.",邮件发送后把正文替换为占位符，避免密码重置链接等敏感内容留在队列中。
+App that produced this notification; used to scope app-specific panels. Derived from the reference document when not set explicitly.,产生此通知的应用，用于限定应用专属面板。未显式设置时由关联单据推导。
+Recipient & Status,收件人与状态
+What the recipient receives by email when this notification fires. Mirrors Title/Description by default; set these to make the email differ from the in-app text.,通知触发时收件人通过邮件收到的内容。默认与标题/说明一致；设置这些字段可让邮件内容与应用内文案不同。
+Type Name,类型名称
+Email me for these notification types,以下通知类型给我发邮件
+Receive an email for notifications of these types. Remove a type to stop its emails (in-app notifications are unaffected).,这些类型的通知会给你发邮件。移除某个类型即可停止其邮件（不影响应用内通知）。
+"The report may be too large to render in a single request. Narrow the filters and try again, or use Print and save as PDF from your browser.",报表可能太大，无法在单次请求中渲染。请缩小筛选范围后重试，或在浏览器中使用“打印”并另存为 PDF。
+Could not generate PDF,无法生成 PDF
+Generating PDF...,正在生成 PDF……
+Check the Error Log for details.,详情请查看错误日志。
+The request could not be completed. Check your connection and try again.,无法完成请求，请检查网络连接后重试。
+Type {0} or more characters for results.,输入 {0} 个或更多字符以显示结果。
+Begin typing for results.,开始输入以显示结果。
+{0} results found,找到 {0} 条结果
+"{0}, list item {1} of {2}",{0}，第 {1} 项，共 {2} 项
+Save the document to attach files.,保存单据后才能添加附件。
+Unable to load attachments.,无法加载附件。
+No attachments,没有附件
+Add attachment,添加附件
+Insert Table,插入表格
+Insert Row Above,在上方插入行
+Insert Row Below,在下方插入行
+Insert Column Right,在右侧插入列
+Insert Column Left,在左侧插入列
+Delete Row,删除行
+<strong>Total qty</strong> of the rows (<strong>{0}</strong>) does not match the <strong>Qty to Fetch</strong> (<strong>{1}</strong>). Qty of the item will be changed to <strong>{0}</strong>. Are you sure want to proceed?,<strong>总数量</strong>（<strong>{0}</strong>）与<strong>待获取数量</strong>（<strong>{1}</strong>）不一致。物料数量将改为 <strong>{0}</strong>。确定要继续吗？
+Cannot load {0} details,无法加载{0}详情
+"{0} is required to apply taxes. Set {0}, then select {1} again.",应用税率需要{0}。请设置{0}，然后重新选择{1}。
+"Company is required to load address, taxes, and payment terms. Set Company, then select {0} again.",加载地址、税率和付款条件需要公司。请设置公司，然后重新选择{0}。
+Cannot apply taxes from this address,无法从此地址应用税率
+Cannot apply taxes,无法应用税率
+"Company is required to apply taxes. Set Company, then select {0} again.",应用税率需要公司。请设置公司，然后重新选择{0}。
+No Matching Vouchers Found,没有找到匹配的凭单
+Cannot create {0} from a Bank Transaction,无法从银行交易创建{0}
+Bank Transaction {0} added as {1},银行交易 {0} 已添加为 {1}
+Reconciliation Failed,对账失败
+{0} {1} was submitted but could not be reconciled against Bank Transaction {2}. Match it manually from the Bank Reconciliation Tool.,{0} {1} 已提交，但无法与银行交易 {2} 自动对账。请在银行对账工具中手工匹配。
+How much your customers order each month.,客户每月的下单金额。
+"Your customers, ranked by what you deliver to them.",按交付金额排序的客户。
+Sales orders still waiting to be delivered or billed.,仍在等待发货或开票的销售订单。
+Your best-selling items over the year.,年度畅销物料。
+"Your suppliers, ranked by what they deliver to you.",按供货金额排序的供应商。
+"Where your purchase orders stand: to receive, to bill, or done.",采购订单的进展：待入库、待开票或已完成。
+How much you order from suppliers each month.,每月向供应商采购的金额。
+"Your material requests by status, from pending to ordered.",按状态（从待处理到已订购）统计的物料需求。
+Operations completed on your work orders each quarter.,每季度工单完成的工序数。
+What your work orders planned against what they produced.,工单计划数量与实际产量对比。
+"Your work orders by status, from planned to completed.",按状态（从已计划到已完成）统计的生产工单。
+How much you produce each month.,每月生产数量。
+How long your open work orders have been waiting.,未完成工单的等待时长。
+How long your workstations were down last month.,上月各工作站的停机时长。
+How many of your inspections pass or fail.,质检单合格与不合格的数量。
+"Your job cards each month, by status.",按状态统计的每月生产任务单。
+The projects you finish each month.,每月完成的项目。
+How far along your open projects are.,进行中项目的进度。
+Support issues opened each month.,每月新增的支持问题。
+What you receive from suppliers each month.,每月从供应商收到的货物金额。
+"What your stock is worth, by item group.",按物料组统计的库存金额。
+The stock that has sat longest in your warehouses.,在仓库中积压最久的库存。
+Items you're about to run short of.,即将短缺的物料。
+What you deliver to your customers each month.,每月向客户发货的金额。
+What your stock is worth in each warehouse.,各仓库的库存金额。
+What you send out for subcontracting each month.,每月发出的委外加工数量。
+"What your assets are worth, by category.",按类别统计的资产金额。
+"What your assets are worth, year by year.",资产逐年的金额变化。
+"What your assets are worth, by location.",按位置统计的资产金额。
+New leads coming in each week.,每周新增的线索。
+The opportunities you win each month.,每月赢单的商机。
+The value of opportunities you win in each territory.,各区域赢单商机的金额。
+Which campaigns bring in your opportunities.,各营销活动带来的商机。
+How many opportunities each territory brings in.,各区域带来的商机数量。
+Where your leads come from.,线索的来源分布。
+New opportunities coming in each week.,每周新增的商机。
+How long your customers' unpaid invoices have been due.,客户未收发票的逾期时长。
+What you bill your customers each month.,每月向客户开票的金额。
+Your budgets against what you actually spent.,预算与实际支出的对比。
+"How much money sits in your bank accounts, month by month.",银行账户逐月的余额。
+"Your income and expenses over the year, and what's left as profit.",全年收入与费用，以及剩余利润。
+What your suppliers bill you each month.,每月供应商开来的账单金额。
+How long your unpaid supplier bills have been due.,未付供应商账单的逾期时长。
+How many inspections you run each month.,每月质检次数。
+Leave Setup,休假设置
+Shift Assignments,班次安排
+Shift Setup,班次设置
+Income Tax,所得税
+Tax & Exemption Setup,税务与减免设置
