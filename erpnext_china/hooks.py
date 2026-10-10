@@ -11,14 +11,25 @@ after_install = "erpnext_china.setup.install.after_install"
 
 setup_wizard_requires = "assets/erpnext_china/js/setup_wizard.js"
 
+# In Frappe v16+ the icon path is served from /assets/, while v15 uses the
+# app-relative path. Detect the major version and set the prefix accordingly.
+try:
+    import frappe
+
+    _frappe_major = int(str(frappe.__version__).split(".")[0])
+except Exception:
+    _frappe_major = 15
+
+_icon_prefix = "/assets/" if _frappe_major >= 16 else ""
+
 app_include_icons = [
-    "erpnext_china/icons/account_report.svg",
-	"erpnext_china/icons/cn_account_report.svg"
+    f"{_icon_prefix}erpnext_china/icons/account_report.svg",
+    f"{_icon_prefix}erpnext_china/icons/cn_account_report.svg",
 ]
 
 web_include_icons = [
-    "erpnext_china/icons/account_report.svg",
-	"erpnext_china/icons/cn_account_report.svg"
+    f"{_icon_prefix}erpnext_china/icons/account_report.svg",
+    f"{_icon_prefix}erpnext_china/icons/cn_account_report.svg",
 ]
 
 doctype_js = {
