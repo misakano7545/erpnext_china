@@ -35,12 +35,6 @@ Jul,07
 Aug,08
 Sep,09
 Customizations for <b>{0}</b> exported to:<br>{1},<b>{0}的</b>自定义已导出到： <br> {1}
-"<h3>About Product Bundle</h3>
-
-<p>Aggregate group of <b>Items</b> into another <b>Item</b>. This is useful if you are bundling a certain <b>Items</b> into a package and you maintain stock of the packed <b>Items</b> and not the aggregate <b>Item</b>.</p>
-<p>The package <b>Item</b> will have <code>Is Stock Item</code> as <b>No</b> and <code>Is Sales Item</code> as <b>Yes</b>.</p>
-<h4>Example:</h4>
-<p>If you are selling Laptops and Backpacks separately and have a special price if the customer buys both, then the Laptop + Backpack will be a new Product Bundle Item.</p>",<h3>套件</h3><p>将一组<b>物料</b>组合成另一个<b>套件物料</b>.适用于套件包含的物料属于库存物料，套件本身只是用于销售，在物料主数据中勾选<code>允许销售</code>，不勾选<code>允许库存</code></p><h4>比如:</h4><p>你单独出售笔记本电脑和电脑包，希望给同时购买笔记本电脑和电脑包的客户特别的优惠，就可以将笔记本电脑和电脑包组合成一个套件</p>
 AMC Expiry Date,年底维保合同到期日
 API,API
 API Key,API密钥
@@ -99,7 +93,6 @@ OTP Issuer Name,OTP发行人名称
 OTP App,OTP应用程序
 PDF generation failed because of broken image links,PDF生成，因为破碎的图像链接失败
 PDF Page Size,PDF页面大小
-POS,POS
 POS Customer Group,POS客户组
 POS Item Group,POS物料组
 POS Profile,POS设置
@@ -464,7 +457,6 @@ Set Warehouse,仓码
 Available Batch Qty at Warehouse,仓库内可用批号数量
 Stock Manager,仓库经理
 Stock User,仓管员
-Outward,付款
 Pay,付款
 Payment Details,付款信息
 Bank Entries,银行凭证
@@ -594,8 +586,6 @@ e.g. pop.gmail.com / imap.gmail.com,例如pop.gmail.com / imap.gmail.com
 e.g. replies@yourcomany.com. All replies will come to this inbox.,例如replies@yourcomany.com。所有的回复将被发送到这个收件箱。
 "e.g. ""Support"", ""Sales"", ""Jerry Yang""",例如“支持“，”销售“，”杨杰“
 "Example: ABCD.#####. If series is set and Batch No is not mentioned in transactions, then automatic batch number will be created based on this series. If you always want to explicitly mention Batch No for this item, leave this blank. Note: this setting will take priority over the Naming Series Prefix in Stock Settings.",例如：ABCD.##### 如果已设置批号模板且单据中未手工输入批号，则将根据此批号模板创建批号。如果您希望手工输入此物料的批号，请将此栏位留空。注意：此设置将优先于库存设置中的批号模板前缀。
-"Example: ABCD.#####
-If series is set and Serial No is not mentioned in transactions, then automatic serial number will be created based on this series. If you always want to explicitly mention Serial Nos for this item. leave this blank.",例如：ABCD.##### 如果设置了序列号模板且未在单据中输入序列号，系统会基于序列号模板自动生成序列号。如果序列号都是手工输入，请将此栏位留空。
 Eg. smsgateway.com/api/send_sms.cgi,例如：smsgateway.com/API/send_sms.cgi
 "For example: If you want to include the document ID, use {0}",例如：如果要包括文件ID，使用{0}
 For Supplier,供应商
@@ -866,7 +856,6 @@ No of Columns,列编号
 List Filter,列表过滤条件
 In List Filter,列表过滤条件
 Created,创建
-Make,新建
 Creating {0},创建{0}
 Make {0},新建{0}
 created,创建于
@@ -1132,12 +1121,6 @@ DocType can only be renamed by Administrator,只能由管理员修改单据类�
 Maximum Samples - {0} can be retained for Batch {1} and Item {2}.,可以为批号{1}和物料{2}保留最大样本数量{0}。
 Any string-based printer languages can be used. Writing raw commands requires knowledge of the printer's native language provided by the printer manufacturer. Please refer to the developer manual provided by the printer manufacturer on how to write their native commands. These commands are rendered on the server side using the Jinja Templating Language.,可以使用任何基于字符串的打印机语言。编写原始命令需要了解打印机制造商提供的打印机本机语言。请参阅打印机制造商提供的开发人员手册，了解如何编写本机命令。这些命令使用Jinja模板语言在服务器端呈现。
 You can use Customize Form to set levels on fields.,可以使用定制表单设置字段的权限级别。
-"Scorecard variables can be used, as well as:
-{total_score} (the total score from that period),
-{period_number} (the number of periods to present day)
-","可以使用评分变量，以及：
-{total_score}（当期总分数），
-{period_number}（截止当天期数）"
 Roles can be set for users from their User page.,可以在用户主数据页面为用户分派角色。
 "Here you can maintain family details like name and occupation of parent, spouse and children",可以登记家庭详细信息，如姓名，父母、配偶及子女的职业等
 Can be approved by {0},可以被 {0} 批准
@@ -1346,7 +1329,6 @@ This is based on the Time Sheets created against this project,基于项目工时
 Base Hour Rate(Company Currency),基准工费率（本币）
 Basic,基本工资
 Base Distinguished Name (DN),基本专有名称（DN）
-Base,基本
 Basic Amount,基准金额
 Base Amount (Company Currency),金额（本币）
 Taxes and Charges Added,税费
@@ -1627,7 +1609,6 @@ Salary Slip Timesheet,工资单工时表
 Salary Slip ID,工资单号
 Salary Slip Loan,工资单借款
 Payroll,薪资
-Left,左
 Difference,差异
 Variance,差异
 Difference Amount (Company Currency),差异金额（本币）
@@ -2202,7 +2183,6 @@ Target Warehouse,收料仓
 To Warehouse,收料仓
 Target Warehouse Address,收料仓地址
 To Warehouse (Optional),收料仓（可选）
-Inward,收款
 Incoming Payment,收款
 Payment Request,收付款申请
 Payment Request for {0},收付款申请{0}
@@ -2353,10 +2333,8 @@ Is Default,默认
 Is Fixed Asset,允许资产
 """Is Fixed Asset"" cannot be unchecked, as Asset record exists against the item",已有关联的固定资产记录，不能取消勾选允许资产
 Is Spam,是垃圾邮件
-Is Subcontracted,委外
 Is Child Table,是子表
 Is Table,是子表
-Is Customer Provided Item,是受托加工材料
 Maintain Stock,允许库存
 Is Account Payable,是应付账款
 Is Opening Entry,是开账凭证
@@ -2531,13 +2509,6 @@ Missing email template for dispatch. Please set one in Delivery Settings.,未配
 Not Linked to any record,未链接到任何记录
 Not Seen,未阅
 List items that form the package.,本套件内物料列表。
-"This field will appear only if the fieldname defined here has value OR the rules are true (examples):
-myfield
-eval:doc.myfield=='My Value'
-eval:doc.age&gt;18","本字段仅在以上代码框中定义的字段有值或表达式(js代码)结果为真时显示，如案例1：字段等于指定值；<br>
-eval:doc.myfield=='my value'
-案例2：年龄大于18 <br>
-eval:doc.age&gt;18"
 Profit This Year,本年利润
 Annual Billing: {0},本年总账单金额：{0}
 Total Income This Year,本年收入
@@ -3052,7 +3023,6 @@ Disable SMTP server authentication,禁用SMTP服务器认证
 Disable Standard Email Footer,禁用标准电子邮件页脚
 Disable Sidebar Stats,禁用补充工具栏统计信息
 Benefit,福利
-Off,离线
 Left this conversation,离开了这个谈话
 Departure Datetime,离开时间
 Leave this conversation,离开这个谈话
@@ -3755,7 +3725,6 @@ Go to {0} Page,转到{0}页面
 Go to the document,转到单据
 Forward To Email Address,转发到邮件地址
 Convert to Non-Group,转换为非组
-Transfer,调拨
 Material Transferred for Subcontract,委外发料
 Transferred Quantity,调拨数量
 Transfer Material Against,工单发料方式
@@ -3960,7 +3929,6 @@ Purchase Invoice Item,采购发票明细
 Purchase Invoice Trends,采购发票趋势
 Purchase Register,采购明细表
 Purchase User,采购员
-Receipt,采购入库
 Purchase Receipt,采购入库
 Purchase Receipt {0} is not submitted,采购入库{0}未提交
 Purchase Receipt No,采购入库号码
@@ -4165,7 +4133,6 @@ Project Id,项目号
 Projects Settings,项目设置
 Customer Service,客户服务
 Advances,预付
-Advance Paid,预付款
 Advance Amount,预付金额
 Advance amount,预付金额
 Estimated Cost Per Position,预估岗位成本
@@ -4195,7 +4162,6 @@ Total Projected Qty,总可用数量
 Projected Quantity Formula,可用数量公式
 Expected Closing Date,预计结束日期
 Preventive Maintenance,预防性维护(保养)
-Period,期间
 Periodicity,频率
 How frequently?,频率？
 Additional Discount Percentage,额外折扣百分比
@@ -4285,7 +4251,6 @@ Assignments,任务分派
 Document Share,文档分享
 Hide Border,不显示边框
 View Full Log,查看全部日志
-Open Documents,未结案单据
 Journal Entry Template,日记账凭证模板
 Start Timer,开始计时
 Resume Timer,恢复计时
@@ -4435,41 +4400,6 @@ Phone Number,电话
 Calendar Event,事件
 Appointment With,预约人
 Linked Documents,关联单据
-"<h5>Message Example</h5>
-
-<pre>&lt;h3&gt;Order Overdue&lt;/h3&gt;
-
-&lt;p&gt;Transaction {{ doc.name }} has exceeded Due Date. Please take necessary action.&lt;/p&gt;
-
-&lt;!-- show last comment --&gt;
-{% if comments %}
-Last comment: {{ comments[-1].comment }} by {{ comments[-1].by }}
-{% endif %}
-
-&lt;h4&gt;Details&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Customer: {{ doc.customer }}
-&lt;li&gt;Amount: {{ doc.grand_total }}
-&lt;/ul&gt;
-</pre>","<h5>消息范例</h5>
-
-<pre>&lt;h3&gt;订单逾期&lt;/h3&gt;
-
-&lt;p&gt;交易 {{ doc.name }} 已逾期. 请采取必要行动.&lt;/p&gt;
-
-&lt;!-- 显示最新备注信息 --&gt;
-{% if comments %}
-最新备注: {{ comments[-1].comment }}  {{ comments[-1].by }}
-{% endif %}
-
-&lt;h4&gt;详情&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;客户: {{ doc.customer }}
-&lt;li&gt;金额: {{ doc.grand_total }}
-&lt;/ul&gt;
-</pre>"
 "If non-standard port (e.g. POP3: 995/110, IMAP: 993/143)","如使用非标端口 (如. POP3: 995/110, IMAP: 993/143)"
 Append Emails to Sent Folder,添加邮件到已发送
 Footer Logo,页脚标志
@@ -4523,11 +4453,6 @@ Meta Image,元数据图片
 Total Views,总访问量
 Duplicate Project with Tasks,带任务复制项目
 Create Contacts from Incoming Emails,基于收到的邮件创建联系人
-"Track if your email has been opened by the recipient.
-<br>
-Note: If you're sending to multiple recipients, even if 1 recipient reads the email, it'll be considered ""Opened""","追踪收件人是否打开邮件.
-<br>
-注: 如发给多人,其中一个打开邮件都会被标记为""打开过"""
 Driver Email,司机邮箱
 See on Website,在门户网站查看
 since last month,自上个月
@@ -5275,7 +5200,6 @@ Interview Summary,面试总结
 Skill Assessment,技能评估
 Employee Exits,员工离职
 Assets Allocated,已分派资产
-Grievance,意见
 Exit Interview,离职面谈
 Questionnaire Email Sent,发送问卷邮件
 Accounting Reports,会计报表
@@ -5419,9 +5343,6 @@ Rounding Loss Allowance,小数精度尾差限额
 Gain/Loss already booked,已记账损益
 New Balance In Account Currency,科目货币新余额
 Gain/Loss accumulated in foreign currency account. Accounts with '0' balance in either Base or Account currency,外币累计损益，
-"Only values between [0,1) are allowed. Like {0.00, 0.04, 0.09, ...}
-Ex: If allowance is set at 0.07, accounts that have balance of 0.07 in either of the currencies will be considered as zero balance account","限0到1之间，如0.04，0.09
-举例 尾差限额0.07，本币或外币余额小于0.07时被视为余额为0"
 Next Quarter,下季度
 Client Secret,客户端秘钥
 Allow existing Serial No to be Manufactured/Received again,允许现有序列号重新生产及入库
@@ -5802,13 +5723,6 @@ Remarks Column Length,备注(摘要)文本长度
 Truncates 'Remarks' column to set character length,截取指定长度的摘要内容
 Log DocType,日志单据类型
 Amended Documents,修订后单据
-"Configure how amended documents will be named.<br>
-
-Default behaviour is to follow an amend counter which adds a number to the end of the original name indicating the amended version. <br>
-
-Default Naming will make the amended document to behave same as new documents.","设置修订后单据编号规则
-默认规则是在被修订单据编号基础上添加修订次数(版本)后缀
-选择默认单据编号规则时修订后的单据会重新生成下一个新单据编号"
 Default Amendment Naming,默认修订后单据编号方式
 Amend Counter,修订次数后缀
 Default Naming,默认单据编号规则
@@ -5950,8 +5864,6 @@ Account Not Found,找不到科目
 "While creating account for Child Company {0}, parent account {1} found as a ledger account.",在为子公司{0}创建科目时，发现父科目{1}是一个未勾选是组的记账科目。
 Use Serial No / Batch Fields,启用明细行批号与序列号字段
 "On submission of the stock transaction, system will auto create the Serial and Batch Bundle based on the Serial No / Batch fields.",勾选后物料移动相关单据提交时系统会基于明细行中的批号与序列号自动创建序列号/批号主数据
-"If enabled, do not update serial / batch values in the stock transactions on creation of auto Serial 
- / Batch Bundle. ",如勾选，物料移动相关单据自动创建序列号/批号时不同步明细行的序列号与批号字段
 Scan Serial No,扫序列号
 "Don't encode HTML tags like &lt;script&gt; or just characters like &lt; or &gt;, as they could be intentionally used in this field",允许字段内容为原生html，即无须对&lt;script&gt;这样的 HTML 标签或者&lt; 或 &gt; 这样的字符进行编码/转义如& lt;
 Duplicate field,复制字段
@@ -6286,10 +6198,6 @@ Please adjust the qty or edit {0} to proceed.,请调整数量或修改 {0} 后�
 Serial and Batch Bundle {0} is already used in {1} {2}.,序列号/批号 {0} 已用于 {1} {2}
 "For the {0}, no stock is available for the return in the warehouse {1}.",{0} : 仓库 {1} 中无可退货数量
 Reconcile on Advance Payment Date,预付款日核销
-"If <b>Enabled</b> - Reconciliation happens on the <b>Advance Payment posting date</b><br>
-If <b>Disabled</b> - Reconciliation happens on oldest of 2 Dates: <b>Invoice Date</b> or the <b>Advance Payment posting date</b><br>
-","如果 <b>勾选</b> - 基于 <b>预付款记账日</b>核销<br>
-如果 <b>不勾选</b> - 基于: <b>发票日</b> 或 <b>预付款记账时</b>两者中最晚日期核销<br>"
 Default Operating Cost Account,默认额外费用科目(物料移动)
 Enabling this ensures each Purchase Invoice has a unique value in Supplier Invoice No. field within a particular fiscal year,勾选后系统会针对同一财年采购发票供应商发票号进行唯一性检查
 Stock will be reserved on submission of <b>Purchase Receipt</b> created against Material Request for Sales Order.,关联销售订单的<b>采购入库</b>提交时自动创建销售订单库存预留单
@@ -6510,9 +6418,6 @@ Actual Expenses,实际费用
 Unbilled Orders,未开票订单
 Ignore Exchange Rate Revaluation and Gain / Loss Journals,不显示汇兑损益日记账凭证
 Allow Implicit Pegged Currency Conversion,允许挂钩货币的自动汇率转换
-"System will do an implicit conversion using the pegged currency. <br>
-Ex: Instead of AED -&gt; INR, system will do AED -&gt; USD -&gt; INR using the pegged exchange rate of AED against USD.","系统将采用挂钩货币进行隐式汇率转换。
-例如：系统不会直接转换AED→INR，而是基于AED与美元的挂钩汇率，通过AED→USD→INR的路径完成间接换算。"
 Yearly Amount,本年累计金额
 Workstations,工站
 Default Accounts,默认科目
@@ -6923,27 +6828,7 @@ ${values.doctype_name} has been added to queue for optimization,${values.doctype
 '{0}' is not a valid URL,'{0}' 不是有效的URL
 '{0}' not allowed for type {1} in row {2},第{2}行类型{1}不允许使用'{0}'
 (Mandatory),(必填项)
-"0 - too guessable: risky password.
-<br>
-1 - very guessable: protection from throttled online attacks. 
-<br>
-2 - somewhat guessable: protection from unthrottled online attacks.
-<br>
-3 - safely unguessable: moderate protection from offline slow-hash scenario.
-<br>
-4 - very unguessable: strong protection from offline slow-hash scenario.","0 - 太容易猜到：有风险的密码。
-<br>
-1 - 非常容易猜测：防止受到限制的在线攻击。 
-<br>
-2 - 有点可猜测：防止不受限制的在线攻击。
-<br>
-3 - 安全地不可猜测：适度保护免受离线慢哈希场景的影响。
-<br>
-4 - 非常难以猜测：针对离线慢哈希场景的强大保护。"
 1 = True & 0 = False,1=真 & 0=假
-"1 Currency = [?] Fraction
-For e.g. 1 USD = 100 Cent","1货币 = [？]分
-例如1美元 = 100 美分"
 1 Google Calendar Event synced.,已同步1个Google日历事件
 1 Report,1个报表
 1 day ago,1天前
@@ -6958,422 +6843,11 @@ For e.g. 1 USD = 100 Cent","1货币 = [？]分
 3 minutes ago,3分钟前
 5 days ago,5天前
 <,<
-"<a href=""https://docs.frappe.io/framework/user/en/api/rest#1-token-based-authentication"" target=""_blank"">
-  Click here to learn about token-based authentication
-</a>","<a href=""https://docs.frappe.io/framework/user/en/api/rest#1-token-based-authentication"" target=""_blank"">
-  点击此处了解基于令牌的认证
-</a>"
 <b>{0}</b> is not a valid URL,<b>{0}</b> 不是有效的URL
 "<div class=""ql-editor read-mode""><p>Request a file containing your personally identifiable information (PII) that is saved on our system. The file will be in JSON format and is sent to you by email. If you would like to have your PII deleted from our system, please make a <a href=""/request-to-delete-data"" rel=""noopener noreferrer"">request to delete data</a>.</p></div>","<div class=""ql-editor read-mode""><p>申请获取包含系统存储的个人身份信息（PII）的文件。文件将以JSON格式通过邮件发送给您。如需从系统中删除您的PII，请提交 <a href=""/request-to-delete-data"" rel=""noopener noreferrer"">数据删除请求</a>。</p></div>"
 "<div class=""ql-editor read-mode""><p>Send a request to delete your account and personally identifiable information (PII) that is stored on our system. You will receive an email to verify your request. Once the request is verified we will take care of deleting your PII. If you just want to check what PII we have stored, you can <a href=""/request-data"" rel=""noopener noreferrer"">request your data</a>.</p></div>","<div class=""ql-editor read-mode""><p>提交删除账户及系统存储的个人身份信息（PII）的请求。您将收到验证请求的邮件。请求通过验证后，我们将处理您的PII删除事宜。若仅需查看我们存储的PII内容，您可以<a href=""/request-data"" rel=""noopener noreferrer"">申请获取数据</a>。</p></div>"
-"<div class=""well"">
-    Edit list of Series in the box. Rules:
-    <ul>
-        <li>Each Series Prefix on a new line.</li>
-        <li>Allowed special characters are ""/"" and ""-""</li>
-        <li>
-            Optionally, set the number of digits in the series using dot (.)
-            followed by hashes (#). For example, "".####"" means that the series
-            will have four digits. Default is five digits.
-        </li>
-        <li>
-            You can also use variables in the series name by putting them
-            between (.) dots
-            <br>
-            Supported Variables:
-            <ul>
-                <li><code>.YYYY.</code> - Year in 4 digits</li>
-                <li><code>.YY.</code> - Year in 2 digits</li>
-                <li><code>.MM.</code> - Month</li>
-                <li><code>.DD.</code> - Day of month</li>
-                <li><code>.WW.</code> - Week of the year</li>
-                <li>
-                    <code>.{fieldname}.</code> - fieldname on the document e.g.
-                    <code>branch</code>
-                </li>
-                <li><code>.FY.</code> - Fiscal Year (requires ERPNext to be installed)</li>
-                <li><code>.ABBR.</code> - Company Abbreviation (requires ERPNext to be installed)</li>
-            </ul>
-        </li>
-    </ul>
-    Examples:
-    <ul>
-        <li>INV-</li>
-        <li>INV-10-</li>
-        <li>INVK-</li>
-        <li>INV-.YYYY.-.{branch}.-.MM.-.####</li>
-    </ul>
-</div>
-<br>
-","<div class=""well"">
-    在框中编辑系列列表。规则：
-    <ul>
-        <li>每个系列前缀占一行。</li>
-        <li>允许的特殊字符为“/”和“-”</li>
-        <li>
-            可选地，使用点 (.)
-            后跟井号 (#) 来设置系列中的位数。例如，“.####”表示系列
-            将有四位数字。默认值为五位数字。
-        </li>
-        <li>
-            您还可以在系列名称中使用变量，方法是将它们放在
-            (.) 点之间
-            <br>
-            支持的变量：
-            <ul>
-                <li><code>.YYYY。</code> - 4 位数字的年份</li>
-                <li><code>.YY。</code> - 2 位数字的年份</li>
-                <li><code>.MM.</code> - 月份</li>
-                <li><code>.DD.</code> - 月份中的日期</li>
-                <li><code>.WW.</code> - 一年中的周数</li>
-                <li><code>.FY.</code> - 财政年度</li>
-                <li><code>.ABBR.</code> - 公司缩写</li>
-                <li>
-                    <code>.{fieldname}.</code> - 文档上的字段名称，例如
-                    <code>分支</code>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    示例：
-    <ul>
-        <li>INV-</li>
-        <li>INV-10-</li>
-        <li>INVK-</li>
-        <li>INV-.YYYY.-.{branch}.-.MM.-.####</li>
-    </ul>
-</div>
-<br>
-"
-"<h3>Custom CSS Help</h3>
-
-<p>Notes:</p>
-
-<ol>
-<li>All field groups (label + value) are set attributes <code>data-fieldtype</code> and <code>data-fieldname</code></li>
-<li>All values are given class <code>value</code></li>
-<li>All Section Breaks are given class <code>section-break</code></li>
-<li>All Column Breaks are given class <code>column-break</code></li>
-</ol>
-
-<h4>Examples</h4>
-
-<p>1. Left align integers</p>
-
-<pre><code>[data-fieldtype=""Int""] .value { text-align: left; }</code></pre>
-
-<p>1. Add border to sections except the last section</p>
-
-<pre><code>.section-break { padding: 30px 0px; border-bottom: 1px solid #eee; }
-.section-break:last-child { padding-bottom: 0px; border-bottom: 0px;  }</code></pre>
-","<h3>自定义 CSS 帮助</h3>
-
-<p>注释：</p>
-
-<ol>
-<li>所有字段组（标签 + 值）都设置了属性<code>data-fieldtype</code>和<code>data-fieldname</code></li>
-<li>所有值都有类<code>value</code></li>
-<li>所有分段断开均使用<code>section-break</code>类</li>
-<li>所有分隔列均为<code>column-break</code>类</li>
-</ol>
-
-<h4>示例</h4>
-
-<p>1.左对齐整数</p>
-
-<pre><code>[data-fieldtype=""Int""] .value { text-align: left; }</code></pre>
-
-<p>1.为除最后一节外的各节添加边框</p>
-
-<pre><code>.section-break { padding：30px 0px; border-bottom：1px solid #eee; }
-.section-break:last-child { padding-bottom：0px; border-bottom：0px; }</code></pre>
-"
-"<h3>Print Format Help</h3>
-<hr>
-<h4>Introduction</h4>
-<p>Print Formats are rendered on the server side using the Jinja Templating Language. All forms have access to the <code>doc</code> object which contains information about the document that is being formatted. You can also access common utilities via the <code>frappe</code> module.</p>
-<p>For styling, the Boostrap CSS framework is provided and you can enjoy the full range of classes.</p>
-<hr>
-<h4>References</h4>
-<ol>
-	<li><a href=""http://jinja.pocoo.org/docs/templates/"" target=""_blank"">Jinja Templating Language</a></li>
-	<li><a href=""http://getbootstrap.com"" target=""_blank"">Bootstrap CSS Framework</a></li>
-</ol>
-<hr>
-<h4>Example</h4>
-<pre><code>&lt;h3&gt;{{ doc.select_print_heading or ""Invoice"" }}&lt;/h3&gt;
-&lt;div class=""row""&gt;
-	&lt;div class=""col-md-3 text-right""&gt;Customer Name&lt;/div&gt;
-	&lt;div class=""col-md-9""&gt;{{ doc.customer_name }}&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=""row""&gt;
-	&lt;div class=""col-md-3 text-right""&gt;Date&lt;/div&gt;
-	&lt;div class=""col-md-9""&gt;{{ doc.get_formatted(""invoice_date"") }}&lt;/div&gt;
-&lt;/div&gt;
-&lt;table class=""table table-bordered""&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;th&gt;Sr&lt;/th&gt;
-			&lt;th&gt;Item Name&lt;/th&gt;
-			&lt;th&gt;Description&lt;/th&gt;
-			&lt;th class=""text-right""&gt;Qty&lt;/th&gt;
-			&lt;th class=""text-right""&gt;Rate&lt;/th&gt;
-			&lt;th class=""text-right""&gt;Amount&lt;/th&gt;
-		&lt;/tr&gt;
-		{%- for row in doc.items -%}
-		&lt;tr&gt;
-			&lt;td style=""width: 3%;""&gt;{{ row.idx }}&lt;/td&gt;
-			&lt;td style=""width: 20%;""&gt;
-				{{ row.item_name }}
-				{% if row.item_code != row.item_name -%}
-				&lt;br&gt;Item Code: {{ row.item_code}}
-				{%- endif %}
-			&lt;/td&gt;
-			&lt;td style=""width: 37%;""&gt;
-				&lt;div style=""border: 0px;""&gt;{{ row.description }}&lt;/div&gt;&lt;/td&gt;
-			&lt;td style=""width: 10%; text-align: right;""&gt;{{ row.qty }} {{ row.uom or row.stock_uom }}&lt;/td&gt;
-			&lt;td style=""width: 15%; text-align: right;""&gt;{{
-				row.get_formatted(""rate"", doc) }}&lt;/td&gt;
-			&lt;td style=""width: 15%; text-align: right;""&gt;{{
-				row.get_formatted(""amount"", doc) }}&lt;/td&gt;
-		&lt;/tr&gt;
-		{%- endfor -%}
-	&lt;/tbody&gt;
-&lt;/table&gt;</code></pre>
-<hr>
-<h4>Common Functions</h4>
-<table class=""table table-bordered"">
-	<tbody>
-		<tr>
-			<td style=""width: 30%;""><code>doc.get_formatted(""[fieldname]"", [parent_doc])</code></td>
-			<td>Get document value formatted as Date, Currency, etc. Pass parent <code>doc</code> for currency type fields.</td>
-		</tr>
-		<tr>
-			<td style=""width: 30%;""><code>frappe.db.get_value(""[doctype]"", ""[name]"", ""fieldname"")</code></td>
-			<td>Get value from another document.</td>
-		</tr>
-	</tbody>
-</table>
-","<h3>打印格式帮助</h3>
-<hr>
-<h4>简介</h4>
-<p>打印格式是使用 Jinja 模板语言在服务器端渲染的。所有表单都可以访问<code>doc</code>对象，该对象包含正在格式化的文档的相关信息。你还可以通过<code>frappe</code>模块访问常用工具。</p>
-<p>在样式设计方面，我们提供了 Boostrap CSS 框架，你可以使用全部的类。</p>
-<hr>
-<h4>参考资料</h4>
-<ol>
-	<li><a href=""http://jinja.pocoo.org/docs/templates/"" target=""_blank"">Jinja 模板语言</a></li>
-	<li><a href=""http://getbootstrap.com"" target=""_blank"">Bootstrap CSS 框架</a></li>
-</ol>
-<hr>
-<h4>示例</h4>
-<pre><code>&lt;h3&gt;{{ doc.select_print_heading or ""Invoice"" }}&lt;/h3&gt;
-&lt;div class=""row""&gt;
-	&lt;div class=""col-md-3 text-right""&gt;客户姓名&lt;/div&gt;
-	&lt;div class=""col-md-9""&gt;{{ doc.customer_name }}&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=""row""&gt;
-	&lt;div class=""col-md-3 text-right""&gt;Date&lt;/div&gt;
-	&lt;div class=""col-md-9""&gt;{{ doc.get_formatted(""invoice_date"") }}&lt;/div&gt;
-&lt;/div&gt;
-&lt;table class=""table table- border"" trbodybordered""&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;th&gt;Sr&lt;/th&gt;
-			&lt;th&gt;Item Name&lt;/th&gt;
-			&lt;th&gt;Description&lt;/th&gt;
-			&lt;th class=""text- right"" Qty /th th class=""text- right"" Qtyright""&gt;Qty&lt;/th&gt;
-			&lt;th class=""text-right""&gt;Rate&lt;/th&gt;
-			&lt;th class=""text-right""&gt;Amount&lt;/th&gt;
-		&lt;/tr&gt;
-		{%- for row in doc.items -%}
-		&lt;tr&gt;
-			&lt;td style=""width：3%;""&gt;{{ row.idx }}&lt;/td&gt;
-			&lt;td style=""width: 20%;""&gt;
-				{{ row.item_name }}
-				{% if row.item_code != row.item_name -%}
-				&lt;br&gt;项目代码： {{ row.item_code}}
-				{%- endif %}
-			&lt;/td&gt;
-			&lt;td style=""width: 37%;""&gt;
-				&lt;div style=""border：0px;""&gt;{{ row.description }}&lt;/div&gt;&lt;/td&gt;
-			&lt;td style=""width: 10%; text-align: right;""&gt;{{ row.qty }} {{ row.uom or row.stock_uom }}&lt;/td&gt;
-			&lt;td style=""width: 15%; text-align: right;""&gt;{{
-				row.get_formatted(""rate"", doc) }}&lt;/td&gt;
-			&lt;td style=""width: 15%; text-align: right;""&gt;{{
-				row.get_formatted(""amount"", doc) }}&lt;/td&gt;
-		&lt;/tr&gt;
-		{%- endfor -%}
-	&lt;/tbody&gt;
-&lt;/table&gt;</code></pre>
-<hr>
-<h4>常用函数</h4>
-<table class=""table table-bordered"">
-	<tbody>
-		<tr>
-			<td style=""width: 30%;""><code>doc.get_formatted(""[fieldname]"", [parent_doc])</code></td>
-			<td>获取格式为日期、货币等的文档值。对于货币类型字段，请传递父<code>doc</code>。</td>
-		</tr>
-		<tr>
-			<td style=""width: 30%;""><code>frappe.db.get_value(""[doctype]"", ""[name]"", ""fieldname"")</code></td>
-			<td>从另一个文档获取值。</td>
-		</tr>
-	</tbody>
-</table>
-"
-"<h4>Default Template</h4>
-<p>Uses <a href=""http://jinja.pocoo.org/docs/templates/"">Jinja Templating</a> and all the fields of Address (including Custom Fields if any) will be available</p>
-<pre><code>{{ address_line1 }}&lt;br&gt;
-{% if address_line2 %}{{ address_line2 }}&lt;br&gt;{% endif -%}
-{{ city }}&lt;br&gt;
-{% if state %}{{ state }}&lt;br&gt;{% endif -%}
-{% if pincode %} PIN:  {{ pincode }}&lt;br&gt;{% endif -%}
-{{ country }}&lt;br&gt;
-{% if phone %}Phone: {{ phone }}&lt;br&gt;{% endif -%}
-{% if fax %}Fax: {{ fax }}&lt;br&gt;{% endif -%}
-{% if email_id %}Email: {{ email_id }}&lt;br&gt;{% endif -%}
-</code></pre>","<h4>默认模板</h4>
-<p>使用<a href=""http://jinja.pocoo.org/docs/templates/"">Jinja 模板</a>，地址的所有字段（包括自定义字段（如有））均可用</p>
-<pre><code>{{ address_line1 }}&lt;br&gt;
-{% if address_line2 %}{{ address_line2 }}&lt;br&gt;{% endif -%}
-{{ city }}&lt;br&gt;
-{% if state %}{{ state }}&lt;br&gt;{% endif -%}
-{% if pincode %} 密码：  {{ pincode }}&lt;br&gt;{% endif -%}
-{{ country }}&lt;br&gt;
-{% if phone %}电话： {{ phone }}&lt;br&gt;{% endif -%}
-{% if fax %}传真： {{ fax }}&lt;br&gt;{% endif -%}
-{% if email_id %}电子邮件： {{ email_id }}&lt;br&gt;{% endif -%}
-</code></pre>"
-"<h4>Email Reply Example</h4>
-
-<pre>Order Overdue
-
-Transaction {{ name }} has exceeded Due Date. Please take necessary action.
-
-Details
-
-- Customer: {{ customer }}
-- Amount: {{ grand_total }}
-</pre>
-
-<h4>How to get fieldnames</h4>
-
-<p>The fieldnames you can use in your email template are the fields in the document from which you are sending the email. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sales Invoice)</p>
-
-<h4>Templating</h4>
-
-<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">read this documentation.</a></p>
-","<h4>电子邮件回复示例</h4>
-
-<pre>订单逾期
-
-交易 {{ name }} 已超过到期日。请采取必要行动。
-
-详情
-
-- 客户： {{ customer }}
-- 金额： {{ grand_total }}
-</pre>
-
-<h4>如何获取字段名</h4>
-
-<p>您可以在电子邮件模板中使用的字段名是发送电子邮件的文档中的字段。您可以通过设置 &gt; 自定义表单视图并选择文档类型（如销售发票）来查找任何文档的字段。</p>
-
-<h4>模板</h4>
-
-<p>模板使用 Jinja 模板语言编译。要了解有关 Jinja 的更多信息，请<a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">阅读此文档。</a></p>
-"
 "<h5 class=""text-muted uppercase"">Or</h5>","<h5 class=""text-muted uppercase"">或者</h5>"
-"<p><strong>{{ __(""Condition Examples"") }}:</strong></p>
-<pre><code class=""language-python"">doc.status==""Open""<br>doc.due_date==nowdate()<br>doc.total &gt; 40000
-</code></pre>
-","<p><strong>{{ __(""Condition Examples"") }}:</strong></p>
-<pre><code class=""language-python"">doc.status==""Open""<br>doc.due_date==nowdate()<br>doc.total &gt; 40000
-</code></pre>
-"
-"<p><strong>{{ __(""Condition Examples"") }}:</strong></p>
-<pre>doc.status==""Open""<br>doc.due_date==nowdate()<br>doc.total &gt; 40000
-</pre>","<p><strong>{{ __(""Condition Examples"") }}:</strong></p>
-<pre>doc.status==""Open""<br>doc.due_date==nowdate()<br>doc.total &gt; 40000
-</pre>"
-"<p>Multiple webforms can be created for a single doctype. Add filters specific to this webform to display correct record after submission.</p><p>For Example:</p>
-<p>If you create a separate webform every year to capture feedback from employees add a 
- field named year in doctype and add a filter <b>year = 2023</b></p>
-","<p>可为单一类型创建多个网络表单。为该网络表单添加特定筛选器，以便在提交后显示正确的记录。</p><p>例如</p>
-<p>如果您每年都创建一个单独的网络表格来收集员工的反馈意见，请在 doctype 中添加一个名为年份的 
- 字段，并添加过滤器<b>年份 = 2023</b></p>
-"
-"<p>Set context before rendering a template. Example:</p><p>
-</p><div><pre><code>
-context.project = frappe.get_doc(""Project"", frappe.form_dict.name)
-</code></pre></div>","<p>在渲染模板前设置上下文。示例</p><p>
-</p><div><pre><code>
-context.project = frappe.get_doc(""Project"", frappe.form_dict.name)
-</code></pre></div>"
-"<p>To interact with above HTML you will have to use `root_element` as a parent selector.</p><p>For example:</p><pre class=""p-3 bg-gray-100 border-radius rounded-sm mb-0"" style=""width: fit-content;""><code>// here root_element is provided by default
-let some_class_element = root_element.querySelector('.some-class');
-some_class_element.textContent = ""New content"";
-</code></pre>","<p>要与上述 HTML 交互，您必须使用 `root_element` 作为父选择器。</p><p>例如：</p><pre class=""p-3 bg-gray-100 border-radius rounded-sm mb-0"" style=""width: fit-content;""><code>// 这里默认提供 root_element
-let some_class_element = root_element.querySelector('.some-class');
-some_class_element.textContent = ""New content"";
-</code></pre>"
 "<p>Your OTP secret on {0} has been reset. If you did not perform this reset and did not request it, please contact your System Administrator immediately.</p>",<p>您在{0}的OTP密钥已被重置。若非您本人操作，请立即联系系统管理员。</p>
-"<pre>*  *  *  *  *
-┬  ┬  ┬  ┬  ┬
-│  │  │  │  │
-│  │  │  │  └ day of week (0 - 6) (0 is Sunday)
-│  │  │  └───── month (1 - 12)
-│  │  └────────── day of month (1 - 31)
-│  └─────────────── hour (0 - 23)
-└──────────────────── minute (0 - 59)
-
----
-
-* - Any value
-/ - Step values
-</pre>
-","<pre>* * * * *
-┬ ┬ ┬ ┬ ┬
-│ │ │ │ │
-│ │ │ │ └ 星期几 (0 - 6)（0 为星期日）
-│ │ │ └───── 月 (1 - 12)
-│ │ └────────── 月中某天 (1 - 31)
-│ └──────────────── 小时 (0 - 23)
-└──────────────────── 分钟 (0 - 59)
-
----
-
-* - 任意值
-/ - 步长值
-</pre>
-"
-"<pre><code>doc.grand_total &gt; 0</code></pre>
-
-<p>Conditions should be written in simple Python. Please use properties available in the form only.</p>
-<p>Allowed functions:
-</p><ul>
-<li>frappe.db.get_value</li>
-<li>frappe.db.get_list</li>
-<li>frappe.session</li>
-<li>frappe.utils.now_datetime</li>
-<li>frappe.utils.get_datetime</li>
-<li>frappe.utils.add_to_date</li>
-<li>frappe.utils.now</li>
-</ul>
-<p>Example: </p><pre><code>doc.creation &gt; frappe.utils.add_to_date(frappe.utils.now_datetime(), days=-5, as_string=True, as_datetime=True) </code></pre><p></p>","<pre><code>doc.grand_total &gt; 0</code></pre>
-
-<p>条件应使用简单的 Python 语言编写。请仅使用表单中可用的属性。</p>
-<p>允许使用的函数：
-</p><ul>
-<li>frappe.db.get_value</li>
-<li>frappe.db.get_list</li>
-<li>frappe.session</li>
-<li>frappe.utils.now_datetime</li>
-<li>frappe.utils.get_datetime</li>
-<li>frappe.utils.add_too_date</li>
-<li>frappe.utils.now</li>
-</ul>
-<p>示例： </p><pre><code>doc.creation &gt; frappe.utils.add_to_date(frappe.utils.now_datetime(), days=-5, as_string=True, as_datetime=True) </code></pre><p></p>"
 "<span class=""h2"">Hi,</span>","<span class=""h2"">你好、</span>"
 <strong>Warning:</strong> This field is system generated and may be overwritten by a future update. Modify it using {0} instead.,<strong>警告:</strong> 本字段为系统生成，可能被后续更新覆盖。请使用{0}进行修改。
 =,=
@@ -7385,11 +6859,6 @@ A field with the name {0} already exists in {1},字段{0}已在{1}中存在
 A file with same name {} already exists,同名文件{}已存在
 A recurring {0} {1} has been created for you via Auto Repeat {2}.,已通过自动重复{2}为您创建周期性{0} {1}。
 A template already exists for field {0} of {1},字段{1}.{0}的模板已存在
-"A version identifier string for the client software.
-<br>
-The value of the should change on any update of the client software with the same Software ID.","客户端软件的版本标识符字符串。
-<br>
-对于具有相同软件ID的客户端软件，该值应在任何更新时变更。"
 A0,A0
 A1,A1
 A2,A2
@@ -7527,11 +6996,6 @@ Allow Roles,允许角色
 Allow comments,允许评论
 Allow delete,允许删除
 Allow editing after submit,提交后允许编辑
-"Allow editing even if the doctype has a workflow set up.
-
-Does nothing if a workflow isn't set up.","即使文档类型已设置工作流程，也允许编辑。
-
-如果未设置工作流程，则不执行任何操作。"
 Allow incomplete forms,允许不完整表单
 Allow multiple responses,允许多次提交
 Allow print,允许打印
@@ -7711,9 +7175,6 @@ Blue,蓝色
 Bottom,底部
 Brand,品牌
 Brand HTML,品牌HTML
-"Brand is what appears on the top-left of the toolbar. If it is an image, make sure it
-has a transparent background and use the &lt;img /&gt; tag. Keep size as 200px x 30px","品牌是出现在工具栏左上方的内容。如果是图片，请确保
-背景透明，并使用 &lt;img /&gt; 标签。大小保持为 200px x 30px"
 Breadcrumbs,面包屑导航
 Browser,浏览器
 Browser Version,浏览器版本
@@ -7810,11 +7271,6 @@ Category Name,类别名称
 Change Image,更换图片
 Change Letter Head,更换信头
 Change Print Format,更改打印格式
-"Change the starting / current sequence number of an existing series. <br>
-
-Warning: Incorrectly updating counters can prevent documents from getting created.","更改现有序列的起始/当前序列号。 <br>
-
-警告：错误更新计数器可能导致无法创建文档。"
 Changed at,更改于
 Changed by,更改人
 Changelog Feed,变更日志订阅
@@ -8164,13 +7620,6 @@ Divider,分隔线
 Do Not Create New User,不创建新用户
 Do not create new user if user with email does not exist in the system,如果系统中不存在该邮箱用户则不创建新用户
 Do not warn me again about {0},不再就{0}向我发出警告
-"DocStatus of the following states have changed:<br><strong>{0}</strong><br>
-				Do you want to update the docstatus of existing documents in those states?<br>
-				This does not undo any effect bought in by the document's existing docstatus.
-				","以下状态的文档状态已更改：<br><strong>{0}</strong><br>
-				您想更新这些状态下现有文档的 docstatus 吗？<br>
-				这不会消除文档现有 docstatus 所带来的任何影响。
-				"
 DocType <b>{0}</b> provided for the field <b>{1}</b> must have atleast one Link field,字段 <b>{1}</b> 指定的DocType <b>{0}</b> 必须至少包含一个链接字段
 DocType Missing,单据类型缺失
 DocType View,文档类型视图
@@ -8319,9 +7768,6 @@ Enable bulk edit for child table fields in Form view.,在表单视图中启用�
 Enable bulk update of this field across child table rows.,跨子表行启用此字段的批量更新。
 Enable developer mode to create a standard Print Template,启用开发者模式以创建标准打印模板
 Enable developer mode to create a standard Web Template,启用开发者模式以创建标准网页模板
-"Enable if on click
-opens modal.","如果点击
-则启用打开模式。"
 Enable in-app website tracking,启用应用内网站跟踪
 Enabled,已启用
 "Enabling this will register your site on a central relay server to send push notifications for all installed apps through Firebase Cloud Messaging. This server only stores user tokens and error logs, and no messages are saved.",启用后将在中央中继服务器注册站点，通过Firebase云消息推送所有已安装应用的通知。该服务器仅存储用户令牌和错误日志，不保存任何消息。
@@ -8535,9 +7981,6 @@ For Document,针对文档
 For Example: {} Open,示例：{} 打开
 For User,用户
 "For a dynamic subject, use Jinja tags like this: <code>{{ doc.name }} Delivered</code>",如需动态主题，请使用Jinja标签，例如：<code>{{ doc.name }} 已交付</code>
-"For comparison, use >5, <10 or =324.
-For ranges, use 5:10 (for values between 5 & 10).","为了进行比较，请使用 >5、<10 或 =324。
-对于范围，请使用 5:10（对于 5 到 10 之间的值）。"
 For example:,例如：
 "For help see <a href=""https://frappeframework.com/docs/user/en/guides/portal-development/web-forms"" target=""_blank"">Client Script API and Examples</a>","如需帮助，请参阅 <a href=""https://frappeframework.com/docs/user/en/guides/portal-development/web-forms"" target=""_blank"">客户端脚本 API 和示例</a>"
 "For more information, {0}.",更多信息，请{0}。
@@ -9182,11 +8625,6 @@ Name,名称
 Name (Doc Name),名称（文档名）
 "Name already taken, please set a new name",名称已被占用，请设置新名称
 Name of {0} cannot be {1},{0}的名称不能为{1}
-"Naming Options:
-<ol><li><b>field:[fieldname]</b> - By Field</li><li><b>naming_series:</b> - By Naming Series (field called naming_series must be present)</li><li><b>Prompt</b> - Prompt user for a name</li><li><b>[series]</b> - Series by prefix (separated by a dot); for example PRE.#####</li>
-<li><b>format:EXAMPLE-{MM}morewords{fieldname1}-{fieldname2}-{#####}</b> - Replace all braced words (fieldnames, date words (DD, MM, YY), series) with their value. Outside braces, any characters can be used.</li></ol>","命名选项：
-<ol><li><b>字段：[字段名称]</b> - 按字段</li><li><b>自动增量</b> - 使用数据库的自动增量功能</li><li><b>naming_series：</b> - 按命名系列（名为 naming_series 的字段必须存在）</li><li><b>提示</b> - 提示用户输入名称</li><li><b>[series]</b> - 按前缀排列系列（以点分隔）；例如 PRE。#####</li>
-<li><b>format:EXAMPLE-{MM}morewords{fieldname1}-{fieldname2}-{#####}</b> - 将所有括号内的单词（字段名称、日期单词（DD、MM、YY）、系列）替换为其值。括号外可使用任何字符。</li></ol>"
 Naming Series updated,命名系列已更新
 Navbar,导航栏
 Navbar Item,导航项
@@ -9222,11 +8660,6 @@ New Users (Last 30 days),新用户（最近30天）
 New Value,新值
 New Workflow Name,新工作流名称
 New Workspace,新建工作区
-"New line separated list of allowed public client URLs (eg <code>https://frappe.io</code>), or <code>*</code> to accept all.
-<br>
-Public clients are restricted by default.","以换行符分隔的允许公共客户端URL列表（例如<code>https://frappe.io</code>），或使用<code>*</code>接受所有来源。
-<br>
-默认情况下公共客户端受到限制。"
 New line separated list of scope values.,以换行符分隔的作用域值列表。
 "New lines separated list of strings representing ways to contact people responsible for this client, typically email addresses.",以换行符分隔的字符串列表，表示联系此客户端负责人的方式，通常为邮件地址。
 New password cannot be same as old password,新密码不能与旧密码相同
@@ -9444,9 +8877,6 @@ Page Margins,页面边距
 Page Number,页码
 Page Route,页面路由
 Page height and width cannot be zero,页面高度和宽度不能为零
-"Page to show on the website
-","在网站上显示的页面
-"
 Parameter,参数
 Parent Document Type,父文档类型
 Parent Document Type is required to create a number card,创建数字卡片需要父文档类型
@@ -10015,58 +9445,6 @@ Set non-standard precision for a Float or Currency field,为浮点或货币字�
 "Set non-standard precision for a Float, Currency or Percent field",为浮点、货币或百分比字段设置非标准精度
 Set only once,仅设置一次
 Set size in MB,设置大小（MB）
-"Set the filters here. For example:
-<pre class=""small text-muted""><code>
-[{
-	fieldname: ""company"",
-	label: __(""Company""),
-	fieldtype: ""Link"",
-	options: ""Company"",
-	default: frappe.defaults.get_user_default(""Company""),
-	reqd: 1
-},
-{
-	fieldname: ""account"",
-	label: __(""Account""),
-	fieldtype: ""Link"",
-	options: ""Account"",
-	reqd: 1
-}]
-</code></pre>","在此设置筛选器，示例：
-<pre class=""small text-muted""><code>
-[{
-	fieldname: ""company"",
-	label: __(""Company""),
-	fieldtype: ""公司"",
-	options: ""Company"",
-	default: frappe.defaults.get_user_default(""Company""),
-	reqd: 1
-},
-{
-	fieldname: ""account"",
-	label: __(""账户""),
-	fieldtype: ""Link"",
-	options: ""Account"",
-	reqd：1
-}]
-</code></pre>"
-"Set the path to a whitelisted function that will return the data for the number card in the format:
-
-<pre class=""small text-muted""><code>
-{
-	""value"": value,
-	""fieldtype"": ""Currency"",
-	""route_options"": {""from_date"": ""2023-05-23""},
-	""route"": [""query-report"", ""Permitted Documents For User""]
-}</code></pre>","设置白名单函数路径，该函数应返回如下格式的数字卡片数据：
-
-<pre class=""small text-muted""><code>
-{
-	""value"": value,
-	""fieldtype"": ""货币"",
-	""route_options"": {""from_date"": ""2023-05-23""},
-	""route"": [""query-report"", ""用户可访问文档""]
-}</code></pre>"
 Setting,设置
 Settings,设置
 Settings Dropdown,设置下拉菜单
@@ -10317,38 +9695,17 @@ Text Color,文字颜色
 Text Content,文本内容
 Text Editor,文本编辑器
 Thank you,谢谢
-"Thank you for reaching out to us. We will get back to you at the earliest.
-
-
-Your query:
-
-{0}","感谢您联系我们。我们将尽快给您回复。
-
-
-您的问题
-
-{0}"
 Thank you for spending your valuable time to fill this form,感谢您花时间填写此表单
 Thank you for your feedback!,感谢您的反馈！
 Thanks,谢谢
 The Auto Repeat for this document has been disabled.,此文档的自动重复功能已禁用。
 The Bulk Update could not happen due to <b>{0}</b>,由于 <b>{0}</b>，无法进行批量更新
 The CSV format is case sensitive,CSV格式区分大小写
-"The Client ID obtained from the Google Cloud Console under <a href=""https://console.cloud.google.com/apis/credentials"">
-""APIs &amp; Services"" &gt; ""Credentials""
-</a>","从Google Cloud Console的 <a href=""https://console.cloud.google.com/apis/credentials"">
-“API &amp; 服务” &gt; “凭据”
-</a>获取的客户端 ID"
 The File URL you've entered is incorrect,您输入的文件URL不正确
 The Next Scheduled Date cannot be later than the End Date.,下次计划日期不能晚于结束日期。
 The Push Relay Server URL key (`push_relay_server_url`) is missing in your site config,站点配置中缺少推送中继服务器URL键(`push_relay_server_url`)
 The User record for this request has been auto-deleted due to inactivity by system admins.,由于系统管理员未操作，此请求的用户记录已被自动删除。
 The application name will be used in the Login page.,应用名称将显示在登录页面
-"The browser API key obtained from the Google Cloud Console under <a href=""https://console.cloud.google.com/apis/credentials"">
-""APIs &amp; Services"" &gt; ""Credentials""
-</a>","从Google Cloud Console的<a href=""https://console.cloud.google.com/apis/credentials"">
-“API &amp; 服务” &gt; “凭据”
-</a>中获取的浏览器API密钥"
 The changes have been reverted.,更改已还原。
 The column {0} has {1} different date formats. Automatically setting {2} as the default format as it is the most common. Please change other values in this column to this format.,列{0}存在{1}种日期格式。自动将最常见的{2}设为默认格式。请将此列其他值更改为该格式。
 The comment cannot be empty,评论内容不能为空
@@ -10371,11 +9728,6 @@ The link you trying to login is invalid or expired.,您尝试登录的链接无�
 "The meta description is an HTML attribute that provides a brief summary of a web page. Search engines such as Google often display the meta description in search results, which can influence click-through rates.",元描述是HTML属性，提供网页摘要。Google等搜索引擎常在搜索结果中显示元描述，影响点击率。
 "The meta image is unique image representing the content of the page. Images for this Card should be at least 280px in width, and at least 150px in height.",元图像是代表页面内容的唯一图像。卡片图像宽度至少280px，高度至少150px。
 The next tour will start from where the user left off.,下次导览将从用户上次结束的位置开始
-"The project number obtained from Google Cloud Console under <a href=""https://console.cloud.google.com/iam-admin/settings"">
-""IAM &amp; Admin"" &gt; ""Settings""
-</a>","从Google Cloud Console的<a href=""https://console.cloud.google.com/apis/credentials"">
-“IAM &amp; 管理” &gt; “设置”
-</a>中获取的项目编号"
 The report you requested has been generated.<br><br>Click here to download:<br><a href='{0}'>{0}</a><br><br>This link will expire in {1} hours.,您请求的报告已生成。<br><br>点击此处下载：<br><a href='{0}'>{0}</a><br><br>此链接将在{1}小时后过期。
 The reset password link has been expired,重置密码链接已过期
 The reset password link has either been used before or is invalid,重置密码链接已被使用或无效
@@ -10411,9 +9763,6 @@ This document can not be deleted right now as it's being modified by another use
 This document has already been queued for submission. You can track the progress over {0}.,本文档已加入提交队列。您可通过{0}跟踪进度。
 This document has unsaved changes which might not appear in final PDF. <br> Consider saving the document before printing.,此文档存在未保存更改，可能不会反映在最终PDF中。<br>打印前请先保存文档。
 "This document is already amended, you cannot ammend it again",此文档已修订，不可再次修订
-"This feature can not be used as dependencies are missing.
-				Please contact your system manager to enable this by installing pycups!","由于缺少依赖项，该功能无法使用。
-				请联系系统管理员，通过安装 pycups 来启用此功能！"
 This file is attached to a protected document and cannot be deleted.,该文件已关联至受保护文档，不可删除。
 "This file is public and can be accessed by anyone, even without logging in. Mark it private to limit access.",本文件为公开文件，无需登录即可访问。请设为私有以限制访问权限。
 This geolocation provider is not supported yet.,暂不支持此地理位置服务提供商。
@@ -10453,22 +9802,6 @@ Title Field,标题字段
 Title Prefix,标题前缀
 Title of the page,页面标题
 To Date Field,截止日期字段
-"To add dynamic subject, use jinja tags like
-
-<div><pre><code>New {{ doc.doctype }} #{{ doc.name }}</code></pre></div>","使用Jinja标签添加动态主题
-
-<div><pre><code>新建{{ doc.doctype }} #{{ doc.name }}</code></pre></div>"
-"To add dynamic values from the document, use jinja tags like
-
-<div>
-<pre><code>{ ""id"": ""{{ doc.name }}"" }</code>
-</pre>
-</div>","使用Jinja标签添加文档动态值
-
-<div>
-<pre><code>{ ""id"": ""{{ doc.name }}"" }</code>
-</pre>
-</div>"
 To allow more reports update limit in System Settings.,要在系统设置中调整报表数量限制以允许更多报表
 To enable it follow the instructions in the following link: {0},启用方法请参考以下链接说明：{0}
 "To enable server scripts, read the {0}.",启用服务端脚本请参阅{0}
@@ -10533,9 +9866,6 @@ Type title,输入标题
 Type your reply here...,在此输入回复...
 Type:,类型：
 UI Tour,界面导览
-"URIs for receiving authorization code once the user allows access, as well as failure responses. Typically a REST endpoint exposed by the Client App.
-<br>e.g. http://hostname/api/method/frappe.integrations.oauth2_logins.login_via_facebook","用户授权后接收授权码及错误响应的URI。通常为客户端应用暴露的REST端点。
-<br>示例：http://hostname/api/method/frappe.integrations.oauth2_logins.login_via_facebook"
 URL,URL
 URL contact must start with https://,URL 联系人必须以 https:// 开头
 URL must start with http:// or https://,URL必须以http://或https://开头
@@ -10563,9 +9893,6 @@ Undo,撤销
 Undo last action,撤销上一步操作
 Unfollow,取消关注
 Unhandled Emails,未处理邮件
-"Unique ID assigned by the client developer used to identify the client software to be dynamically registered.
-<br>
-<b>Should remain same</b> across multiple versions or updates of the software.",由客户端开发人员分配的唯一ID，用于标识要动态注册的客户端软件。<br><b>应在软件的多个版本或更新中保持不变</b>。
 Unknown,未知
 Unknown Rounding Method: {},未知舍入方法：{}
 Unknown User,未知用户
@@ -10750,7 +10077,6 @@ Week,周
 Week of the year,一年中的第几周
 Weekly,每周
 Weekly Long,周（长格式）
-Weight,重量
 Weighted Distribution,加权分布
 Welcome,欢迎
 Welcome Email Template,欢迎邮件模板
@@ -11118,16 +10444,6 @@ yyyy-mm-dd,年-月-日
 {} not found in PATH! This is required to access the console.,PATH中未找到{}！访问控制台需要此组件
 {} not found in PATH! This is required to restore the database.,PATH中未找到{}！恢复数据库需要此组件
 {} not found in PATH! This is required to take a backup.,PATH中未找到{}！执行备份需要此组件
-"
-			The Batch {0} of an item {1} has negative stock in the warehouse {2}{3}.
-			Please add a stock quantity of {4} to proceed with this entry.
-			If it is not possible to make an adjustment entry, please enable 'Allow Negative Stock for Batch' in the batch {0} or in the Stock Settings to proceed.
-			However, enabling this setting may lead to negative stock in the system.
-			So please ensure the stock levels are adjusted as soon as possible to maintain the correct valuation rate.","物料 {1} 的批次 {0} 在仓库 {2}{3} 中的库存为负。
-			请添加库存数量 {4} 以继续输入。
-			如果无法进行调整分录，请在批次 {0} 或库存设置中启用“允许批号为负库存”以继续。
-			但是，启用此设置可能会导致系统中出现负库存。
-			因此，请确保尽快调整库存水平，以维持正确的估值率。"
   ,If enabled
  Address,地址
  Amount,金额
@@ -11212,134 +10528,12 @@ yyyy-mm-dd,年-月-日
 "<b>Cannot create asset.</b><br><br>You're trying to create <b>{0} asset(s)</b> from {2} {3}.<br>However, only <b>{1} item(s)</b> were purchased and <b>{4} asset(s)</b> already exist against {5}.",<b>无法创建资产。</b><br><br>您正在尝试从 {2} 创建 <b>{0} 资产</b> {3}.<br>但是，仅购买了 <b>{1} 物料 </b>，且 <b>{4} 资产 </b> 已存在{5}。
 <b>From Time</b> cannot be later than <b>To Time</b> for {0},对象{0}的<b>起始时间</b>不能晚于<b>结束时间</b>
 <b>Row #{0}:</b> Bundle {1} in warehouse {2} has insufficient packed items:<br><div style='margin-top: 15px;'><ul style='line-height: 0.8;'>{3}</ul></div>,<b>行 #{0}：</b> 仓库 {2} 中的捆绑包 {1} 的套装物料不足：<br><div style='margin-top: 15px;'><ul style='line-height: 0.8;'>{3}</ul></div>
-"<br>
-<h4>Note</h4>
-<ul>
-<li>
-You can use <a href=""https://jinja.palletsprojects.com/en/2.11.x/"" target=""_blank"">Jinja tags</a> in <b>Subject</b> and <b>Body</b> fields for dynamic values.
-</li><li>
-    All fields in this doctype are available under the <b>doc</b> object and all fields for the customer to whom the mail will go to is available under the  <b>customer</b> object.
-</li></ul>
-<h4> Examples</h4>
-<!-- {% raw %} -->
-<ul>
-    <li><b>Subject</b>:<br><br><pre><code>Statement Of Accounts for {{ customer.customer_name }}</code></pre><br></li>
-    <li><b>Body</b>: <br><br>
-<pre><code>Hello {{ customer.customer_name }},<br>PFA your Statement Of Accounts from {{ doc.from_date }} to {{ doc.to_date }}.</code> </pre></li>
-</ul>
-<!-- {% endraw %} -->","<br>
-<h4>注意事项</h4>
-<ul>
-<li>
-您可以在 ""<b>主题 ""</b>和<b>""正文</b>""字段中使用 ""<a href=""https://jinja.palletsprojects.com/en/2.11.x/"" target=""_blank"">Jinja ""标记</a>来获取动态值。
-</li><li>
-    该类型中的所有字段均可在<b>doc</b>对象下使用，而邮件将发送给的客户的所有字段均可在<b>客户</b>对象下使用。
-</li></ul>
-<h4>示例</h4>
-<!-- {% raw %} -->
-<ul>
-    <li><b>主题</b>：<br><br><pre><code> {{ customer.customer_name }}的账目报表 </code></pre><br></li>
-    <li><b>正文</b>：<br><br>
-<pre><code>您好 {{ customer.customer_name }},<br>PFA 您的会计报表从 {{ doc.from_date }} 转到 {{ doc.to_date }}。</code> </pre></li>
-</ul>
-<!-- {% endraw %} -->"
 "<div class=""columnHeading"">Other Details</div>","<div class=""columnHeading"">其他详细信息</div>"
 "<div class=""text-muted text-center"">No Matching Bank Transactions Found</div>","<div class=""text-muted text-center"">未找到匹配的银行交易</div>"
 "<div class=""text-muted text-center"">{0}</div>","<div class=""text-muted text-center"">{0}</div>"
 "<div id=""stock-levels-placeholder""></div>","<div id=""stock-levels-placeholder""></div>"
 "<div id=\""item-prices-container\""></div>","<div id=\""item-prices-container\""></div>"
 "<div style=""margin-bottom:10px; color: var(--gray-500) !important;"">Define alternate units for this item. Eg: 1 Box = 12 Nos, set conversion factor as 12. (Will also apply for variants) <a href=""https://docs.frappe.io/erpnext/uom"" target=""_blank"">Learn more &#8594;</a></div>","<div style=""margin-bottom:10px; color: var(--gray-500) !important;"">定义此项的备用单位。例如：1 个盒子 = 12 个，将转换系数设置为 12。（也适用于型号） <a href=""https://docs.frappe.io/erpnext/uom"" target=""_blank"">了解更多 &#8594;</a></div>"
-"<div>
-<h3> All dimensions in centimeter only </h3>
-</div>","<div>
-<h3>所有尺寸均以厘米为单位 </h3>
-</div>"
-"<h3>Currency Exchange Settings Help</h3>
-<p>There are 3 variables that could be used within the endpoint, result key and in values of the parameter.</p>
-<p>Exchange rate between {from_currency} and {to_currency} on {transaction_date} is fetched by the API.</p>
-<p>Example: If your endpoint is exchange.com/2021-08-01, then, you will have to input exchange.com/{transaction_date}</p>","<h3>货币兑换设置帮助</h3>
-<p>在端点、结果键和参数值中可以使用 3 个变量。</p>
-<p>API 将获取 {transaction_date} 上 {from_currency} 和 {to_currency} 之间的汇率。</p>
-<p>举例说明：如果您的端点是 exchange.com/2021-08-01，则必须输入 exchange.com/{transaction_date}。 </p>"
-"<h4>Body Text and Closing Text Example</h4>
-
-<div>We have noticed that you have not yet paid invoice {{sales_invoice}} for {{frappe.db.get_value(""Currency"", currency, ""symbol"")}} {{outstanding_amount}}. This is a friendly reminder that the invoice was due on {{due_date}}. Please pay the amount due immediately to avoid any further dunning cost.</div>
-
-<h4>How to get fieldnames</h4>
-
-<p>The fieldnames you can use in your template are the fields in the document. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sales Invoice)</p>
-
-<h4>Templating</h4>
-
-<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">read this documentation.</a></p>","<h4>正文和结尾文本示例</h4>
-
-<div>我们注意到您尚未支付 {{sales_invoice}} 的发票 {{frappe.db.get_value(""Currency"", currency, ""symbol"")}} {{outstanding_amount}}。特此友情提醒，发票到期日为 {{due_date}}。请立即支付应付金额，以免产生更多扣款费用。</div>
-
-<h4>如何获取字段名</h4>
-
-<p>您可以在模板中使用的字段名是文档中的字段。您可以通过设置 &gt; 自定义表单视图并选择文档类型（如销售发票）来查找任何文档的字段。</p>
-
-<h4>模板</h4>
-
-<p>模板使用 Jinja 模板语言编译。要了解有关 Jinja 的更多信息，请<a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">阅读此文档。</a></p>"
-"<h4>Contract Template Example</h4>
-
-<pre>Contract for Customer {{ party_name }}
-
--Valid From : {{ start_date }} 
--Valid To : {{ end_date }}
-</pre>
-
-<h4>How to get fieldnames</h4>
-
-<p>The field names you can use in your Contract Template are the fields in the Contract for which you are creating the template. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Contract)</p>
-
-<h4>Templating</h4>
-
-<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">read this documentation.</a></p>","<h4>合同模板示例</h4>
-
-<pre>客户合同 {{ party_name }}
-
--Valid From : {{ start_date }} 
--Valid To : {{ end_date }}
-</pre>
-
-<h4>如何获取字段名</h4>
-
-<p>您可以在合同模板中使用的字段名称是您创建模板的合同中的字段。您可以通过设置 &gt; 自定义表单视图并选择文档类型（如合同）来查找任何文档的字段。</p>
-
-<h4>模板制作</h4>
-
-<p>模板使用 Jinja 模板语言编译。要了解有关 Jinja 的更多信息，请<a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">阅读此文档。</a></p>"
-"<h4>Standard Terms and Conditions Example</h4>
-
-<pre>Delivery Terms for Order number {{ name }}
-
--Order Date : {{ transaction_date }} 
--Expected Delivery Date : {{ delivery_date }}
-</pre>
-
-<h4>How to get fieldnames</h4>
-
-<p>The fieldnames you can use in your email template are the fields in the document from which you are sending the email. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sales Invoice)</p>
-
-<h4>Templating</h4>
-
-<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">read this documentation.</a></p>","<h4>标准条款和条件示例</h4>
-
-<pre>Delivery Terms for Order number {{ name }}
-
--Order Date : {{ transaction_date }} 
--Expected Delivery Date : {{ delivery_date }}
-</pre>
-
-<h4>如何获取字段名称</h4>
-
-<p>您可以在电子邮件模板中使用的字段名称是您发送电子邮件的文档中的字段。您可以通过设置 &gt; 自定义表单视图并选择文档类型（例如销售发票）找到任何文档的字段</p>
-
-<h4>模板</h4>
-
-<p> 模板是使用 Jinja 模板语言编译的。要了解有关 Jinja、<a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/""> 的更多信息，请阅读本文档。</a></p>"
 "<label class=""control-label"" style=""margin-bottom: 0px;"">Account Number Settings</label>","<label class=""control-label"" style=""margin-bottom: 0px;"">账号设置</label>"
 "<label class=""control-label"" style=""margin-bottom: 0px;"">Amount In Words</label>","<label class=""control-label"" style=""margin-bottom: 0px;"">大写金额</label>"
 "<label class=""control-label"" style=""margin-bottom: 0px;"">Date Settings</label>","<label class=""control-label"" style=""margin-bottom: 0px;"">日期设置</label>"
@@ -11350,181 +10544,16 @@ You can use <a href=""https://jinja.palletsprojects.com/en/2.11.x/"" target=""_b
 <li>{}</li>,<li>{}</li>
 <p>Cannot overbill for the following Items:</p>,<p>以下物料不允许超额开票：</p>
 <p>Following {0}s doesn't belong to Company {1} :</p>,<p>以下{0}不属于公司{1}：</p>
-"<p>In your <b>Email Template</b>, you can use the following special variables:
-</p>
-<ul>
-        <li>
-            <code>{{ update_password_link }}</code>: A link where your supplier can set a new password to log into your portal.
-        </li>
-        <li>
-            <code>{{ portal_link }}</code>: A link to this RFQ in your supplier portal.
-        </li>
-        <li>
-            <code>{{ supplier_name }}</code>: The company name of your supplier.
-        </li>
-        <li>
-            <code>{{ contact.salutation }} {{ contact.last_name }}</code>: The contact person of your supplier.
-        </li><li>
-            <code>{{ user_fullname }}</code>: Your full name.
-        </li>
-    </ul>
-<p></p>
-<p>Apart from these, you can access all values in this RFQ, like <code>{{ message_for_supplier }}</code> or <code>{{ terms }}</code>.</p>","<p>在<b>电子邮件模板</b>中，您可以使用以下特殊变量：
-</p>
-<ul>
-        <li>
-            <code>{{ update_password_link }}</code>:供应商可以设置新密码登录门户网站的链接。
-        </li>
-        <li>
-            <code>{{ portal_link }}</code>:供应商门户网站中该询价单的链接。
-        </li>
-        <li>
-            <code>{{ supplier_name }}</code>:供应商的公司名称。
-        </li>
-        <li>
-            <code>{{ contact.salutation }} {{ contact.last_name }}</code>:供应商的联系人。
-        </li><li>
-            <code>{{ user_fullname }}</code>:您的全名。
-        </li>
-    </ul>
-<p></p>
-<p>除此之外，您还可以访问此 RFQ 中的所有值，如 <code>{{ message_for_supplier }}</code>或 <code>{{ terms }}</code>.</p>"
 <p>Please correct the following row(s):</p><ul>,<p>请修正以下行：</p><ul>
 <p>Posting Date {0} cannot be before Purchase Order date for the following:</p><ul>,<p>以下项目的过账日期{0}不得早于采购订单日期：</p><ul>
 "<p>Price List Rate has not been set as editable in Selling Settings. In this scenario, setting <strong>Update Price List Based On</strong> to <strong>Price List Rate</strong> will prevent auto-updation of Item Price.</p>Are you sure you want to continue?",<p>销售设置中允许修改标价。在此情况下，将<strong>价格表更新依据</strong>设为<strong>标价</strong>将禁用物料价格自动更新功能。</p>是否确认继续操作？
 "<p>To allow over-billing, please set allowance in Accounts Settings.</p>",<p>要允许超额开票，请在账户设置中设置容差。</p>
-"<pre><h5>Message Example</h5>
-
-&lt;p&gt; Thank You for being a part of {{ doc.company }}! We hope you are enjoying the service.&lt;/p&gt;
-
-&lt;p&gt; Please find enclosed the E Bill statement. The outstanding amount is {{ doc.grand_total }}.&lt;/p&gt;
-
-&lt;p&gt; We don't want you to be spending time running around in order to pay for your Bill.<br>After all, life is beautiful and the time you have in hand should be spent to enjoy it!<br>So here are our little ways to help you get more time for life! &lt;/p&gt;
-
-&lt;a href=""{{ payment_url }}""&gt; click here to pay &lt;/a&gt;
-
-</pre>
-","<pre><h5>信息示例</h5>
-
-&lt;p&gt; 感谢您成为 {{ doc.company }}的一员！希望您能享受我们的服务。&lt;/p&gt;
-
-&lt;p&gt; 随信附上电子账单。未付金额为 {{ doc.grand_total }}。&lt;/p&gt;
-
-&lt;p&gt; 我们不希望您为了支付账单而花费时间四处奔波。<br>毕竟，生活是美好的，您手中的时间应该用来享受生活！<br>因此，我们有一些小方法来帮助您获得更多的生活时间！ &lt;/p&gt;
-
-&lt;a href=""{{ payment_url }}""&gt; 点击此处付款 &lt;/a&gt;
-
-</pre>
-"
-"<pre><h5>Message Example</h5>
-
-&lt;p&gt;Dear {{ doc.contact_person }},&lt;/p&gt;
-
-&lt;p&gt;Requesting payment for {{ doc.doctype }}, {{ doc.name }} for {{ doc.grand_total }}.&lt;/p&gt;
-
-&lt;a href=""{{ payment_url }}""&gt; click here to pay &lt;/a&gt;
-
-</pre>
-","<pre><h5>消息示例</h5>
-
-&lt;p&gt;亲爱的 {{ doc.contact_person }}，&lt;/p&gt;
-
-&lt;p&gt;请求支付 {{ doc.doctype }}、 {{ doc.name }} 和 {{ doc.grand_total }}的费用。&lt;/p&gt;
-
-&lt;a href=""{{ payment_url }}""&gt; 点击此处支付 &lt;/a&gt;
-
-</pre>
-"
 "<span class=""h4""><b>Masters &amp; Reports</b></span>","<span class=""h4""><b>主数据 &amp; 报表</b></span>"
 "<span class=""h4""><b>Reports &amp; Masters</b></span>","<span class=""h4""><b>报表 &amp; 主数据</b></span>"
 "<span class=""h4""><b>Subcontracting Inward and Outward</b></span>",受托加工与委外
-"<span class=""h4""><b>Your Shortcuts
-			
-		
-			
-		
-			
-		</b></span>","<span class=""h4""><b>快速访问
-			
-		
-			
-		
-			
-		</b></span>"
 "<span class=""h4""><b>Your Shortcuts</b></span>","<span class=""h4""><b>快捷方式</b></span>"
 <strong>Grand Total:</strong> {0},<strong>总计：</strong> {0}
 <strong>Outstanding Amount:</strong> {0},<strong>未清金额：</strong> {0}
-"<table class=""table table-bordered table-condensed"">
-<thead>
-  <tr>
-         <th class=""table-sr"" style=""width: 50%;"">Child Document</th>
-         <th class=""table-sr"" style=""width: 50%;"">Non Child Document</th>
-   </tr>
-</thead>
-<tbody>
-<tr>
-         <td>
-                  <p> To access parent document field use parent.fieldname and to access child table document field use doc.fieldname </p>
-
-         </td>
-         <td>
-                    <p>To access document field use doc.fieldname </p>
-         </td>
-</tr>
-<tr>
-        <td>
-                   <p><b>Example: </b> parent.doctype == ""Stock Entry"" and doc.item_code == ""Test"" </p>
-
-        </td>
-         <td>
-                   <p><b>Example: </b> doc.doctype == ""Stock Entry"" and doc.purpose == ""Manufacture""</p>    
-          </td>
-</tr>
-
-</tbody>
-</table>
-
-
-
-
-
-
-","<table class=""table table-bordered table-condensed"">
-<thead>
-  <tr>
-         <th class=""table-sr"" style=""width: 50%;"">子文档</th>
-         <th class=""table-sr"" style=""width: 50%;"">非子文档</th>
-   </tr>
-</thead>
-<tbody>
-<tr>
-         <td>
-                  <p> 要访问父文档字段，请使用 parent.字段名；要访问子表文档字段，请使用doc.字段名 </p>
-
-         </td>
-         <td>
-                    <p>要访问文档字段，请使用 doc.字段名 </p>
-         </td>
-</tr>
-<tr>
-        <td>
-                   <p><b>示例： </b> parent.doctype == ""入库单"" 和 doc.item_code == ""测试物料"" </p>
-
-        </td>
-         <td>
-                   <p><b>示例： </b> doc.doctype == “入库单” 和 doc.purpose == “生产用途”</p>    
-          </td>
-</tr>
-
-</tbody>
-</table>
-
-
-
-
-
-
-"
 A - B,A - B
 A - C,A - C
 A Customer Group exists with same name please change the Customer name or rename the Customer Group,存在同名客户组，请修改客户名称或重命名客户组
@@ -11568,10 +10597,8 @@ Account Data,账户数据
 Account Detail Level,账户详细级别
 Account Manager,客户经理
 Account Missing,科目缺失
-Account Name,科目名称
 Account Opening Balance,账户期初余额
 Account Pay Only,账户仅用于支付
-Account Type,科目类型
 Account company does not match with the rule company.,科目公司与规则公司不匹配。
 Account for Change Amount,零钱科目
 Account is mandatory,帐号为必填项
@@ -11609,7 +10636,6 @@ Accounting Entry for {0},{0}会计凭证
 Accounting Period,会计期间
 Accounting Period cannot be created for a future date. End Date {0} is after today.,无法为未来日期创建会计期间。结束日期 {0} 在今天之后。
 Accounting Period overlaps with {0},会计期间与{0}重叠
-Accounts,会计
 Accounts Included in Report,报告中包含的账户
 Accounts Missing from Report,报告中缺少账户
 Accounts Receivable / Payable Tuning,应收/应付报表性能优化
@@ -11710,11 +10736,6 @@ Additional Information updated successfully.,附加信息更新成功。
 Additional Material Transfer,额外物料调拨
 Additional Notes,补充说明
 Additional Transferred Qty,额外调拨数量
-"Additional Transferred Qty {0}
-					cannot be greater than {1}.
-					To fix this, increase the percentage value
-					of the field 'Transfer Extra Raw Materials to WIP'
-					in Manufacturing Settings.",额外调拨数量{0}不得超过{1}。要修复此问题，请提高制造设置中“调拨额外原材料至在制品”字段的百分比值。
 Additional {0} {1} of item {2} required as per BOM to complete this transaction,根据 BOM，需要额外添加 {0} {1} 项 {2} 才能完成此交易
 Address & Contact,地址及联系方式
 Address & Contacts,地址及联系方式
@@ -11732,7 +10753,6 @@ Advance Account: {0} must be in either customer billing currency: {1} or Company
 Advance Payment,预付款
 Advance Payment Ledger Entry,预付款分类账条目
 Advance Payment Status,预付款状态
-Advance Payments,预付款
 Advance Taxes and Charges,预付税费
 Advance Voucher No,预付单据号
 Advance Voucher Type,预付单据类型
@@ -12206,8 +11226,6 @@ Bisecting To,分割结束
 Biweekly,双周
 Black,黑
 Blank Line,空行
-"Blocks all further accounting entries on this customer's account. Only users with the frozen-entries role can override.
-",阻止该客户科目上的所有进一步会计分录。只有具有冻结条目角色的用户才能覆盖。
 Blocks this customer from being used on any new transaction.,阻止该客户用于任何新交易。
 Blog Subscriber,博客订阅者
 Blood Group,血型
@@ -12766,12 +11784,6 @@ Creating User...,正在创建用户...
 Creating demo data,创建演示数据
 Creating {} out of {} {},正在创建{}/{}个{}
 Creation of <b><a href='/app/{0}'>{1}(s)</a></b> successful,成功创建<b><a href='/app/{0}'>{1}</a></b>
-"Creation of {0} failed.
-				Check <b><a href=""/app/bulk-transaction-log"">Bulk Transaction Log</a></b>","创建 {0} 失败。
-				检查 <b><a href=""/app/bulk-transaction-log"">批量事务日志</a></b>"
-"Creation of {0} partially successful.
-				Check <b><a href=""/app/bulk-transaction-log"">Bulk Transaction Log</a></b>","创建 {0} 部分成功。
-				检查 <b><a href=""/app/bulk-transaction-log"">批量事务日志</a></b>"
 Credit,贷方
 Credit Account,贷方科目
 Credit Amount in Reporting Currency,贷方金额（报告货币）
@@ -13266,17 +12278,6 @@ Enable to apply SLA on every {0},启用后将在每个{0}应用SLA
 Enable to make this supplier selectable as a transporter on Delivery Notes and Stock Entries,启用此供应商作为送货单和库存条目上的运输商
 Enabling the check box will fetch timesheet on select of a Project in Sales Invoice,勾选此复选框将在销售发票中选择项目时获取工时表
 Enabling this checkbox will force each Job Card Time Log to have From Time and To Time,勾选后，生产任务单实际工时强制填写开始与结束时间
-"Enabling this will do the following:
-<ul style=""padding-left:16px"">
-<li>Make the rate column of all Packed/Bundle Items tables editable.</li>
-<li>Calculate the prices of all <a href=""/desk/product-bundle"" rel=""noopener noreferrer"">Product Bundles</a> in the Items table, based on the prices of its child Items, specified in the Packed/Bundle Items table. </li>
-</ul>
-Note: If this is enabled, updating the rate of the Product Bundle in the Items table will not change its price. It will get reset to the price based on its Child Items on saving the doc.","启用此功能将执行以下操作：
-<ul style=""padding-left:16px"">
-<li>Make the rate column of all Packed/Bundle Items tables editable.</li>
-<li> 根据“套件物料明细”表中指定的子物料的价格，计算“物料”表中所有 <a href=""/desk/product-bundle"" rel=""noopener noreferrer""> 产品套件 </a> 的价格。 </li>
-</ul>
-注意：如果启用此功能，则更新“物料”表中的“产品套装”的费率不会更改其价格。保存文档时，它将根据其子物料重置为价格。"
 Encashment Date,折现日期
 End Time,结束时间
 End Year,结束年份
@@ -13305,11 +12306,6 @@ Enter discount percentage.,输入折扣百分比
 Enter each serial no in a new line,每行输入一个序列号
 Enter the Bank Guarantee Number before submitting.,提交前输入银行保函编号
 Enter the Item Code that this customer uses at their end. This will be shown in Sales Orders for the customer's reference.,输入该客户最终使用的物料代码。这将显示在销售订单中以供客户参考。
-"Enter the Operation, the table will fetch the Operation details like Hourly Rate, Workstation automatically.
-
- After that, set the Operation Time in minutes and the table will calculate the Operation Costs based on the Hourly Rate and Operation Time.","输入操作后，表格将自动获取操作详细信息，如小时费率、工作站。
-
- 之后，以分钟为单位设置操作时间，表格将根据小时费率和操作时间计算操作成本。"
 Enter the closing balance you see in your bank statement for {0} as of the {1},输入您在银行对账单中看到的截至 {1} 的 {0} 的期末余额
 Enter the name of the Beneficiary before submitting.,提交前输入受益人名称
 Enter the name of the bank or lending institution before submitting.,提交前输入银行或贷款机构名称
@@ -13333,11 +12329,6 @@ Error getting details for {0}: {1},获取 {0} 的详细信息时出错：{1}
 Error in party matching for Bank Transaction {0},银行交易{0}交易方匹配错误
 Error uploading attachments,上传附件时出错
 Error while posting depreciation entries,过账折旧分录时出错
-"Error: This asset already has {0} depreciation periods booked.
-					The `depreciation start` date must be at least {1} periods after the `available for use` date.
-					Please correct the dates accordingly.","错误：此资产已登记 {0} 个折旧期。
-					`折旧开始`日期必须至少在 `可供使用`日期之后 {1} 个期。
-					请相应地更正日期。"
 Error: {0} is mandatory field,错误：{0}是必填字段
 Estimated Arrival,预计抵达时间
 Estimated Time and Cost,预计时间和成本
@@ -13759,12 +12750,6 @@ Idle,闲置
 If enabled then system won't override the picked qty / batches / serial numbers / warehouse.,若启用，系统将不会覆盖已拣配的数量/批次/序列号/仓库。
 "If enabled, a print of this document will be attached to each email",启用后，每封邮件将附带此单据的打印件
 "If enabled, all files attached to this document will be attached to each email",启用后，每封邮件将附带此单据的所有附件
-"If enabled, formula for <b>Qty to Order</b>: <br>
-Required Qty (BOM) - <a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">Projected Qty</a>. <br> This helps avoid over-ordering.","若启用，<b>订购数量</b>计算公式： <br>
-需求数量（物料清单） -<a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">预计数量</a>。 <br> 以避免过量订购。"
-"If enabled, formula for <b>Required Qty</b>: <br>
-Required Qty (BOM) - <a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">Projected Qty</a>. <br> This helps avoid over-ordering.","若启用，<b>需求数量</b>计算公式： <br>
-需求数量（物料清单） -<a href=""https://docs.frappe.io/erpnext/user/manual/en/projected-quantity"">预计数量</a>。 <br> 以避免过量订购。"
 "If enabled, rule matching algorithm will run every hour",如果启用，规则匹配算法将每小时运行一次
 "If enabled, system will allow user to deliver the entire quantity of the finished goods produced against the Subcontracting Inward Order. If disabled, system will allow delivery of only the ordered quantity.",若启用，系统将允许交付为受托加工单单生产的全部成品数量。若禁用，系统仅允许订单数量。
 "If enabled, the item rate won't adjust to the valuation rate during internal transfers, but accounting will still use the valuation rate. This will allow the user to specify a different rate for printing or taxation purposes.",如果启用，会计记账仍使用成本价。用户维护的物料价用于打印与报税。
@@ -13831,7 +12816,6 @@ Importing {0} transactions,正在导入 {0} 笔交易
 Importing...,正在导入...
 In Maintenance,在维护中
 In Percentage,百分比
-In Process,进行中
 In Production,在生产中
 In Stock,库存
 In Transit Transfer,在途调拨
@@ -14033,10 +13017,8 @@ Is Purchase Receipt required for Purchase Invoice creation?,必须有采购入�
 Is Rule Evaluated,规则是否已评估
 Is Short/Long Year,是否短/长会计年度
 Is Sub Assembly Item,是子装配件
-Is Subcontracted Item,是否为外包物料
 Is a Subscription,是订阅
 Is created using POS,通过POS创建
-Issue,问题
 Issue Analytics,问题分析报表
 Issue Material,发料
 Issue Split From,拆分自问题单
@@ -14186,9 +13168,6 @@ Lead {0} has been added to prospect {1}.,线索{0}已添加至潜在客户{1}
 "Leads help you get business, add all your contacts and more as your leads",信息帮助你的业务，你所有的联系人和更添加为您的线索
 "Learn about <a href=""https://docs.frappe.io/erpnext/user/manual/en/common_party_accounting"" rel=""noopener noreferrer"">Common Party</a>","了解 <a href=""https://docs.frappe.io/erpnext/user/manual/en/common_party_accounting"" rel=""noopener noreferrer"">合并记账功能</a>"
 Leave Encashed?,假期已折现？
-"Leave blank for home.
-This is relative to site URL, for example ""about"" will redirect to ""https://yoursitename.com/about""","主页留空。
-这是相对于网站 URL 而言的，例如 ""about ""将重定向到 ""https://yoursitename.com/about"""
 Leave blank to use the password already saved for this bank account (if any). It is stored encrypted and reused for future statements.,留空可使用已为此银行账户保存的密码（如果有）。它被加密存储并重复用于将来的语句。
 Ledger Health,账本健康状态
 Ledger Health Monitor,账本健康监控器
@@ -14373,9 +13352,6 @@ Minimum Order Quantity,最小起订量
 Minimum Payment Amount,最小付款金额
 Minimum Qty,最小数量
 Minimum Value,最小值
-"Minimum quantity should be as per Stock UOM
-
-",最小数量应符合库存计量单位。
 Minute,分钟
 Miscellaneous,杂项
 Miscellaneous Expenses,杂项费用
@@ -14929,12 +13905,10 @@ Payment of {0} received successfully. Waiting for other requests to complete...,
 Payment related to {0} is not completed,与{0}相关的付款未完成
 Payment request failed,付款请求失败
 Payment term {0} not used in {1},付款条款{0}未在{1}中使用
-Payments,付款
 Payments could not be updated.,付款信息更新失败
 Payments updated.,付款信息已更新
 Payroll Entry,工资计算
 Payroll Payable,应付职工薪资
-Payslip,工资单
 Peck (UK),配克（英制）
 Peck (US),配克（美制）
 Pegged Against,钉住对象
@@ -14949,8 +13923,6 @@ Pending quantity cannot be greater than the for quantity.,待处理数量不能�
 Pending quantity cannot be negative.,待处理数量不能为负数。
 Pension Funds,养老基金
 Per Day,每日
-"Per Day
-Shift Time (In Hours) * No of Workstations * No of Shift",每日班次时间（小时）× 工作站数 × 班次数
 Per Month,每月
 Per Unit Time in Mins,单位时间（分钟）
 Per Year,每年
@@ -15490,7 +14462,6 @@ Quotations: ,报价单：
 Quote Status,报价状态
 Quoted Amount,报价金额
 RFQ and Purchase Order Settings,询价和采购订单设置
-Rate,单价
 Rate & Amount,价格和金额
 Rate Of TDS As Per Certificate,按凭证的TDS费率
 Rate and Amount,单价及小计
@@ -15641,9 +14612,6 @@ Repair,维修
 Repair Cost,修理费用
 Repair Purchase Invoices,修复采购发票
 Repair Status,维修状态
-"Replace a particular BOM in all other BOMs where it is used. It will replace the old BOM link, update cost and regenerate ""BOM Explosion Item"" table as per new BOM.
-It also updates latest price in all the BOMs.","在使用BOM的所有其他BOM中替换BOM。 它将替换旧的 BOM 链接，更新成本，并按照新建BOM 重新生成“BOM Explosion item”表。
-它也更新了所有BOMM的最新价格。"
 Report Date,报表日期
 Report Type is mandatory,报表类型必填
 Reporting Currency,报告货币
@@ -15853,13 +14821,6 @@ Row #{0}: Return Against is required for returning asset,第{0}行：资产退�
 Row #{0}: Returned quantity cannot be greater than available quantity for Item {1},第{0}行：物料{1}的退货数量不得大于可用数量
 Row #{0}: Returned quantity cannot be greater than available quantity to return for Item {1},第{0}行：物料{1}的退货数量不得大于可退数量
 Row #{0}: Secondary Item Qty cannot be zero,行 #{0}：辅助物料数量不能为零
-"Row #{0}: Selling rate for item {1} is lower than its {2}.
-					Selling {3} should be atleast {4}.<br><br>Alternatively,
-					you can disable '{5}' in {6} to bypass
-					this validation.","第 #{0}行：项目 {1} 的售价低于其 {2}。
-					出售 {3} 至少应为 {4}。<br><br>或者，
-					您可以禁用 {6} 中的 '{5}' 以绕过
-					此验证。"
 Row #{0}: Sequence ID must be {1} or {2} for Operation {3}.,第{0}行：工序{3}的序列ID必须为{1}或{2}。
 Row #{0}: Serial No(s) {1} are not a part of the linked Subcontracting Inward Order. Please select valid Serial No(s).,第{0}行：序列号{1}不属于关联的受托加工单。请选择有效的序列号。
 "Row #{0}: Since 'Track Semi Finished Goods' is enabled, the BOM {1} cannot be used for Sub Assembly Items",第{0}行：因已启用“追踪半成品”，物料清单{1}不可用于子装配件物料
@@ -16034,7 +14995,6 @@ Sales Order {0} is not valid,销售订单{0}无效
 Sales Orders Required,需要销售订单
 Sales Partner ,销售合作伙伴 
 Sales Person <b>{0}</b> is disabled.,销售员<b>{0}</b>已被停用。
-Sales Pipeline,销售渠道
 Sales Pipeline by Stage,销售管道按阶段
 Sales Representative,销售代表
 Sales Return,销售退货
@@ -16059,7 +15019,6 @@ Save the currently opened form,保存当前打开的表单
 Savings,储蓄
 Sazhen,Sazhen
 Scan Barcode,扫条码
-Scan Job Card Qrcode,扫描工作卡二维码
 Scan barcode for item {0},扫描条形码用于项目 {0}
 Scanned Cheque,支票扫描
 Scanned Quantity,已扫描数量
@@ -16156,9 +15115,6 @@ Select the group first to filter the applicable withholding categories below.,�
 Select the modules that you plan to implement,选择您计划实施的模块
 Select the raw materials (Items) required to manufacture the Item,选择生产该物料所需的原材料
 Select variant item code for the template item {0},为模板物料{0}选择变体物料编码
-"Select whether to get items from a Sales Order or a Material Request. For now select <b>Sales Order</b>.
- A Production Plan can also be created manually where you can select the Items to manufacture.","选择是否从销售订单或物料请求中获取物品。现在选择 <b>销售订单</b>。
- 也可以手动创建生产计划，您可以在其中选择要制造的物品。"
 Select your weekly off day,选择每周休息日
 Selected POS Opening Entry should be open.,选定的POS期初条目应为开启状态。
 Selected Print Format does not exist.,所选打印格式不存在。
@@ -16328,11 +15284,6 @@ Signee Details,签名信息
 Similar types of workstations where the same operations run in parallel.,相同工序并行运行的同类工作站。
 "Simple Python Expression, Example: doc.status == 'Open' and doc.issue_type == 'Bug'",简单Python表达式，示例：doc.status == 'Open' and doc.issue_type == 'Bug'
 "Simple Python Expression, Example: territory != 'All Territories'",简单Python表达式，示例：territory != 'All Territories'
-"Simple Python formula applied on Reading fields.<br> Numeric eg. 1: <b>reading_1 &gt; 0.2 and reading_1 &lt; 0.5</b><br>
-Numeric eg. 2: <b>mean &gt; 3.5</b> (mean of populated fields)<br>
-Value based eg.:  <b>reading_value in (""A"", ""B"", ""C"")</b>","简单的 Python 公式应用于阅读字段。<br> 数字例如 1： <b>reading_1 &gt; 0.2 和 reading_1 &lt; 0.5</b><br>
-数字例如 2： <b>平均值 &gt; 3.5</b> (填充字段的平均值)<br>
-基于值例如：  <b>reading_value in (""A"", ""B"", ""C"")</b>"
 Simultaneous,并行
 "Since there is a process loss of {0} units for the finished good {1}, you should reduce the quantity by {0} units for the finished good {1} in the Items Table.",由于成品 {1} 存在 {0} 单位的流程损失，因此您应在物料表中将成品 {1} 的数量减少 {0} 单位。
 "Since you have enabled 'Track Semi Finished Goods', at least one operation must have 'Is Final Finished Good' checked. For that set the FG / Semi FG Item as {0} against an operation.",由于您已启用“跟踪半成品”，因此至少一项工序必须选中“是否最终成品”。为此，针对操作将 FG / Semi FG Item 设置为 {0}。
@@ -16475,7 +15426,6 @@ Sub Procedure,子流程
 Sub assembly item references are missing. Please fetch the sub assemblies and raw materials again.,缺少子装配体物料参考。请重新获取子组件和原材料。
 Subcontract BOM,外协物料清单
 Subcontracted Purchase Order,外协采购订单
-Subcontracted Quantity,外协数量
 Subcontracting Conversion Factor,外协转换系数
 Subcontracting Finished Good,委外成品
 Subcontracting Inward,受托加工
@@ -16610,9 +15560,6 @@ Tax Withholding Account,代扣税款科目
 Tax Withholding Details,代扣代缴明细
 Tax Withholding Entries,预扣税分录
 Tax Withholding Entry,预扣税录入
-"Tax detail table fetched from item master as a string and stored in this field.
-Used for Taxes and Charges","税务细节表已作为字符串从项目主中获取并存储在此字段。
-用于税收和费用"
 Tax withheld only for amount exceeding cumulative threshold,仅对超过累计起征点的金额代扣代缴税款
 Taxable Amount,应税金额
 Taxes,税
@@ -16697,9 +15644,6 @@ The following cancelled repost entries exist for <b>{0}</b>:<br><br>{1}<br><br>K
 The following deleted attributes exist in Variants but not in the Template. You can either delete the Variants or keep the attribute(s) in template.,以下已删除属性存在于变体但不存在于模板。请删除变体或在模板保留属性
 The following employees are currently still reporting to {0}:,以下员工当前仍汇报给{0}：
 The following invalid Pricing Rules are deleted:,以下无效定价规则已被删除：
-"The following payment schedule(s) already exist:
-{0}","以下付款计划已存在：
-{0}"
 The following rows are duplicates:,以下行是重复的：
 The following {0} were created: {1},已创建以下{0}：{1}
 The invoice is not fully allocated as there is a difference of {0}.,由于存在 {0} 的差异，发票未完全分配。
@@ -17604,64 +16548,6 @@ via BOM Update Tool,通过物料清单更新工具
 <b>Base</b> amount has not been set for the following employee(s): {0},<b>基本</b>金额未对以下员工设置：{0}
 <b>Example:</b> SAL-{first_name}-{date_of_birth.year} <br>This will generate a password like SAL-Jane-1972,<b>示例：</b>SAL-{first_name}-{date_of_birth.year} <br>将生成类似SAL-Jane-1972的密码
 <b>Total Leaves Allocated</b> are more than the number of days in the allocation period,<b>分配的总假期</b>超过分配周期天数
-"<h3>Help</h3>
-
-<p>Notes:</p>
-
-<ol>
-<li>Use field <code>base</code> for using base salary of the Employee</li>
-<li>Use Salary Component abbreviations in conditions and formulas. <code>BS = Basic Salary</code></li>
-<li>Use field name for employee details in conditions and formulas. <code>Employment Type = employment_type</code><code>Branch = branch</code></li>
-<li>Use field name from Salary Slip in conditions and formulas. <code>Payment Days = payment_days</code><code>Leave without pay = leave_without_pay</code></li>
-<li>Direct Amount can also be entered based on Condition. See example 3</li></ol>
-
-<h4>Examples</h4>
-<ol>
-<li>Calculating Basic Salary based on <code>base</code>
-<pre><code>Condition: base &lt; 10000</code></pre>
-<pre><code>Formula: base * .2</code></pre></li>
-<li>Calculating HRA based on Basic Salary<code>BS</code> 
-<pre><code>Condition: BS &gt; 2000</code></pre>
-<pre><code>Formula: BS * .1</code></pre></li>
-<li>Calculating TDS based on Employment Type<code>employment_type</code> 
-<pre><code>Condition: employment_type==""Intern""</code></pre>
-<pre><code>Amount: 1000</code></pre></li>
-</ol>","<h3>帮助</h3>
-
-<p>注释：</p>
-
-<ol>
-<li>用字段 <code>base</code> 表示员工基本工资</li>
-<li>在条件和公式中使用工资组成部分的缩写。 <code>BS = Basic Salary</code></li>
-<li>在条件和公式中使用字段名称来显示员工详细信息。 <code>就业类型 = employment_type</code><code>分部 = branch</code></li>
-<li>在条件和公式中使用工资单中的字段名称。 <code>账期 = payment_days</code><code>无薪假期 = leave_without_pay</code></li>
-<li>也可以根据条件输入具体金额。参见示例 3</li></ol>
-
-<h4>示例</h4>
-<ol>
-<li>根据 <code>base</code> 计算基本工资
-<pre><code>条件：base &lt; 10000</code></pre>
-<pre><code>公式：base * .2</code></pre></li>
-<li>计算 HRA 基本工资 <code>BS</code>
-<pre><code>条件：BS &gt; 2000</code></pre>
-<pre><code>公式：BS * .1</code></pre></li>
-<li>计算基于 TDS 的员工类型 <code>employment_type</code> 
-<pre><code>条件：employment_type==""实习""</code></pre>
-<pre><code>金额：1000</code></pre></li>
-</ol>"
-"<h4>Condition Examples</h4>
-<ol>
-<li>Applying tax if employee born between 31-12-1937 and 01-01-1958 (Employees aged 60 to 80)<br>
-<code>Condition: date_of_birth&gt;date(1937, 12, 31) and date_of_birth&lt;date(1958, 01, 01)</code></li><br><li>Applying tax by employee gender<br>
-<code>Condition: gender==""Male""</code></li><br>
-<li>Applying tax by Salary Component<br>
-<code>Condition: base &gt; 10000</code></li></ol>","<h4>条件示例</h4>
-<ol>
-<li>如果员工出生在 1937 年 12 月 31 日至 1958 年 1 月 1 日之间（员工年龄在 60 岁至 80 岁之间），则需纳税<br>
-<code>条件：date_of_birth&gt;date(1937, 12, 31) and date_of_birth&lt;date(1958, 01, 01)</code></li><br><li>按员工性别算税<br>
-<code>条件：gender==""男""</code></li><br>
-<li>按工资组成算税<br>
-<code>条件：base &gt; 10000</code></li></ol>"
 <h5>Employees on Half Day</h5>,<h5>半日制员工</h5>
 <h5>Unmarked Employees</h5>,<h5>未标记员工</h5>
 <hr>,<hr>
@@ -17887,15 +16773,6 @@ Check-out,签退
 Check-out Date,签退日期
 Checkin Radius,签到半径
 Child nodes can only be created under 'Group' type nodes,子节点只能在'组'类型节点下创建
-"Choose how the hourly overtime amount is calculated:
-<ol style=""padding-left:15px;""><li>Fixed Hourly Rate: A fixed, manually entered hourly rate.</li>
-<li>Salary Component-Based:
-
-(Sum of selected component amounts) ÷ (Payment Days) ÷ (Standard Daily Hours)</li></ol>","选择小时加班费计算方式：
-<ol style=""padding-left:15px;""><li>固定小时费率：固定且手动输入的小时费率。</li>
-<li>基于工资组件
-
-（所选组件金额总和）÷（支付天数）÷（标准每日工时）</li></ol>"
 Choose the date on which you want to create these components as arrears.,选择将这些组件创建为欠薪的日期
 Claim Benefit For,申请福利对象
 Claim an Expense,费用报销
@@ -18370,7 +17247,6 @@ Job Openings,职位空缺列表
 Job Openings for the designation {0} are already open or the hiring is complete as per the Staffing Plan {1},职级{0}的职位空缺已开放或按人员配置计划{1}已完成招聘
 Job Requisition {0} has been associated with Job Opening {1},职位申请{0}已关联职位空缺{1}
 "Job profile, qualifications required etc.",岗位描述、资质要求等
-Jobs,职位列表
 KRA Evaluation Method,KRA评估方法
 KRA updated for all child goals.,所有子目标KRA已更新
 Key Responsibility Area,关键责任区
@@ -18492,11 +17368,6 @@ Monthly Attendance Sheet,月度考勤表
 More than one selection for {0} not allowed,{0}不允许选择多个选项
 Multiple Additional Salaries with overwrite property exist for Salary Component {0} between {1} and {2}.,薪资组件{0}在{1}至{2}期间存在多个具有覆盖属性的附加薪资
 Multiple Shift Assignments,多班次分配
-"Multipliers that adjust the hourly overtime amount for specific scenarios
-
-","针对特定场景调整小时加班费的乘数
-
-"
 My Advances,我的预支
 My Claims,我的报销
 My Leaves,我的假期
@@ -19297,15 +18168,12 @@ Receipt,资产收到,Asset Movement
 Transfer,资产移转,Asset Movement
 Reset Desktop Layout,重置桌面布局
 Edit Layout,编辑桌面布局
-"Is Subcontracted","受托加工","Sales Order"
-Subcontracted Quantity,"受托加工数量","Sales Order Item"
-"Is Customer Provided Item","是客供料"
-Is Subcontracted Item,是委外/受托加工物料
+Is Subcontracted,受托加工,Sales Order
+Subcontracted Quantity,受托加工数量,Sales Order Item
 Freeze,冻结
 Save Current Filter,保存筛选器
-Scan Job Card Qrcode,扫描生产任务单二维码
-"if not checked, it will be excluded from send to manufacture,manual transfer it to WIP warehouse without refer to work order instead","如不勾选表示此物料不按工单发料，工单发料明细不包含它；需手动将其转入车间仓"
-"for equipment pool case, number of individual equipment","针对多台设备作为一个工站，这个是设备台数"
+"if not checked, it will be excluded from send to manufacture,manual transfer it to WIP warehouse without refer to work order instead",如不勾选表示此物料不按工单发料，工单发料明细不包含它；需手动将其转入车间仓
+"for equipment pool case, number of individual equipment",针对多台设备作为一个工站，这个是设备台数
 Physical SFG produced in-house,自制半成品
 "for subcontract case, ticked means this item excluded from the to-be sent to supplier raw material list",针对委外场景，勾选则委外发料明细不包含此物料
 Balance Sheet Settings,中国资产负责表设置
@@ -22550,3 +21418,27 @@ Shift Assignments,班次安排
 Shift Setup,班次设置
 Income Tax,所得税
 Tax & Exemption Setup,税务与减免设置
+Let's get the basics right,先把基础设置好
+"Hi {0}, let's get the basics right",{0}，先把基础设置好
+"These set how dates, numbers and money look across the app.",这些设置决定日期、数字和金额在应用中的显示方式。
+"201–1,000","201–1,000"
+"1,000+","1,000 以上"
+Setting things up,正在配置系统
+This can take a minute. Please keep this page open.,这可能需要一分钟，请保持本页面打开。
+Getting started,正在开始
+All set! Opening your workspace,一切就绪！正在打开您的工作区
+Saving your language and region,正在保存您的语言和地区
+We couldn't save your language and region,无法保存您的语言和地区
+Almost done,即将完成
+We couldn't finish setting things up,我们无法完成初始化设置
+Setting up the basics,正在设置基础信息
+We couldn't set up the basics,无法设置基础信息
+Creating your company,正在创建您的公司
+We couldn't create your company,无法创建您的公司
+Applying recommended settings,正在应用推荐设置
+We couldn't apply the recommended settings,无法应用推荐设置
+We couldn't personalize your setup,无法个性化您的配置
+Adding demo data,正在添加演示数据
+We couldn't add the demo data,无法添加演示数据
+Optional,可选
+Let's give your business a home.,让 ERPNext 成为您企业的家
