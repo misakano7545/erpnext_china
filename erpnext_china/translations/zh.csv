@@ -21442,3 +21442,24 @@ Adding demo data,正在添加演示数据
 We couldn't add the demo data,无法添加演示数据
 Optional,可选
 Let's give your business a home.,让 ERPNext 成为您企业的家
+Cash Flow Code,现金流量编码
+Cash Flow Name,现金流量项目名称
+Cash Flow Type,现金流量类型
+Cash Flow Item,现金流量表分录
+Cash Flow Items,现金流量表明细
+Cash Flow Subtotal,现金流量表小计
+Cash Flow Report,现金流量表
+Download Cash Flow,下载现金流量表
+Get Cash Flow Items,获取现金流量明细
+Monthly Amount,本月金额
+Is Outflow,是否为现金流出
+Report Sequence,报表顺序
+Default Party Type,默认往来类型
+Default Cash Flow Code,默认现金流量编码
+Allow All Party Type,允许所有往来类型
+Manual Split,手工拆分
+type_subtotal,类型小计
+last_period_balance,期初余额
+above_subtotal,以上各项小计
+"GL Entry {0} total amount {1} does not match amount {2} in general ledger",总账分录 {0} 的合计金额 {1} 与总账金额 {2} 不一致
+BS and PL Missing Account,资产负债损益报表缺失科目

@@ -104,6 +104,8 @@ class CashFlow(Document):
             pluck = 'name')
 
         above_subtotal, above_yearly_subtotal = 0, 0
+        #期初余额计入 above_subtotal 后，后面的 above_subtotal 即为时点余额（期末现金余额）
+        opening_included = False
         for row in cash_flow_codes:
             cash_flow_type = code_type_map.get(row.code)
             subtotal_doc = frappe._dict({
@@ -126,12 +128,17 @@ class CashFlow(Document):
                         opening_balances.get(account,{}).get('opening_credit',0)
                         for account in cash_accounts)
                     above_subtotal += subtotal_doc.monthly_amount
+                    opening_included = True
                 elif row.formula == 'above_subtotal':
                     subtotal_doc.monthly_amount = above_subtotal
             #本年累计金额
             last_month_yearly_amount = last_month_yearly_amount_map.get(row.code, 0)
-            if row.formula == 'last_period_balance':                
-                subtotal_doc.yearly_amount = subtotal_doc.monthly_amount if self.month == '1' else last_month_yearly_amount                
+            if row.formula == 'last_period_balance':
+                #期初余额是时点余额，本年累计固定为年初余额
+                subtotal_doc.yearly_amount = subtotal_doc.monthly_amount if self.month == '1' else last_month_yearly_amount
+            elif row.formula == 'above_subtotal' and opening_included:
+                #已含期初余额的 above_subtotal（期末现金余额）同为时点余额，本年累计即本月金额
+                subtotal_doc.yearly_amount = subtotal_doc.monthly_amount
             else:
                 subtotal_doc.yearly_amount = last_month_yearly_amount + (subtotal_doc.monthly_amount or 0)
 
