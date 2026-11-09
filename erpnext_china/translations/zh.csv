@@ -12985,7 +12985,7 @@ Investment Banking,投资银行业务
 Investments,投资
 Invoice Document Type Selection Error,发票单据类型选择错误
 Invoice Grand Total,发票总计
-Invoice Limit,发票限额
+Invoice Limit,发票显示条数上限
 Invoice Paid,发票已付款
 Invoice Series,发票系列
 Invoice Status,发票状态
@@ -13865,7 +13865,7 @@ Payment Gateway Account,支付网关账户
 "Payment Gateway Account not created, please create one manually.",支付网关科目没有创建，请手动创建一个。
 Payment Gateway Details,支付网关信息
 Payment Ledger Balance,付款分类账余额
-Payment Limit,付款限额
+Payment Limit,付款显示条数上限
 Payment Method,付款方式
 Payment Methods,付款方式
 Payment Mode,付款方式
